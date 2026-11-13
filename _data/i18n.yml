@@ -38,13 +38,7 @@ zh:
   orbit_exploration: 探索
   focus_label: 关注方向
   scroll_note: 向下探索
-  about_title_first: 热爱是起点，
-  about_title_second: 创造是方向。
-  development_label: 开发
-  development_fact: 游戏客户端
   education_label: 教育经历
-  education_fact: 复旦大学
-  research_fact: AI × 游戏
   industry_intro_first: 从引擎与玩法实现出发，
   industry_intro_second: 积累对游戏研发的真实理解。
   research_heading: 研究方向
@@ -96,13 +90,7 @@ en:
   orbit_exploration: Exploration
   focus_label: Focus
   scroll_note: Explore below
-  about_title_first: Begin with curiosity.
-  about_title_second: Follow through by creating.
-  development_label: Development
-  development_fact: Game clients
   education_label: Education
-  education_fact: Fudan University
-  research_fact: AI × Games
   industry_intro_first: From engines to gameplay,
   industry_intro_second: learning by building real games.
   research_heading: Research directions

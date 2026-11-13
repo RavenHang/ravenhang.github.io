@@ -20,14 +20,10 @@
     <span class="orbit-coordinate orbit-coordinate--top">01 / {{ ui.orbit_imagination }}</span><span class="orbit-coordinate orbit-coordinate--bottom">02 / {{ ui.orbit_exploration }}</span>
   </div>
 </section>
-<div class="focus-strip shell" aria-label="{{ ui.focus_label }}"><span class="focus-label">{{ ui.focus_label }}</span><ul>{% for focus in profile.focus %}<li>{{ focus }}</li>{% endfor %}</ul><a href="#about" class="scroll-note">{{ ui.scroll_note }} <span aria-hidden="true">↓</span></a></div>
-<section class="about-section shell section-space" id="about" aria-labelledby="about-title">
-  <div><p class="section-index">01 / {{ ui.home_label }}</p><h2 id="about-title">{{ ui.about_title_first }}<br> {{ ui.about_title_second }}</h2></div>
-  <div class="about-copy"><p>{{ profile.intro }}</p><div class="about-facts"><div><span>{{ ui.development_label }}</span><strong>{{ ui.development_fact }}</strong></div><div><span>{{ ui.education_label }}</span><strong>{{ ui.education_fact }}</strong></div><div><span>{{ ui.research_label }}</span><strong>{{ ui.research_fact }}</strong></div></div></div>
-</section>
+<div class="focus-strip shell" aria-label="{{ ui.focus_label }}"><span class="focus-label">{{ ui.focus_label }}</span><ul>{% for focus in profile.focus %}<li>{{ focus }}</li>{% endfor %}</ul><a href="#experience" class="scroll-note">{{ ui.scroll_note }} <span aria-hidden="true">↓</span></a></div>
       <section class="experience-section shell section-space" id="experience" aria-labelledby="experience-title">
         <header class="section-header">
-          <div><p class="section-index">02 / {{ ui.industry_label }}</p><h2 id="experience-title">{{ ui.industry_label }}</h2></div>
+          <div><p class="section-index">01 / {{ ui.industry_label }}</p><h2 id="experience-title">{{ ui.industry_label }}</h2></div>
           <p class="section-intro">{{ ui.industry_intro_first }}<br>{{ ui.industry_intro_second }}</p>
         </header>
         <div class="experience-list">
@@ -43,7 +39,7 @@
       <section class="research-section section-space" id="research" aria-labelledby="research-title">
         <div class="shell">
           <header class="section-header">
-            <div><p class="section-index">03 / {{ ui.research_label }}</p><h2 id="research-title">{{ ui.research_heading }}</h2></div>
+            <div><p class="section-index">02 / {{ ui.research_label }}</p><h2 id="research-title">{{ ui.research_heading }}</h2></div>
             <p class="section-intro">{{ ui.research_intro_first }}<br>{{ ui.research_intro_second }}</p>
           </header>
           <div class="research-layout">
@@ -75,7 +71,7 @@
       </section>
 
       <section class="contact-section shell section-space" id="contact" aria-labelledby="contact-title">
-        <div class="contact-heading"><p class="section-index">04 / {{ ui.contact_label }}</p><h2 id="contact-title">{{ ui.contact_title_first }}<br>{{ ui.contact_title_second }}</h2><p>{{ ui.contact_intro }}</p></div>
+        <div class="contact-heading"><p class="section-index">03 / {{ ui.contact_label }}</p><h2 id="contact-title">{{ ui.contact_title_first }}<br>{{ ui.contact_title_second }}</h2><p>{{ ui.contact_intro }}</p></div>
         <div class="contact-details">
           <p class="contact-label">{{ ui.email_label }}</p>
           <a class="email-link" href="mailto:{{ profile.email }}">{{ profile.email }}<span aria-hidden="true">↗</span></a>
