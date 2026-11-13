@@ -1,4 +1,4 @@
-<section class="hero shell" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-copy">
     <p class="hero-name">{{ profile.name }}</p>
     <p class="eyebrow hero-role"><span class="small-dot" aria-hidden="true"></span>{{ profile.role }}</p>
@@ -20,8 +20,8 @@
     <span class="orbit-coordinate orbit-coordinate--top">01 / {{ ui.orbit_imagination }}</span><span class="orbit-coordinate orbit-coordinate--bottom">02 / {{ ui.orbit_exploration }}</span>
   </div>
 </section>
-<div class="focus-strip shell" aria-label="{{ ui.focus_label }}"><span class="focus-label">{{ ui.focus_label }}</span><ul>{% for focus in profile.focus %}<li>{{ focus }}</li>{% endfor %}</ul><a href="#experience" class="scroll-note">{{ ui.scroll_note }} <span aria-hidden="true">↓</span></a></div>
-      <section class="experience-section shell section-space" id="experience" aria-labelledby="experience-title">
+<div class="focus-strip" aria-label="{{ ui.focus_label }}"><span class="focus-label">{{ ui.focus_label }}</span><ul>{% for focus in profile.focus %}<li>{{ focus }}</li>{% endfor %}</ul><a href="#experience" class="scroll-note">{{ ui.scroll_note }} <span aria-hidden="true">↓</span></a></div>
+      <section class="experience-section section-space" id="experience" aria-labelledby="experience-title">
         <header class="section-header">
           <div><p class="section-index">01 / {{ ui.industry_label }}</p><h2 id="experience-title">{{ ui.industry_label }}</h2></div>
           <p class="section-intro">{{ ui.industry_intro_first }}<br>{{ ui.industry_intro_second }}</p>
@@ -37,7 +37,7 @@
       </section>
 
       <section class="research-section section-space" id="research" aria-labelledby="research-title">
-        <div class="shell">
+        <div class="research-inner">
           <header class="section-header">
             <div><p class="section-index">02 / {{ ui.research_label }}</p><h2 id="research-title">{{ ui.research_heading }}</h2></div>
             <p class="section-intro">{{ ui.research_intro_first }}<br>{{ ui.research_intro_second }}</p>
@@ -67,18 +67,5 @@
             <div class="activity-list">{% for activity in profile.activities %}<article><h3>{{ activity.title }}</h3><p>{{ activity.description }}</p></article>{% endfor %}</div>
           </div>
           {% endif %}
-        </div>
-      </section>
-
-      <section class="contact-section shell section-space" id="contact" aria-labelledby="contact-title">
-        <div class="contact-heading"><p class="section-index">03 / {{ ui.contact_label }}</p><h2 id="contact-title">{{ ui.contact_title_first }}<br>{{ ui.contact_title_second }}</h2><p>{{ ui.contact_intro }}</p></div>
-        <div class="contact-details">
-          <p class="contact-label">{{ ui.email_label }}</p>
-          <a class="email-link" href="mailto:{{ profile.email }}">{{ profile.email }}<span aria-hidden="true">↗</span></a>
-          <div class="copy-row"><button class="copy-email" type="button" data-copy-email="{{ profile.email | escape }}" data-copy-success="{{ ui.copy_success | escape }}" data-copy-failure="{{ ui.copy_failure | escape }}" hidden>{{ ui.copy_email }} <span aria-hidden="true">⧉</span></button><span class="copy-status" role="status" aria-live="polite"></span></div>
-          <div class="social-links">
-            {% if profile.xiaohongshu and profile.xiaohongshu != '' %}<a class="text-link" href="{{ profile.xiaohongshu }}" target="_blank" rel="noopener noreferrer">{{ ui.xiaohongshu_label }} <span aria-hidden="true">↗</span></a>{% endif %}
-            {% for link in profile.links %}<a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}
-          </div>
         </div>
       </section>

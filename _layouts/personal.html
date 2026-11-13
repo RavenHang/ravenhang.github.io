@@ -52,7 +52,10 @@
       {% if page.section == 'games' %}
         {% include personal-games.html %}
       {% else %}
-        {% include personal-home.html %}
+        <div class="home-layout shell">
+          {% include personal-sidebar.html %}
+          <div class="home-content">{% include personal-home.html %}</div>
+        </div>
       {% endif %}
     </main>
     <footer class="site-footer shell"><p>© {{ 'now' | date: '%Y' }} {{ profile.name }}</p><p class="footer-motto">{{ ui.footer_motto }}</p><a href="#top">{{ ui.back_top }} <span aria-hidden="true">↑</span></a></footer>

@@ -7,6 +7,8 @@ zh:
   industry_label: 行业经历
   research_label: 学术探索
   contact_label: 联系我
+  sidebar_contact_title: 联系与链接
+  sidebar_photo_alt: 活动合影
   back_top: 回到顶部
   footer_motto: 保持好奇，持续创造。
   game_page_label: 游戏作品
@@ -46,9 +48,6 @@ zh:
   courses_label: 课程与学习
   research_tags_label: 研究标签
   activities_label: 课堂之外
-  contact_title_first: 聊聊游戏、AI，
-  contact_title_second: 和下一件想做的事。
-  contact_intro: 欢迎交流游戏开发、学术研究与合作机会。
 en:
   lang_label: Language
   skip: Skip to content
@@ -58,6 +57,8 @@ en:
   industry_label: Experience
   research_label: Research
   contact_label: Contact
+  sidebar_contact_title: Contact & links
+  sidebar_photo_alt: Photo at an event
   back_top: Back to top
   footer_motto: Stay curious. Keep creating.
   game_page_label: Games
@@ -97,6 +98,3 @@ en:
   courses_label: Coursework
   research_tags_label: Research topics
   activities_label: Beyond the classroom
-  contact_title_first: Let's talk games, AI,
-  contact_title_second: and what comes next.
-  contact_intro: Open to conversations about game development, research and collaboration.
