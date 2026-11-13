@@ -24,8 +24,8 @@
     <link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
     <link rel="alternate" hreflang="x-default" href="{{ zh_url | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="{{ '/images/personal-mark.svg' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/personal.css' | relative_url }}">
-    <script src="{{ '/assets/js/personal.js' | relative_url }}" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/css/personal.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
+    <script src="{{ '/assets/js/personal.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
   </head>
   <body id="top" class="page-{{ page.section | default: 'home' }}" data-language="{{ lang }}">
     <a class="skip-link" href="#main">{{ ui.skip }}</a>
