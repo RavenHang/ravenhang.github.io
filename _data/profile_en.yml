@@ -60,22 +60,12 @@ projects:
     eyebrow: AI-native game · Cocos
     title: Student Job Hunt Simulator
     subtitle: Explore career choices through a text adventure
-    description: An AI-native text adventure built in Cocos with students from different schools at Fudan University. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
+    description: An AI-native text adventure built in Cocos with fellow Fudan students. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
     tags: [Cocos, AI-native, Text adventure]
     status: AI Hackathon Tour 2026
     links:
       - label: Project overview
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#U9VBdrEogoUj4ExOw0ic2s4dnH4
-  - number: "05"
-    eyebrow: User-generated content · Gameplay prototyping
-    title: Game for Peace · Oasis Qiyuan
-    subtitle: From game design to a playable prototype
-    description: Gameplay experimentation around a UGC concept for The Two Otters. The portfolio documents game flow, custom weapons and skill-editor work, exploring gameplay creation within an existing game ecosystem.
-    tags: [UGC, Weapons and skills, Gameplay design]
-    status: Prototype and workflow showcase
-    links:
-      - label: View portfolio
-        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
   - date: Nov 2026 — Present
     company: Tencent IEG - Frontier Game Technology

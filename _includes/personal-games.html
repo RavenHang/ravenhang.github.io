@@ -26,7 +26,7 @@
           <p class="game-status"><span class="small-dot" aria-hidden="true"></span>{{ project.status }}</p>
           <div class="game-links" aria-label="{{ ui.project_links_label }}">{% for link in project.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>
         </div>
-        <div class="game-panel-meta"><span class="game-page-number" aria-hidden="true">{{ project.number }}<small> / 05</small></span>{% if art.concept %}<span class="concept-note">{{ ui.concept_art_label }}</span>{% endif %}</div>
+        <div class="game-panel-meta"><span class="game-page-number" aria-hidden="true">{{ project.number }}<small> / {% if profile.projects.size < 10 %}0{% endif %}{{ profile.projects.size }}</small></span>{% if art.concept %}<span class="concept-note">{{ ui.concept_art_label }}</span>{% endif %}</div>
       </div>
     </article>
     {% endfor %}

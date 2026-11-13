@@ -351,7 +351,7 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 .game-gallery.is-enhanced .game-selector { position:fixed; bottom:0; left:0; right:0; background:linear-gradient(0deg,#071a2be6,#071a2b99); backdrop-filter:blur(14px); }
 .game-panel--02 .game-backdrop { object-position:70% 50%; }
 .game-panel--03 .game-backdrop { object-position:75% 42%; }
-.game-panel--04 .game-backdrop,.game-panel--05 .game-backdrop { object-position:70% 50%; }
+.game-panel--04 .game-backdrop { object-position:70% 50%; }
 .page-games .site-footer { border-top:0; }
 .game-panel.is-active .game-info { animation:game-enter .35s ease-out both; }
 @keyframes game-enter { from { opacity:.4; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }

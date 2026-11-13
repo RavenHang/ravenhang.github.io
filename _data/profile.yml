@@ -63,22 +63,12 @@ projects:
     eyebrow: AI 原生游戏 · Cocos 引擎
     title: 大学生求职模拟器
     subtitle: 用文字冒险探索求职选择
-    description: 与复旦不同学院的同学共同开发的 AI 原生文字冒险游戏，使用 Cocos 引擎。参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
+    description: 与复旦同学共同开发的基于Cocos的 AI 原生文字冒险游戏，参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
     tags: [Cocos, AI 原生, 文字冒险]
     status: AI Hackathon Tour 2026
     links:
       - label: 项目介绍
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#U9VBdrEogoUj4ExOw0ic2s4dnH4
-  - number: "05"
-    eyebrow: 用户创作 · 玩法原型
-    title: 和平精英 · 绿洲启元
-    subtitle: 从策划到玩法原型
-    description: 围绕《双獭奇兵》UGC 方案进行玩法实践，作品集记录了游戏流程、自定义武器与技能编辑器相关内容，探索现有游戏生态中的玩法创作。
-    tags: [UGC, 武器与技能, 玩法设计]
-    status: 原型与流程展示
-    links:
-      - label: 查看作品集
-        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
   - date: 2026.11 — 至今
     company: 腾讯IEG-游戏前沿技术
