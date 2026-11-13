@@ -29,7 +29,10 @@
           {% for item in profile.industry %}
           <article class="experience-row">
             <p class="experience-date">{{ item.date }}</p>
-            <div class="experience-heading"><h3>{{ item.company }}</h3><p>{{ item.role }}</p></div>
+            <div class="experience-heading">
+              <img class="experience-logo" src="{{ item.logo | relative_url }}" alt="" width="120" height="72" loading="lazy" decoding="async" aria-hidden="true">
+              <h3>{{ item.company }}</h3><p>{{ item.role }}</p>
+            </div>
           </article>
           {% endfor %}
         </div>

@@ -64,12 +64,15 @@ projects:
 industry:
   - date: Nov 2026 — Present
     company: Tencent IEG - Frontier Game Technology
+    logo: /images/companies/tencent.png
     role: Game client developer
   - date: Jun 2024 — Sep 2026
     company: Shanghai Sanye Network Technology
+    logo: /images/companies/sanye.jpg
     role: Game client developer
   - date: Jul 2020 — May 2023
     company: JD Technology
+    logo: /images/companies/jd-technology.png
     role: Java backend developer
 education:
   school: Fudan University
