@@ -22,6 +22,9 @@ zh:
   project_tags_label: 项目标签
   hero_title_first: 玩家 → 开发者
   hero_title_second: → 研究者。
+  hero_player: 玩家
+  hero_developer: 开发者
+  hero_researcher: 研究者
   hero_games_cta: 探索游戏作品
   hero_research_cta: 学术与研究
   orbit_curiosity: 以好奇出发
@@ -68,6 +71,9 @@ en:
   project_tags_label: Project tags
   hero_title_first: Player → Developer
   hero_title_second: → Researcher.
+  hero_player: Player
+  hero_developer: Developer
+  hero_researcher: Researcher
   hero_games_cta: Explore my games
   hero_research_cta: Explore research
   orbit_curiosity: Curious by nature

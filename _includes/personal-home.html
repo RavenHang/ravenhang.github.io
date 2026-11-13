@@ -1,9 +1,15 @@
 <div class="intro-layout">
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title" data-personal-hero>
   <div class="hero-copy">
     <p class="hero-name">{{ profile.name }}</p>
     <p class="eyebrow hero-role"><span class="small-dot" aria-hidden="true"></span>{{ profile.role }}</p>
-    <h1 id="hero-title">{{ ui.hero_title_first }}<br><span class="gradient-text">{{ ui.hero_title_second }}</span></h1>
+    <h1 id="hero-title" class="hero-progression" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}">
+      <span class="hero-path" aria-hidden="true">
+        <span class="hero-stage hero-stage--player"><span class="hero-stage-number">01</span><span class="hero-stage-name">{{ ui.hero_player }}</span><span class="hero-stage-arrow">↘</span></span>
+        <span class="hero-stage hero-stage--developer"><span class="hero-stage-number">02</span><span class="hero-stage-name">{{ ui.hero_developer }}</span><span class="hero-stage-arrow">↘</span></span>
+        <span class="hero-stage hero-stage--researcher"><span class="hero-stage-number">03</span><span class="hero-stage-name">{{ ui.hero_researcher }}</span><span class="hero-stage-end"></span></span>
+      </span>
+    </h1>
     <p class="hero-summary">{{ profile.hero.summary }}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }} <span aria-hidden="true">↗</span></a>
