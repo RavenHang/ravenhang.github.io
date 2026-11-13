@@ -105,6 +105,7 @@ ul{list-style:none; padding:0}
 .experience-row::before{content:""; position:absolute; left:-38px; top:36px; width:15px; height:15px; border:4px solid var(--paper); border-radius:50%; background:var(--blue); box-shadow:0 0 0 1px #c5d9ef}
 .experience-row:last-child{border-bottom:0; padding-bottom:0}
 .experience-row:last-child::before{background:var(--accent)}
+.experience-date{grid-column:1; color:var(--primary); font-size:11px; font-variant-numeric:tabular-nums; letter-spacing:.7px}
 .experience-heading{grid-column:1; display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px 32px}
 .experience-heading h3{font-size:19px; font-weight:600}
 .experience-heading p{margin-top:0; color:var(--muted); font-size:13px; flex-shrink:0}

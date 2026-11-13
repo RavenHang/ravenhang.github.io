@@ -77,11 +77,14 @@ projects:
       - label: View portfolio
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
-  - company: Tencent IEG
+  - date: Nov 2026 — Present
+    company: Tencent IEG - Frontier Game Technology
     role: Game client developer
-  - company: Shanghai Sanye Network Technology
+  - date: Jun 2024 — Sep 2026
+    company: Shanghai Sanye Network Technology
     role: Game client developer
-  - company: JD Technology
+  - date: Jul 2020 — May 2023
+    company: JD Technology
     role: Java backend developer
 education:
   school: Fudan University

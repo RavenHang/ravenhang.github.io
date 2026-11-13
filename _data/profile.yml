@@ -80,11 +80,14 @@ projects:
       - label: 查看作品集
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
-  - company: 腾讯 IEG
+  - date: 2026.11 — 至今
+    company: 腾讯IEG-游戏前沿技术
     role: 游戏客户端开发
-  - company: 上海散夜网络科技有限公司
+  - date: 2024.06 — 2026.09
+    company: 上海散夜网络科技有限公司
     role: 游戏客户端开发
-  - company: 京东科技控股股份有限公司
+  - date: 2020.07 — 2023.05
+    company: 京东科技控股股份有限公司
     role: Java 后端开发
 education:
   # Program and enrollment date follow the newer 2026-10 student-status certificate.
