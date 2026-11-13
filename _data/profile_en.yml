@@ -27,7 +27,7 @@ projects:
   - number: "02"
     eyebrow: TapTap Spotlight GameJam
     title: Zero Hour Tower
-    subtitle: A journey through a temporal anomaly
+    subtitle: Roguelike + Cards
     description: Served as producer on a game created for the TapTap Spotlight GameJam under the theme “Emergence”, featuring real-time combat that combines roguelike and card mechanics.
     image: /images/projects/zero-hour-tower.jpg
     image_alt: Official Zero Hour Tower artwork featuring a witch and clock motifs

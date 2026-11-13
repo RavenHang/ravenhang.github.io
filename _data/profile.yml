@@ -30,7 +30,7 @@ projects:
   - number: "02"
     eyebrow: TapTap 聚光灯游戏创作挑战
     title: 零时之塔
-    subtitle: 在时间异常中前行
+    subtitle: Rougelike + 卡牌
     description: 担任制作人参与 TapTap 聚光灯 GameJam 的游戏作品，主题为“涌现”，玩法类型为Rouge+卡牌的即时战斗类游戏。
     image: /images/projects/zero-hour-tower.jpg
     image_alt: 《零时之塔》官方海报中的魔女与时钟元素
