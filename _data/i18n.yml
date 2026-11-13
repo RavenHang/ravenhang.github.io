@@ -37,8 +37,6 @@ zh:
   orbit_research_caption: 前沿探索
   orbit_imagination: 想象
   orbit_exploration: 探索
-  focus_label: 关注方向
-  scroll_note: 向下探索
   education_label: 教育经历
   industry_intro_first: 从引擎与玩法实现出发，
   industry_intro_second: 积累对游戏研发的真实理解。
@@ -87,8 +85,6 @@ en:
   orbit_research_caption: Frontier exploration
   orbit_imagination: Imagination
   orbit_exploration: Exploration
-  focus_label: Focus
-  scroll_note: Explore below
   education_label: Education
   industry_intro_first: From engines to gameplay,
   industry_intro_second: learning by building real games.

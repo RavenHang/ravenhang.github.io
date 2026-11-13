@@ -13,10 +13,6 @@ hero:
   summary: 在该学习的时候去打了游戏，在该打游戏的时候选择了去学习。
   image: /images/projects/two-otters-cover.png
   image_alt: 独立游戏《双獭奇兵》的海底场景与两只水獭主角
-focus:
-  - 虚幻引擎 / 玩法开发
-  - 游戏智能体 / AI 辅助游戏研发
-  - C++ · Python · TypeScript · Lua
 projects:
   - number: "01"
     eyebrow: 独立游戏 · 虚幻引擎
@@ -105,5 +101,3 @@ activities:
 links:
   - label: GitHub
     url: https://github.com/RavenHang
-  - label: 完整作品集
-    url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb

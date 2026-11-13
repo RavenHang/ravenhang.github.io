@@ -10,10 +10,6 @@ hero:
   summary: I played games when it was time to study, and chose to study when it was time to play.
   image: /images/projects/two-otters-cover.png
   image_alt: The two otter protagonists in the underwater world of The Two Otters
-focus:
-  - Unreal Engine / Gameplay
-  - AI in games / AI for game development
-  - C++ · Python · TypeScript · Lua
 projects:
   - number: "01"
     eyebrow: Independent game · Unreal Engine
@@ -101,5 +97,3 @@ activities:
 links:
   - label: GitHub
     url: https://github.com/RavenHang
-  - label: Full portfolio
-    url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb

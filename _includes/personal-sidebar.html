@@ -23,9 +23,8 @@
       {% endfor %}
       {% if profile.xiaohongshu and profile.xiaohongshu != '' %}
       <li>
-        <a class="sidebar-link" href="{{ profile.xiaohongshu | escape }}" target="_blank" rel="noopener noreferrer">
-          <img class="sidebar-icon sidebar-icon--xiaohongshu" src="{{ '/images/icons/xiaohongshu.svg' | relative_url }}" alt="" width="24" height="24" aria-hidden="true">
-          <span class="sidebar-link-copy">{{ ui.xiaohongshu_label }}</span>
+        <a class="sidebar-link sidebar-link--xiaohongshu" href="{{ profile.xiaohongshu | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ui.xiaohongshu_label | escape }}">
+          <img class="sidebar-xiaohongshu-badge" src="{{ '/images/icons/xiaohongshu.png' | relative_url }}" alt="" width="690" height="483" aria-hidden="true">
         </a>
       </li>
       {% endif %}

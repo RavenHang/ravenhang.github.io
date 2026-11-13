@@ -35,7 +35,7 @@ ul{list-style:none; padding:0}
 .site-nav a:last-child{border:1px solid var(--line); border-radius:30px; padding:7px 17px; color:var(--primary)}
 .site-nav a:hover,.site-footer a:hover{color:var(--primary)}
 
-.eyebrow,.section-index,.focus-label,.course-label{color:var(--primary); font-size:10px; font-weight:650; line-height:1.7; letter-spacing:1.8px; text-transform:uppercase}
+.eyebrow,.section-index,.course-label{color:var(--primary); font-size:10px; font-weight:650; line-height:1.7; letter-spacing:1.8px; text-transform:uppercase}
 .small-dot{display:inline-block; width:6px; height:6px; flex:0 0 auto; border-radius:50%; background:currentColor}
 
 .hero{position:relative; display:grid; grid-template-columns:1.3fr 1fr; align-items:center; gap:28px; min-height:680px; padding-block:86px 72px}
@@ -86,10 +86,6 @@ ul{list-style:none; padding:0}
 .orbit-coordinate--top{top:1%; left:19%}
 .orbit-coordinate--bottom{bottom:0; right:15%}
 
-.focus-strip{display:flex; align-items:center; gap:28px; border-block:1px solid var(--line); padding-block:22px}
-.focus-label{flex-shrink:0; font-size:9px}
-.focus-strip ul{display:flex; flex-wrap:wrap; gap:6px 28px; color:var(--muted); font-size:11px}
-.scroll-note{display:flex; align-items:center; gap:24px; margin-left:auto; font-size:10px; white-space:nowrap; color:var(--primary)}
 
 .section-space{padding-block:98px}
 .section-header{display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:42px}
@@ -169,9 +165,6 @@ ul{list-style:none; padding:0}
 .orbit-label--game{right:-1%; top:4%}
 .orbit-label--research{bottom:3%; left:0}
 .orbit-micro{font-size:5px; letter-spacing:.6px; margin-block:10px}
-.focus-strip{gap:22px}
-.focus-strip ul{gap:8px 18px; font-size:10px}
-.scroll-note{display:none}
 .research-layout{gap:4%}
 .education{padding:25px}
 .activity-list{gap:24px}
@@ -239,9 +232,6 @@ ul{list-style:none; padding:0}
 .orbit-label small{font-size:6px}
 .orbit-symbol{font-size:18px; margin-bottom:5px}
 .orbit-coordinate{font-size:6px}
-.focus-strip{align-items:start; gap:16px; padding-block:20px}
-.focus-label{font-size:8px; margin-top:2px}
-.focus-strip ul{font-size:10px; gap:5px}
 
  .section-space{padding-block:52px}
 .section-index{font-size:9px; letter-spacing:1.4px}
@@ -408,7 +398,8 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 .sidebar-link { display:flex; align-items:center; gap:12px; min-height:44px; padding:7px 2px; border-radius:6px; color:var(--ink); font-size:14px; line-height:1.6; }
 .sidebar-link:hover { color:var(--primary); background:#eaf3ff; }
 .sidebar-icon { display:block; width:24px; height:24px; flex:0 0 24px; color:#6b83a0; object-fit:contain; }
-.sidebar-icon--xiaohongshu { width:32px; height:32px; flex-basis:32px; margin-inline:-4px; }
+.sidebar-link--xiaohongshu { width:fit-content; }
+.sidebar-xiaohongshu-badge { display:block; width:104px; height:46px; object-fit:cover; object-position:center; mix-blend-mode:multiply; }
 .sidebar-link-copy { display:block; min-width:0; }
 .sidebar-link-label { display:block; margin-bottom:2px; color:var(--muted); font-size:11px; }
 .sidebar-link-detail { display:block; font-size:12px; overflow-wrap:anywhere; }
@@ -420,9 +411,6 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 .home-content .hero h1 { font-size:clamp(34px,3.25vw,51px); }
 html[lang="en"] .home-content .hero h1 { font-size:clamp(34px,3.4vw,53px); }
 .home-content .hero-orbit { width:94%; }
-.home-content .focus-strip { flex-wrap:wrap; column-gap:22px; row-gap:12px; }
-.home-content .focus-strip ul { flex:1; min-width:220px; }
-.home-content .scroll-note { gap:12px; }
 .home-content .section-space { padding-block:78px; }
 .home-content .research-section { padding-inline:28px; border-radius:18px; }
 .home-content .research-inner { min-width:0; }
