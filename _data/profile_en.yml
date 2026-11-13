@@ -30,14 +30,25 @@ projects:
     title: Zero Hour Tower
     subtitle: Roguelike + Cards
     description: Served as producer on a game created for the TapTap Spotlight GameJam under the theme “Emergence”, featuring real-time combat that combines roguelike and card mechanics.
+    project_role: Producer
     image: /images/projects/zero-hour-tower.jpg
     image_alt: Official Zero Hour Tower artwork featuring a witch and clock motifs
-    tags: [GameJam, Time mechanics, Team project]
     status: Playable demo
     links:
       - label: Play on TapTap
         url: https://www.taptap.cn/app/977535?os=pc
   - number: "03"
+    eyebrow: AI-native game · Cocos
+    title: Student Job Hunt Simulator
+    subtitle: Explore career choices through a text adventure
+    description: An AI-native text adventure built in Cocos with fellow Fudan students. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
+    project_role: Producer
+    tags: [Cocos, AI-native, Text adventure]
+    status: AI Hackathon Tour 2026
+    links:
+      - label: Play online
+        url: https://job.fordawnstudio.com/
+  - number: "04"
     eyebrow: DOTA2 Arcade · Lead client programmer
     title: DOTA2 Arcade
     subtitle: DOTA TD / Defend Jiange
@@ -51,16 +62,6 @@ projects:
         url: https://steamcommunity.com/sharedfiles/filedetails/?id=3526267592
       - label: Defend Jiange
         url: https://steamcommunity.com/sharedfiles/filedetails/?id=2526715285
-  - number: "04"
-    eyebrow: AI-native game · Cocos
-    title: Student Job Hunt Simulator
-    subtitle: Explore career choices through a text adventure
-    description: An AI-native text adventure built in Cocos with fellow Fudan students. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
-    tags: [Cocos, AI-native, Text adventure]
-    status: AI Hackathon Tour 2026
-    links:
-      - label: Play online
-        url: https://job.fordawnstudio.com/
 industry:
   - date: Nov 2026 — Present
     company: Tencent IEG - Frontier Game Technology

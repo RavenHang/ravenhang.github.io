@@ -303,8 +303,8 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 .game-tab:hover { color:#fff; }
 .game-gallery.is-enhanced .game-selector { position:fixed; bottom:0; left:0; right:0; background:linear-gradient(0deg,#071a2be6,#071a2b99); backdrop-filter:blur(14px); }
 .game-panel--02 .game-backdrop { object-position:70% 50%; }
-.game-panel--03 .game-backdrop { object-position:75% 42%; }
-.game-panel--04 .game-backdrop { object-position:70% 50%; }
+.game-panel--04 .game-backdrop { object-position:75% 42%; }
+.game-panel--03 .game-backdrop { object-position:70% 50%; }
 .page-games .site-footer { border-top:0; }
 .game-panel.is-active .game-info { animation:game-enter .35s ease-out both; }
 @keyframes game-enter { from { opacity:.4; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
@@ -342,7 +342,7 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
  .game-info { max-width:580px; width:100%; }
  .game-backdrop { height:470px; object-position:65% 35%; }
  .game-panel--02 .game-backdrop { object-position:75% 20%; }
- .game-panel--03 .game-backdrop { object-position:70% 30%; }
+ .game-panel--04 .game-backdrop { object-position:70% 30%; }
  .game-shade { background:linear-gradient(180deg,#071b2e00 0,#071b2e15 170px,#071b2ed9 320px,#071b2e 460px); }
  .game-info h2 { font-size:42px; max-width:520px; margin-top:17px; }
  .game-subtitle { font-size:15px; margin-top:12px; }

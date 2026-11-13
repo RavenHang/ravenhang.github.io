@@ -33,14 +33,25 @@ projects:
     title: 零时之塔
     subtitle: Rougelike + 卡牌
     description: 担任制作人参与 TapTap 聚光灯 GameJam 的游戏作品，主题为“涌现”，玩法类型为Rouge+卡牌的即时战斗类游戏。
+    project_role: 制作人
     image: /images/projects/zero-hour-tower.jpg
     image_alt: 《零时之塔》官方海报中的魔女与时钟元素
-    tags: [限时游戏创作, 时间主题, 团队创作]
     status: 试玩版
     links:
       - label: TapTap 试玩
         url: https://www.taptap.cn/app/977535?os=pc
   - number: "03"
+    eyebrow: AI 原生游戏 · Cocos 引擎
+    title: 大学生求职模拟器
+    subtitle: 用文字冒险探索求职选择
+    description: 与复旦同学共同开发的基于Cocos的 AI 原生文字冒险游戏，参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
+    project_role: 制作人
+    tags: [Cocos, AI 原生, 文字冒险]
+    status: AI Hackathon Tour 2026
+    links:
+      - label: 在线体验
+        url: https://job.fordawnstudio.com/
+  - number: "04"
     eyebrow: DOTA2 游廊 · 客户端主程
     title: DOTA2 游廊
     subtitle: 刀刀塔防 / 守卫剑阁
@@ -54,16 +65,6 @@ projects:
         url: https://steamcommunity.com/sharedfiles/filedetails/?id=3526267592
       - label: 守卫剑阁
         url: https://steamcommunity.com/sharedfiles/filedetails/?id=2526715285
-  - number: "04"
-    eyebrow: AI 原生游戏 · Cocos 引擎
-    title: 大学生求职模拟器
-    subtitle: 用文字冒险探索求职选择
-    description: 与复旦同学共同开发的基于Cocos的 AI 原生文字冒险游戏，参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
-    tags: [Cocos, AI 原生, 文字冒险]
-    status: AI Hackathon Tour 2026
-    links:
-      - label: 在线体验
-        url: https://job.fordawnstudio.com/
 industry:
   - date: 2026.11 — 至今
     company: 腾讯IEG-游戏前沿技术
