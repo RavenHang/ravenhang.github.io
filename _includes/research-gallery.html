@@ -1,6 +1,5 @@
 <div class="research-gallery" data-research-gallery role="region" aria-label="{{ ui.gallery_label | escape }}">
   <div class="research-gallery-toolbar">
-    <span class="research-gallery-label">{{ ui.gallery_label }}</span>
     <div class="research-gallery-controls" data-gallery-controls hidden>
       <span class="research-gallery-position" data-gallery-position aria-live="polite" aria-atomic="true">1 / {{ item.gallery.size }}</span>
       <button type="button" data-gallery-prev aria-label="{{ ui.gallery_previous | escape }}"><span aria-hidden="true">←</span></button>
@@ -15,5 +14,4 @@
     </a>
     {% endfor %}
   </div>
-  <p class="research-gallery-hint">{{ ui.gallery_hint }}</p>
 </div>
