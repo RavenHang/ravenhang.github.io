@@ -55,6 +55,7 @@
               <article class="research-item">
                 <div class="research-item-heading"><span class="research-number" aria-hidden="true">{{ item.number | default: forloop.index }}</span><h3>{{ item.title }}</h3></div>
                 <p>{{ item.description }}</p>
+                {% if item.gallery %}{% include research-gallery.html %}{% endif %}
                 {% if item.tags %}<ul class="tag-list" aria-label="{{ ui.research_tags_label }}">{% for tag in item.tags %}<li>{{ tag }}</li>{% endfor %}</ul>{% endif %}
                 {% if item.links %}<div class="project-links">{% for link in item.links %}<a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>{% endif %}
               </article>
@@ -69,3 +70,4 @@
           {% endif %}
         </div>
       </section>
+{% include research-image-viewer.html %}

@@ -1,0 +1,18 @@
+<dialog class="image-viewer" data-gallery-dialog aria-labelledby="image-viewer-title">
+  <div class="image-viewer-shell">
+    <header class="image-viewer-header">
+      <h2 id="image-viewer-title">{{ ui.gallery_preview }}</h2>
+      <span class="image-viewer-position" data-viewer-position aria-live="polite" aria-atomic="true"></span>
+      <button class="image-viewer-close" type="button" data-viewer-close aria-label="{{ ui.gallery_close | escape }}" autofocus><span aria-hidden="true">×</span></button>
+    </header>
+    <figure class="image-viewer-figure">
+      <div class="image-viewer-stage"><img data-viewer-image alt=""></div>
+      <figcaption data-viewer-caption></figcaption>
+    </figure>
+    <footer class="image-viewer-footer">
+      <button type="button" data-viewer-prev aria-label="{{ ui.gallery_previous | escape }}"><span aria-hidden="true">←</span><span class="image-viewer-nav-label">{{ ui.gallery_previous }}</span></button>
+      <a data-viewer-original target="_blank" rel="noopener noreferrer">{{ ui.gallery_original }} <span aria-hidden="true">↗</span></a>
+      <button type="button" data-viewer-next aria-label="{{ ui.gallery_next | escape }}"><span class="image-viewer-nav-label">{{ ui.gallery_next }}</span><span aria-hidden="true">→</span></button>
+    </footer>
+  </div>
+</dialog>

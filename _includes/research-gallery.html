@@ -1,0 +1,19 @@
+<div class="research-gallery" data-research-gallery role="region" aria-label="{{ ui.gallery_label | escape }}">
+  <div class="research-gallery-toolbar">
+    <span class="research-gallery-label">{{ ui.gallery_label }}</span>
+    <div class="research-gallery-controls" data-gallery-controls hidden>
+      <span class="research-gallery-position" data-gallery-position aria-live="polite" aria-atomic="true">1 / {{ item.gallery.size }}</span>
+      <button type="button" data-gallery-prev aria-label="{{ ui.gallery_previous | escape }}"><span aria-hidden="true">←</span></button>
+      <button type="button" data-gallery-next aria-label="{{ ui.gallery_next | escape }}"><span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+  <div class="research-gallery-track" data-gallery-track>
+    {% for photo in item.gallery %}
+    <a class="research-gallery-slide" data-gallery-image data-caption="{{ photo.caption | escape }}" href="{{ photo.image | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ui.gallery_open | escape }}：{{ photo.caption | escape }}">
+      <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | escape }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy" decoding="async">
+      <span class="research-gallery-caption">{{ photo.caption }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="research-gallery-hint">{{ ui.gallery_hint }}</p>
+</div>

@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/personal.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
     {% unless page.section == 'games' %}<link rel="stylesheet" href="{{ '/assets/css/personal-home.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">{% endunless %}
     <script src="{{ '/assets/js/personal.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
+    {% unless page.section == 'games' %}<script src="{{ '/assets/js/research-gallery.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>{% endunless %}
   </head>
   <body id="top" class="page-{{ page.section | default: 'home' }}" data-language="{{ lang }}">
     <a class="skip-link" href="#main">{{ ui.skip }}</a>

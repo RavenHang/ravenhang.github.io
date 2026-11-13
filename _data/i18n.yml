@@ -36,6 +36,14 @@ zh:
   research_heading: 研究方向
   research_tags_label: 研究标签
   activities_label: 课堂之外
+  gallery_label: 证书与记录
+  gallery_hint: 左右滑动 · 点击放大
+  gallery_open: 放大查看
+  gallery_previous: 上一张
+  gallery_next: 下一张
+  gallery_preview: 图片预览
+  gallery_close: 关闭预览
+  gallery_original: 查看原图
 en:
   lang_label: Language
   skip: Skip to content
@@ -74,3 +82,11 @@ en:
   research_heading: Research directions
   research_tags_label: Research topics
   activities_label: Beyond the classroom
+  gallery_label: Certificates & records
+  gallery_hint: Swipe to browse · Click to enlarge
+  gallery_open: Enlarge image
+  gallery_previous: Previous image
+  gallery_next: Next image
+  gallery_preview: Image preview
+  gallery_close: Close preview
+  gallery_original: View original

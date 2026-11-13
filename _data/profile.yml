@@ -91,11 +91,37 @@ research:
     title: AI In Game
     description: 融合大语言模型、强化学习与 Agent 技术，探索 NPC 的自然交互、动态决策与自主行为能力，构建更智能、更具真实感的游戏角色。
     tags: [大语言模型, 强化学习, Agent, 智能 NPC]
+    gallery:
+      - image: /images/certificates/service-outsourcing-ai-award.png
+        width: 1280
+        height: 871
+        caption: 服务外包创新大赛 · AI 赛道三等奖
+        alt: 第十七届中国大学生服务外包创新创业大赛东部区域赛人工智能专项赛道三等奖证书
+      - image: /images/certificates/ai-hackathon-semifinal.png
+        width: 1280
+        height: 965
+        caption: AI Hackathon Tour · 复赛入围奖
+        alt: 大学生求职模拟器在 AI Hackathon Tour 高校联赛 2026 复旦大学站获得的复赛入围奖证书
+      - image: /images/certificates/reinforcement-learning-summer-school.png
+        width: 1280
+        height: 720
+        caption: 强化学习暑期学校 · 结业证书
+        alt: 杭瑞文完成 2026 年强化学习暑期学校的结业证书
+      - image: /images/certificates/decision-machine-behavior.png
+        width: 890
+        height: 1280
+        caption: 决策与机器行为学 · 结课证明
+        alt: 上海创智学院《决策与机器行为学》课程结课证明
+      - image: /images/certificates/tencent-game-course.png
+        width: 904
+        height: 1280
+        caption: 腾讯游戏「开局一课」· 结课证书
+        alt: 杭瑞文完成腾讯游戏「开局一课」游戏客户端方向课程的结课证书
 activities:
   - title: 上海创智学院 · 2026
     description: 参加《决策与机器行为学》《人工智能系统》先修课程，以及 Richard Sutton 强化学习暑期学校，系统学习强化学习与人工智能系统基础。
-  - title: 中国大学生服务外包创新创业大赛 · 2026
-    description: 获第十七届大赛东部区域赛人工智能专项赛道三等奖。
+  - title: 腾讯开悟人工智能全球公开赛
+    description: 获得三等奖。
   - title: 从电竞走向开发
     description: 本科期间参与 DOTA2 职业青训，曾达国服天梯前 200，获完美世界高校联赛上海赛区亚军；2025 年担任行业协会杯 DOTA2 散夜游戏队长，取得第四名。
 links:

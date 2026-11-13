@@ -88,11 +88,37 @@ research:
     title: AI In Game
     description: I explore how large language models, reinforcement learning and agent technologies can enable natural interaction, dynamic decision-making and autonomous behavior in NPCs, with the aim of creating more intelligent and lifelike game characters.
     tags: [Large language models, Reinforcement learning, Agents, Intelligent NPCs]
+    gallery:
+      - image: /images/certificates/service-outsourcing-ai-award.png
+        width: 1280
+        height: 871
+        caption: Service Outsourcing Competition · AI track third prize
+        alt: Third-prize certificate in the AI track of the eastern regional round of the 17th China University Service Outsourcing Innovation and Entrepreneurship Competition
+      - image: /images/certificates/ai-hackathon-semifinal.png
+        width: 1280
+        height: 965
+        caption: AI Hackathon Tour · Semifinal qualification
+        alt: Semifinal qualification certificate for Student Job Hunt Simulator at the Fudan University round of AI Hackathon Tour 2026
+      - image: /images/certificates/reinforcement-learning-summer-school.png
+        width: 1280
+        height: 720
+        caption: Reinforcement Learning Summer School · Completion
+        alt: Ruiwen Hang's certificate of completion for the 2026 Summer School on Reinforcement Learning
+      - image: /images/certificates/decision-machine-behavior.png
+        width: 890
+        height: 1280
+        caption: Decision and Machine Behavior · Course completion
+        alt: Certificate of completion for the Decision and Machine Behavior course at Shanghai Innovation Institute
+      - image: /images/certificates/tencent-game-course.png
+        width: 904
+        height: 1280
+        caption: Tencent Games introductory course · Completion
+        alt: Ruiwen Hang's certificate of completion for the game client development track of Tencent Games' introductory course
 activities:
   - title: Shanghai Innovation Institute · 2026
     description: Attended preparatory courses in Decision and Machine Behavior and AI Systems, as well as Richard Sutton's Reinforcement Learning Summer School, to study the foundations of reinforcement learning and AI systems.
-  - title: China University Service Outsourcing Innovation and Entrepreneurship Competition · 2026
-    description: Received third prize in the AI track of the eastern regional competition at the 17th edition of the event.
+  - title: Tencent Kaiwu Global Artificial Intelligence Competition
+    description: Received third prize.
   - title: From esports to game development
     description: Joined DOTA2 professional youth training during undergraduate study, reached the top 200 on the Chinese ranked ladder, and was runner-up in the Shanghai division of the Perfect World collegiate league. Captained the Sanye Games DOTA2 team in the 2025 industry association cup, finishing fourth.
 links:
