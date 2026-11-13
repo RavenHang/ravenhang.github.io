@@ -18,7 +18,6 @@ projects:
     project_role: Producer
     image: /images/projects/two-otters-cover.png
     image_alt: Official cover art for The Two Otters
-    tags: [UE / Lyra, Two-player co-op, Gameplay]
     status: In development · Steam store page available
     links:
       - label: Steam store
@@ -43,7 +42,6 @@ projects:
     subtitle: Explore career choices through a text adventure
     description: An AI-native text adventure built in Cocos with fellow Fudan students. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
     project_role: Producer
-    tags: [Cocos, AI-native, Text adventure]
     status: AI Hackathon Tour 2026
     links:
       - label: Play online
@@ -55,7 +53,6 @@ projects:
     image: /images/projects/dota-arcade.jpg
     image_alt: Official DOTA TD Steam Workshop cover art
     description: Lead client programmer for DOTA TD and Defend Jiange, with additional client and mini-program development on OMG 4+2. These projects span tower defense and MOBA gameplay, building experience in game systems and team collaboration.
-    tags: [Lead client programmer, Lua, Tower defense / MOBA]
     status: Commercial project experience
     links:
       - label: DOTA TD

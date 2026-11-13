@@ -21,7 +21,6 @@ projects:
     project_role: 制作人
     image: /images/projects/two-otters-cover.png
     image_alt: 《双獭奇兵》官方游戏封面
-    tags: [UE / Lyra, 双人协作, 玩法开发]
     status: 开发中 · Steam 商店页已上线
     links:
       - label: Steam 商店
@@ -46,7 +45,6 @@ projects:
     subtitle: 用文字冒险探索求职选择
     description: 与复旦同学共同开发的基于Cocos的 AI 原生文字冒险游戏，参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
     project_role: 制作人
-    tags: [Cocos, AI 原生, 文字冒险]
     status: AI Hackathon Tour 2026
     links:
       - label: 在线体验
@@ -58,7 +56,6 @@ projects:
     image: /images/projects/dota-arcade.jpg
     image_alt: 《刀刀塔防》DOTA TD 创意工坊官方封面
     description: 担任《刀刀塔防》《守卫剑阁》客户端主程，并参与《OMG 4+2》客户端与小程序开发。实践覆盖塔防、MOBA 等玩法，积累游戏系统开发与团队协作经验。
-    tags: [客户端主程, Lua, 塔防 / MOBA]
     status: 商业项目经历
     links:
       - label: 刀刀塔防
