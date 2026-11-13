@@ -80,6 +80,10 @@ projects:
       - label: 查看作品集
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
+  - date: 2026.11 — 至今
+    company: 腾讯 IEG
+    role: 游戏客户端开发 · 游戏前沿技术角色动画部门
+    description: 负责角色动画 DCC 工具到 Unreal Engine（UE）的 AI 自动化管线开发。
   - date: 2024.06 — 2026.09
     company: 上海散夜网络科技有限公司
     role: 游戏客户端开发

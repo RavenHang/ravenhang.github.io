@@ -77,6 +77,10 @@ projects:
       - label: View portfolio
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
+  - date: Nov 2026 — Present
+    company: Tencent IEG
+    role: Game client developer · Frontier Game Technology, Character Animation
+    description: Develop AI-powered automation pipelines from character animation DCC tools to Unreal Engine (UE).
   - date: Jun 2024 — Sep 2026
     company: Shanghai Sanye Network Technology
     role: Game client developer
