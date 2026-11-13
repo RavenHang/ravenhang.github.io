@@ -9,7 +9,6 @@
       <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }} <span aria-hidden="true">↗</span></a>
       <a class="button button-light" href="#research">{{ ui.hero_research_cta }} <span aria-hidden="true">↓</span></a>
     </div>
-    <div class="hero-signature">{% for word in ui.hero_signature %}<span>{{ word }}</span>{% endfor %}</div>
   </div>
   <div class="hero-orbit">
     <div class="orbit-ring orbit-ring--outer"></div>
@@ -24,10 +23,7 @@
 {% include personal-sidebar.html %}
 </div>
       <section class="experience-section section-space" id="experience" aria-labelledby="experience-title">
-        <header class="section-header">
-          <div><p class="section-index">01 / {{ ui.industry_label }}</p><h2 id="experience-title">{{ ui.industry_label }}</h2></div>
-          <p class="section-intro">{{ ui.industry_intro_first }}<br>{{ ui.industry_intro_second }}</p>
-        </header>
+        <h2 id="experience-title" class="sr-only">{{ ui.industry_label }}</h2>
         <div class="experience-list">
           {% for item in profile.industry %}
           <article class="experience-row">
@@ -43,10 +39,7 @@
 
       <section class="research-section section-space" id="research" aria-labelledby="research-title">
         <div class="research-inner">
-          <header class="section-header">
-            <div><p class="section-index">02 / {{ ui.research_label }}</p><h2 id="research-title">{{ ui.research_heading }}</h2></div>
-            <p class="section-intro">{{ ui.research_intro_first }}<br>{{ ui.research_intro_second }}</p>
-          </header>
+          <h2 id="research-title" class="sr-only">{{ ui.research_heading }}</h2>
           <div class="research-layout">
             <div class="education">
               <p class="eyebrow">{{ ui.education_label }}</p>

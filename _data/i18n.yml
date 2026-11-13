@@ -24,7 +24,6 @@ zh:
   hero_title_second: → 研究者。
   hero_games_cta: 探索游戏作品
   hero_research_cta: 学术与研究
-  hero_signature: [热爱, 创造, 探索]
   orbit_curiosity: 以好奇出发
   orbit_creativity: 用代码创造
   orbit_game: 游戏
@@ -34,11 +33,7 @@ zh:
   orbit_imagination: 想象
   orbit_exploration: 探索
   education_label: 教育经历
-  industry_intro_first: 从引擎与玩法实现出发，
-  industry_intro_second: 积累对游戏研发的真实理解。
   research_heading: 研究方向
-  research_intro_first: 保留好奇，把新的知识
-  research_intro_second: 带回创造与实践之中。
   research_tags_label: 研究标签
   activities_label: 课堂之外
 en:
@@ -67,7 +62,6 @@ en:
   hero_title_second: → Researcher.
   hero_games_cta: Explore my games
   hero_research_cta: Explore research
-  hero_signature: [Play, Create, Explore]
   orbit_curiosity: Curious by nature
   orbit_creativity: Creative by code
   orbit_game: Game
@@ -77,10 +71,6 @@ en:
   orbit_imagination: Imagination
   orbit_exploration: Exploration
   education_label: Education
-  industry_intro_first: From engines to gameplay,
-  industry_intro_second: learning by building real games.
   research_heading: Research directions
-  research_intro_first: Staying curious and bringing
-  research_intro_second: new knowledge into practice.
   research_tags_label: Research topics
   activities_label: Beyond the classroom
