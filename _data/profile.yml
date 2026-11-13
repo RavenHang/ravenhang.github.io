@@ -12,7 +12,7 @@ hero:
   eyebrow: 游戏开发 × 人工智能研究
   title: 在游戏与 AI 之间，探索更多可能。
   summary: 从 DOTA2 游廊与 UE 独立游戏，到智能 NPC、强化学习与 AIGC 管线。我关心好玩的体验，也关心让它发生的技术。
-  image: /images/projects/two-otters.jpg
+  image: /images/projects/two-otters-cover.png
   image_alt: 独立游戏《双獭奇兵》的海底场景与两只水獭主角
 focus:
   - 虚幻引擎 / 玩法开发
@@ -24,7 +24,7 @@ projects:
     title: 双獭奇兵
     subtitle: 海底双人共斗冒险
     description: 基于 Unreal Engine 与 Lyra 框架开发的双人俯视角共斗游戏。两只性格与战斗方式不同的水獭，以海草相连，在海底世界协作探索、战斗与解谜。
-    image: /images/projects/two-otters.jpg
+    image: /images/projects/two-otters-cover.png
     image_alt: 《双獭奇兵》官方游戏封面
     tags: [UE / Lyra, 双人协作, 玩法开发]
     status: 开发中 · Steam 商店页已上线

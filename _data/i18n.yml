@@ -15,7 +15,7 @@ zh:
   project_links_label: 项目链接
   game_status_label: 项目状态
   concept_art_label: 概念视觉
-  game_switch_hint: 点击作品名称切换
+  game_switch_hint: 点击名称或滚动切换
   copy_email: 复制邮箱
   copy_success: 邮箱已复制
   copy_failure: 复制未成功，请点击上方邮箱联系或手动复制。
@@ -73,7 +73,7 @@ en:
   project_links_label: Project links
   game_status_label: Project status
   concept_art_label: Concept visual
-  game_switch_hint: Select a project to explore
+  game_switch_hint: Select or scroll to explore
   copy_email: Copy email
   copy_success: Email copied
   copy_failure: Could not copy. Use the email link above or copy the address manually.

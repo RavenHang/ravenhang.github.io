@@ -9,7 +9,7 @@ hero:
   eyebrow: Game development × AI research
   title: Exploring possibilities at the intersection of games and AI.
   summary: From DOTA2 Arcade and Unreal Engine indie games to intelligent NPCs, reinforcement learning and generative AI pipelines. I care about engaging experiences and the technology that makes them possible.
-  image: /images/projects/two-otters.jpg
+  image: /images/projects/two-otters-cover.png
   image_alt: The two otter protagonists in the underwater world of The Two Otters
 focus:
   - Unreal Engine / Gameplay
@@ -21,7 +21,7 @@ projects:
     title: The Two Otters
     subtitle: An underwater co-op adventure
     description: A top-down co-op game built with Unreal Engine and the Lyra framework. Two otters with different personalities and fighting styles are connected by seaweed as they explore, battle and solve puzzles together beneath the sea.
-    image: /images/projects/two-otters.jpg
+    image: /images/projects/two-otters-cover.png
     image_alt: Official cover art for The Two Otters
     tags: [UE / Lyra, Two-player co-op, Gameplay]
     status: In development · Steam store page available

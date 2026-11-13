@@ -20,3 +20,5 @@ Retrieved 2026-11-13. The Steam screenshot is in-development gameplay, not a syn
 - `text-adventure-scene.svg`: original geometric illustration of branching choices for the text-adventure project; not an in-game screenshot.
 - `ugc-scene.svg`: original geometric level-building illustration for the UGC prototype; not an in-game screenshot.
 - Both are explicitly labeled as concept visuals in each language on the website.
+
+- `two-otters-cover.png`: original image supplied by the site owner on 2026-11-13; used for The Two Otters background and social preview.
