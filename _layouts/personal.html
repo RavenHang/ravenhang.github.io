@@ -36,7 +36,6 @@
       <div class="header-inner shell">
         <a class="brand" href="{{ home_url | relative_url }}" aria-label="{{ profile.name | escape }} · {{ ui.home_label }}">
           <span class="brand-mark" aria-hidden="true">rh<span>.</span></span>
-          <span class="brand-name">{{ profile.name }}<small>{{ ui.brand_tagline }}</small></span>
         </a>
         <nav class="site-nav" aria-label="{{ ui.home_label }}">
           <a href="{{ home_url | relative_url }}"{% unless page.section == 'games' %} aria-current="page"{% endunless %}>{{ ui.home_label }}</a>

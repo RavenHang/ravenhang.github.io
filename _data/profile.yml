@@ -18,6 +18,7 @@ projects:
     title: 双獭奇兵
     subtitle: 海底双人共斗冒险
     description: 基于 Unreal Engine 与 Lyra 框架开发的双人俯视角共斗游戏。两只性格与战斗方式不同的水獭，以海草相连，在海底世界协作探索、战斗与解谜。
+    project_role: 制作人
     image: /images/projects/two-otters-cover.png
     image_alt: 《双獭奇兵》官方游戏封面
     tags: [UE / Lyra, 双人协作, 玩法开发]

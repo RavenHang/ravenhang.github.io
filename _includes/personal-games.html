@@ -22,6 +22,7 @@
           <h2 id="game-title-{{ project.number }}">{{ project.title }}</h2>
           {% if project.subtitle %}<p class="game-subtitle">{{ project.subtitle }}</p>{% endif %}
           <p class="game-description">{{ project.description }}</p>
+          {% if project.project_role %}<p class="game-project-role">{{ project.project_role }}</p>{% endif %}
           <ul class="game-tags" aria-label="{{ ui.project_tags_label }}">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
           <p class="game-status"><span class="small-dot" aria-hidden="true"></span>{{ project.status }}</p>
           <div class="game-links" aria-label="{{ ui.project_links_label }}">{% for link in project.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>
