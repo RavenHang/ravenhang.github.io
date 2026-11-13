@@ -7,8 +7,8 @@ email: 25263050016@m.fudan.edu.cn
 xiaohongshu: https://xhslink.cn/o/3rL4AQTJcol
 hero:
   eyebrow: Game development × AI research
-  title: Exploring possibilities at the intersection of games and AI.
-  summary: From DOTA2 Arcade and Unreal Engine indie games to intelligent NPCs, reinforcement learning and generative AI pipelines. I care about engaging experiences and the technology that makes them possible.
+  title: Player → Developer → Researcher.
+  summary: I played games when it was time to study, and chose to study when it was time to play.
   image: /images/projects/two-otters-cover.png
   image_alt: The two otter protagonists in the underwater world of The Two Otters
 focus:
@@ -85,24 +85,13 @@ education:
   courses: [Machine Learning, Diffusion Models and Scientific Generative AI, Reinforcement Learning, AI Systems]
 research:
   - number: "01"
-    title: UE synthetic data and automated pipelines
-    description: Practiced offline, headless UE5 rendering on Linux GPU clusters in MOVA-related projects, using agents to build reusable batch workflows that produce synthetic data for post-training.
-    tags: [UE5, Linux GPU, Agents, Synthetic data]
-    links:
-      - label: UE camera plugin documentation
-        url: https://fudan-nlp.feishu.cn/wiki/WBMuwcQVGilIUjkSNL7ccmO5nZe
+    title: AI For Game
+    description: I explore generative AI technologies, including video generation and 3D character animation generation, and their applications in game content creation and asset production, aiming to make game development pipelines more intelligent and reshape how they work.
+    tags: [Video generation, 3D character animation generation, Generative AI]
   - number: "02"
-    title: Multi-agent games and reinforcement learning
-    description: Competed in the Tencent Kaiwu AI competition using Honor of Kings as the experimental environment. Responsible for reinforcement learning algorithms, training optimization, reward functions and feature engineering; the team received a provincial third prize.
-    tags: [Multi-agent, Reinforcement learning, Reward design]
-    links: []
-  - number: "03"
-    title: LLM agents and game applications
-    description: Exploring intelligent NPCs and AI game engines through MCP tool integration and modular Skills development, alongside hands-on work with RAG, LoRA and PyTorch.
-    tags: [LLM agents, MCP, RAG / LoRA, PyTorch]
-    links:
-      - label: OpenMOSS
-        url: https://open-moss.com/
+    title: AI In Game
+    description: I explore how large language models, reinforcement learning and agent technologies can enable natural interaction, dynamic decision-making and autonomous behavior in NPCs, with the aim of creating more intelligent and lifelike game characters.
+    tags: [Large language models, Reinforcement learning, Agents, Intelligent NPCs]
 activities:
   - title: Shanghai Innovation Institute · 2026
     description: Attended preparatory courses in Decision and Machine Behavior and AI Systems, as well as Richard Sutton's Reinforcement Learning Summer School, to study the foundations of reinforcement learning and AI systems.

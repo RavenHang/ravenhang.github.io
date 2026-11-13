@@ -22,8 +22,8 @@ zh:
   email_label: 邮箱
   xiaohongshu_label: 小红书
   project_tags_label: 项目标签
-  hero_title_first: 在游戏与 AI 之间，
-  hero_title_second: 探索更多可能。
+  hero_title_first: 玩家 → 开发者
+  hero_title_second: → 研究者。
   hero_games_cta: 探索游戏作品
   hero_research_cta: 学术与研究
   hero_signature: [热爱, 创造, 探索]
@@ -47,7 +47,7 @@ zh:
   research_fact: AI × 游戏
   industry_intro_first: 从引擎与玩法实现出发，
   industry_intro_second: 积累对游戏研发的真实理解。
-  research_heading: 学术与探索
+  research_heading: 研究方向
   research_intro_first: 保留好奇，把新的知识
   research_intro_second: 带回创造与实践之中。
   courses_label: 课程与学习
@@ -80,8 +80,8 @@ en:
   email_label: Email
   xiaohongshu_label: Xiaohongshu
   project_tags_label: Project tags
-  hero_title_first: Games meet AI.
-  hero_title_second: Ideas become worlds.
+  hero_title_first: Player → Developer
+  hero_title_second: → Researcher.
   hero_games_cta: Explore my games
   hero_research_cta: Explore research
   hero_signature: [Play, Create, Explore]
@@ -105,7 +105,7 @@ en:
   research_fact: AI × Games
   industry_intro_first: From engines to gameplay,
   industry_intro_second: learning by building real games.
-  research_heading: Learning and research
+  research_heading: Research directions
   research_intro_first: Staying curious and bringing
   research_intro_second: new knowledge into practice.
   courses_label: Coursework

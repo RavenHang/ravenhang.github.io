@@ -10,8 +10,8 @@ email: 25263050016@m.fudan.edu.cn
 xiaohongshu: https://xhslink.cn/o/3rL4AQTJcol
 hero:
   eyebrow: 游戏开发 × 人工智能研究
-  title: 在游戏与 AI 之间，探索更多可能。
-  summary: 从 DOTA2 游廊与 UE 独立游戏，到智能 NPC、强化学习与 AIGC 管线。我关心好玩的体验，也关心让它发生的技术。
+  title: 玩家 → 开发者 → 研究者。
+  summary: 在该学习的时候去打了游戏，在该打游戏的时候选择了去学习。
   image: /images/projects/two-otters-cover.png
   image_alt: 独立游戏《双獭奇兵》的海底场景与两只水獭主角
 focus:
@@ -89,24 +89,13 @@ education:
   courses: [机器学习, 扩散模型与科学生成式人工智能, 强化学习, 人工智能系统]
 research:
   - number: "01"
-    title: UE 合成数据与自动化管线
-    description: 在模思智能 MOVA 相关项目中，实践 UE5 在 Linux GPU 集群上的离线无头渲染，使用智能体搭建可批量、可复用的流程，输出用于后训练阶段的合成数据。
-    tags: [UE5, Linux GPU, 智能体, 合成数据]
-    links:
-      - label: UE 运镜插件文档
-        url: https://fudan-nlp.feishu.cn/wiki/WBMuwcQVGilIUjkSNL7ccmO5nZe
+    title: AI For Game
+    description: 聚焦视频生成、3D 角色动画生成等生成式 AI 技术，探索其在游戏内容创作与资产生产中的应用，推动游戏研发管线的智能化升级与重塑。
+    tags: [视频生成, 3D 角色动画生成, 生成式 AI]
   - number: "02"
-    title: 多智能体博弈与强化学习
-    description: 参加腾讯开悟人工智能全球公开赛，以《王者荣耀》为实验环境，负责强化学习算法开发、训练优化、奖励函数与特征工程设计，团队获得省三等奖。
-    tags: [多智能体, 强化学习, 奖励设计]
-    links: []
-  - number: "03"
-    title: 大模型智能体与游戏应用
-    description: 围绕智能 NPC 与 AI 游戏引擎开展学习和探索，实践 MCP 工具接入与 Skills 模块化开发，并结合 RAG、LoRA 和 PyTorch 积累大模型应用经验。
-    tags: [大模型智能体, MCP, RAG / LoRA, PyTorch]
-    links:
-      - label: OpenMOSS
-        url: https://open-moss.com/
+    title: AI In Game
+    description: 融合大语言模型、强化学习与 Agent 技术，探索 NPC 的自然交互、动态决策与自主行为能力，构建更智能、更具真实感的游戏角色。
+    tags: [大语言模型, 强化学习, Agent, 智能 NPC]
 activities:
   - title: 上海创智学院 · 2026
     description: 参加《决策与机器行为学》《人工智能系统》先修课程，以及 Richard Sutton 强化学习暑期学校，系统学习强化学习与人工智能系统基础。
