@@ -80,18 +80,12 @@ projects:
       - label: 查看作品集
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
 industry:
-  - date: 2026.11 — 至今
-    company: 腾讯 IEG
-    role: 游戏客户端开发 · 游戏前沿技术角色动画部门
-    description: 负责角色动画 DCC 工具到 Unreal Engine（UE）的 AI 自动化管线开发。
-  - date: 2024.06 — 2026.09
-    company: 上海散夜网络科技有限公司
+  - company: 腾讯 IEG
     role: 游戏客户端开发
-    description: 参与卡牌、MOBA、塔防、射击与 Roguelike 等多品类项目，负责 DOTA2 游廊客户端开发，并积累团队管理和跨公司项目协作经验。曾担任上海市网络游戏行业协会对接人，参与企业交流与 AI 技术应用活动。
-  - date: 2020.07 — 2023.05
-    company: 京东科技控股股份有限公司
+  - company: 上海散夜网络科技有限公司
+    role: 游戏客户端开发
+  - company: 京东科技控股股份有限公司
     role: Java 后端开发
-    description: 参与金融级 ToB 平台定制开发，基于 Spring Boot 开发外呼平台名单服务，积累分布式系统、高并发与云原生架构经验。
 education:
   # Program and enrollment date follow the newer 2026-10 student-status certificate.
   school: 复旦大学
