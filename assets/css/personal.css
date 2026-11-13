@@ -76,6 +76,8 @@ ul{list-style:none; padding:0}
 .orbit-label{position:absolute; display:flex; flex-direction:column; padding:15px 20px; border:1px solid #c4d9ec; border-radius:16px; background:linear-gradient(135deg,#ffffffed,#eff6ffdb); box-shadow:0 12px 40px #275b8f13; backdrop-filter:blur(8px)}
 .orbit-label small{color:var(--muted); font-size:7px; letter-spacing:.9px}
 .orbit-label b{font-size:15px; letter-spacing:.2px}
+.orbit-label:hover{border-color:var(--primary)}
+.orbit-label:hover b{text-decoration:underline}
 .orbit-label--game{top:10%; right:-3%}
 .orbit-label--research{bottom:9%; left:-4%}
 .orbit-symbol{color:var(--blue); font:600 21px/1.4 monospace; margin-bottom:7px}

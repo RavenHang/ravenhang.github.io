@@ -30,10 +30,9 @@ zh:
   orbit_curiosity: 以好奇出发
   orbit_creativity: 用代码创造
   orbit_game: 游戏
-  orbit_ai: 智能
-  orbit_game_caption: 构建可玩的世界
-  orbit_engine: 虚幻引擎
-  orbit_research_caption: 探索智能的可能
+  orbit_ai: AI
+  orbit_game_caption: 互动与创意
+  orbit_research_caption: 前沿探索
   orbit_imagination: 想象
   orbit_exploration: 探索
   focus_label: 关注方向
@@ -83,9 +82,8 @@ en:
   orbit_creativity: Creative by code
   orbit_game: Game
   orbit_ai: AI
-  orbit_game_caption: Build playable worlds
-  orbit_engine: Unreal Engine
-  orbit_research_caption: Explore intelligence
+  orbit_game_caption: Interaction & creativity
+  orbit_research_caption: Frontier exploration
   orbit_imagination: Imagination
   orbit_exploration: Exploration
   focus_label: Focus
