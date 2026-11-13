@@ -47,7 +47,6 @@
               <h3>{{ profile.education.school }}</h3>
               <div class="education-meta"><p>{{ profile.education.degree }}</p><p>{{ profile.education.period }}</p></div>
               <p class="education-description">{{ profile.education.description }}</p>
-              {% if profile.education.courses %}<div class="course-area"><p class="course-label">{{ ui.courses_label }}</p><ul>{% for course in profile.education.courses %}<li>{{ course }}</li>{% endfor %}</ul></div>{% endif %}
             </div>
             <div class="research-list">
               {% for item in profile.research %}

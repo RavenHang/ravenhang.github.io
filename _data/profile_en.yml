@@ -74,10 +74,9 @@ industry:
 education:
   school: Fudan University
   school_en: FUDAN UNIVERSITY
-  degree: Master's in Software Engineering · Part-time, in progress
-  period: Sep 2025 — Jun 2028 (expected)
-  description: Studying at the College of Computing and Intelligent Innovation and carrying out research practice in the OpenMOSS laboratory under Professor Xipeng Qiu. Focused on intelligent game NPCs, generative AI pipelines and AI game engines. Previously completed an undergraduate degree in Software Engineering at Shanghai Dianji University.
-  courses: [Machine Learning, Diffusion Models and Scientific Generative AI, Reinforcement Learning, AI Systems]
+  degree: Master's in Electronic Information · In progress
+  period: Sep 2025 — Jun 2028
+  description: At the College of Computing and Intelligent Innovation, studying and conducting research in the OpenMOSS lab under the supervision of Professor Xipeng Qiu.
 research:
   - number: "01"
     title: AI For Game

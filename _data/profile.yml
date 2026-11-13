@@ -75,13 +75,11 @@ industry:
     company: 京东科技控股股份有限公司
     role: Java 后端开发
 education:
-  # Program and enrollment date follow the newer 2026-10 student-status certificate.
   school: 复旦大学
   school_en: FUDAN UNIVERSITY
-  degree: 软件工程 · 硕士在读（非全日制）
-  period: 2025.09 — 2028.06（预计）
-  description: 就读于计算与智能创新学院，在 OpenMOSS 实验室学习与开展科研实践，导师为邱锡鹏教授。关注游戏中的智能 NPC，以及 AIGC 驱动管线与 AI 游戏引擎。本科毕业于上海电机学院软件工程专业。
-  courses: [机器学习, 扩散模型与科学生成式人工智能, 强化学习, 人工智能系统]
+  degree: 电子信息· 硕士在读
+  period: 2025.09 — 2028.06
+  description: 计算与智能创新学院，导师为邱锡鹏教授，在 OpenMOSS 实验室学习与开展科研实践。
 research:
   - number: "01"
     title: AI For Game
