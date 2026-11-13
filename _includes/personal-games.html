@@ -1,52 +1,34 @@
-{% assign profile = site.data.profile %}
-<section class="games-intro shell" aria-labelledby="games-title">
-  <p class="eyebrow">PROJECTS / 游戏作品</p>
-  <h1 id="games-title">让想法成为<br><span>可玩的世界。</span></h1>
-  <p class="games-intro-copy">从独立游戏、DOTA2 游廊，到 AI Native 与 UGC。<br>在不同的创作现场，探索玩法与技术的更多可能。</p>
-</section>
-
-<nav class="project-nav shell" aria-label="作品导航">
-  {% for project in profile.projects %}
-  <a href="#game-{{ project.number }}"><span class="project-nav-number" aria-hidden="true">{{ project.number }}</span><span>{{ project.title }}</span></a>
-  {% endfor %}
-</nav>
-
-<section class="game-showcases shell" aria-label="游戏项目介绍">
-  {% for project in profile.projects %}
-  <article class="game-showcase{% if forloop.first %} game-showcase--featured{% endif %}{% unless project.image %} game-showcase--text{% endunless %}" id="game-{{ project.number }}" aria-labelledby="game-title-{{ project.number }}">
-    {% if project.image %}
-    <div class="game-art">
-      <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt | escape }}"{% if project.number == '01' %} width="616" height="353" fetchpriority="high"{% elsif project.number == '02' %} width="1920" height="1080" loading="lazy"{% else %} width="512" height="384" loading="lazy"{% endif %}>
+<section class="game-gallery" data-game-gallery aria-labelledby="games-title">
+  <h1 id="games-title" class="sr-only">{{ ui.game_page_label }}</h1>
+  <div class="game-selector">
+    <div class="game-selector-inner shell">
+      <p class="selector-label">{{ ui.games_label }}<span>{{ ui.game_switch_hint }}</span></p>
+      <nav class="game-tabs" aria-label="{{ ui.project_tabs_label }}" data-game-tabs>
+        {% for project in profile.projects %}
+        <a class="game-tab" href="#game-{{ project.number }}" id="tab-{{ project.number }}" data-game-tab="game-{{ project.number }}"><span class="game-tab-number" aria-hidden="true">{{ project.number }}</span><span>{{ project.title }}</span></a>
+        {% endfor %}
+      </nav>
     </div>
-    {% else %}
-    <div class="game-art game-concept" aria-hidden="true">
-      <div class="concept-orbit"></div>
-      <span class="concept-number">{{ project.number }}</span>
-      <span class="concept-label">{% if project.number == '04' %}AI<br>NATIVE{% else %}GAME<br>UGC{% endif %}</span>
-      <span class="concept-caption">{% if project.number == '04' %}TEXT ADVENTURE / COCOS{% else %}PLAY / CREATE / EXPLORE{% endif %}</span>
-    </div>
-    {% endif %}
-    <div class="game-copy">
-      <p class="eyebrow"><span aria-hidden="true">{{ project.number }} / </span>{{ project.eyebrow }}</p>
-      <h2 id="game-title-{{ project.number }}">{{ project.title }}</h2>
-      {% if project.subtitle %}<p class="project-subtitle">{{ project.subtitle }}</p>{% endif %}
-      <p class="project-description">{{ project.description }}</p>
-      {% if project.tags %}<ul class="tag-list" aria-label="项目标签">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>{% endif %}
-      {% if project.status %}<p class="project-status"><span class="small-dot" aria-hidden="true"></span>{{ project.status }}</p>{% endif %}
-      {% if project.links %}
-      <div class="project-links">
-        {% for link in project.links %}<a class="text-link" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}
+  </div>
+  <div class="game-stage">
+    {% for project in profile.projects %}
+    {% assign art = site.data.game_art[project.number] %}
+    <article class="game-panel game-panel--{{ project.number }}" id="game-{{ project.number }}" aria-labelledby="game-title-{{ project.number }}" data-game-panel>
+      {% if art.image %}<img class="game-backdrop" src="{{ art.image | relative_url }}" alt="" aria-hidden="true" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
+      <div class="game-shade" aria-hidden="true"></div>
+      <div class="game-panel-inner shell">
+        <div class="game-info">
+          <p class="game-kicker"><span aria-hidden="true">{{ project.number }} / </span>{{ project.eyebrow }}</p>
+          <h2 id="game-title-{{ project.number }}">{{ project.title }}</h2>
+          {% if project.subtitle %}<p class="game-subtitle">{{ project.subtitle }}</p>{% endif %}
+          <p class="game-description">{{ project.description }}</p>
+          <ul class="game-tags" aria-label="{{ ui.project_tags_label }}">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+          <p class="game-status"><span class="small-dot" aria-hidden="true"></span>{{ project.status }}</p>
+          <div class="game-links" aria-label="{{ ui.project_links_label }}">{% for link in project.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>
+        </div>
+        <div class="game-panel-meta"><span class="game-page-number" aria-hidden="true">{{ project.number }}<small> / 05</small></span>{% if art.concept %}<span class="concept-note">{{ ui.concept_art_label }}</span>{% endif %}</div>
       </div>
-      {% endif %}
-    </div>
-  </article>
-  {% endfor %}
-</section>
-
-<section class="games-outro shell" aria-labelledby="games-outro-title">
-  <div><p class="eyebrow">BEYOND THE GAME</p><h2 id="games-outro-title">从作品出发，继续探索。</h2></div>
-  <div class="games-outro-links">
-    <a class="text-link" href="{{ '/' | relative_url }}#research">学术与探索 <span aria-hidden="true">→</span></a>
-    {% for link in profile.links %}{% if link.label == '完整作品集' %}<a class="text-link" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">完整作品集 <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}
+    </article>
+    {% endfor %}
   </div>
 </section>

@@ -1,9 +1,16 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="{% if page.lang == 'en' %}en{% else %}zh-CN{% endif %}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% assign profile = site.data.profile %}
+    {% assign lang = page.lang | default: 'zh' %}
+    {% assign ui = site.data.i18n[lang] %}
+    {% if lang == 'en' %}
+      {% assign profile = site.data.profile_en %}{% assign home_url = '/en/' %}{% assign games_url = '/en/games/' %}
+    {% else %}
+      {% assign profile = site.data.profile %}{% assign home_url = '/' %}{% assign games_url = '/games/' %}
+    {% endif %}
+    {% if page.section == 'games' %}{% assign zh_url = '/games/' %}{% assign en_url = '/en/games/' %}{% else %}{% assign zh_url = '/' %}{% assign en_url = '/en/' %}{% endif %}
     <title>{{ page.title | default: site.title | escape }}</title>
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
     <meta name="theme-color" content="#f6faff">
@@ -13,22 +20,31 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:image" content="{{ profile.hero.image | absolute_url }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="alternate" hreflang="zh-CN" href="{{ zh_url | absolute_url }}">
+    <link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
+    <link rel="alternate" hreflang="x-default" href="{{ zh_url | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="{{ '/images/personal-mark.svg' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/personal.css' | relative_url }}">
     <script src="{{ '/assets/js/personal.js' | relative_url }}" defer></script>
   </head>
-  <body id="top" class="page-{{ page.section | default: 'home' }}">
-    <a class="skip-link" href="#main">跳到正文</a>
+  <body id="top" class="page-{{ page.section | default: 'home' }}" data-language="{{ lang }}">
+    <a class="skip-link" href="#main">{{ ui.skip }}</a>
     <header class="site-header">
       <div class="header-inner shell">
-        <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ profile.name | escape }}的个人主页">
+        <a class="brand" href="{{ home_url | relative_url }}" aria-label="{{ profile.name | escape }} · {{ ui.home_label }}">
           <span class="brand-mark" aria-hidden="true">rh<span>.</span></span>
-          <span class="brand-name">{{ profile.english_name }}<small>GAME DEVELOPMENT × AI RESEARCH</small></span>
+          <span class="brand-name">{{ profile.name }}<small>{{ ui.brand_tagline }}</small></span>
         </a>
-        <nav class="site-nav" aria-label="主导航">
-          {% for item in site.data.navigation.main %}
-          <a href="{{ item.url | relative_url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.title }}{% if forloop.last %} <span aria-hidden="true">↗</span>{% endif %}</a>
-          {% endfor %}
+        <nav class="site-nav" aria-label="{{ ui.home_label }}">
+          <a href="{{ home_url | relative_url }}"{% unless page.section == 'games' %} aria-current="page"{% endunless %}>{{ ui.home_label }}</a>
+          <a href="{{ games_url | relative_url }}"{% if page.section == 'games' %} aria-current="page"{% endif %}>{{ ui.games_label }}</a>
+          <a href="{{ home_url | relative_url }}#experience">{{ ui.industry_label }}</a>
+          <a href="{{ home_url | relative_url }}#research">{{ ui.research_label }}</a>
+          <a href="{{ home_url | relative_url }}#contact">{{ ui.contact_label }} <span aria-hidden="true">↗</span></a>
+        </nav>
+        <nav class="language-switch" aria-label="{{ ui.lang_label }}">
+          <a href="{{ zh_url | relative_url }}" hreflang="zh-CN" lang="zh-CN" data-language-link{% if lang == 'zh' %} aria-current="page"{% endif %}>中文</a>
+          <a href="{{ en_url | relative_url }}" hreflang="en" lang="en" data-language-link{% if lang == 'en' %} aria-current="page"{% endif %}>EN</a>
         </nav>
       </div>
     </header>
@@ -39,6 +55,6 @@
         {% include personal-home.html %}
       {% endif %}
     </main>
-    <footer class="site-footer shell"><p>© {{ 'now' | date: '%Y' }} {{ profile.name }} <span>/</span> {{ profile.english_name }}</p><p class="footer-motto">保持好奇，持续创造。</p><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></footer>
+    <footer class="site-footer shell"><p>© {{ 'now' | date: '%Y' }} {{ profile.name }}</p><p class="footer-motto">{{ ui.footer_motto }}</p><a href="#top">{{ ui.back_top }} <span aria-hidden="true">↑</span></a></footer>
   </body>
 </html>

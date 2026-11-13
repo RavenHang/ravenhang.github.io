@@ -1,0 +1,116 @@
+zh:
+  lang_label: 切换语言
+  skip: 跳到正文
+  brand_tagline: 游戏开发与人工智能研究
+  home_label: 个人介绍
+  games_label: 游戏作品
+  industry_label: 行业经历
+  research_label: 学术探索
+  contact_label: 联系我
+  back_top: 回到顶部
+  footer_motto: 保持好奇，持续创造。
+  game_page_label: 游戏作品
+  game_overview_label: 项目介绍
+  project_tabs_label: 选择游戏作品
+  project_links_label: 项目链接
+  game_status_label: 项目状态
+  concept_art_label: 概念视觉
+  game_switch_hint: 点击作品名称切换
+  copy_email: 复制邮箱
+  copy_success: 邮箱已复制
+  copy_failure: 复制未成功，请点击上方邮箱联系或手动复制。
+  email_label: 邮箱
+  xiaohongshu_label: 小红书
+  project_tags_label: 项目标签
+  hero_title_first: 在游戏与 AI 之间，
+  hero_title_second: 探索更多可能。
+  hero_games_cta: 探索游戏作品
+  hero_research_cta: 学术与研究
+  hero_signature: [热爱, 创造, 探索]
+  orbit_curiosity: 以好奇出发
+  orbit_creativity: 用代码创造
+  orbit_game: 游戏
+  orbit_ai: 智能
+  orbit_game_caption: 构建可玩的世界
+  orbit_engine: 虚幻引擎
+  orbit_research_caption: 探索智能的可能
+  orbit_imagination: 想象
+  orbit_exploration: 探索
+  focus_label: 关注方向
+  scroll_note: 向下探索
+  about_title_first: 热爱是起点，
+  about_title_second: 创造是方向。
+  development_label: 开发
+  development_fact: 游戏客户端
+  education_label: 教育经历
+  education_fact: 复旦大学
+  research_fact: AI × 游戏
+  industry_intro_first: 从引擎与玩法实现出发，
+  industry_intro_second: 积累对游戏研发的真实理解。
+  research_heading: 学术与探索
+  research_intro_first: 保留好奇，把新的知识
+  research_intro_second: 带回创造与实践之中。
+  courses_label: 课程与学习
+  research_tags_label: 研究标签
+  activities_label: 课堂之外
+  contact_title_first: 聊聊游戏、AI，
+  contact_title_second: 和下一件想做的事。
+  contact_intro: 欢迎交流游戏开发、学术研究与合作机会。
+en:
+  lang_label: Language
+  skip: Skip to content
+  brand_tagline: Game development and AI research
+  home_label: About
+  games_label: Games
+  industry_label: Experience
+  research_label: Research
+  contact_label: Contact
+  back_top: Back to top
+  footer_motto: Stay curious. Keep creating.
+  game_page_label: Games
+  game_overview_label: Project overview
+  project_tabs_label: Select a game project
+  project_links_label: Project links
+  game_status_label: Project status
+  concept_art_label: Concept visual
+  game_switch_hint: Select a project to explore
+  copy_email: Copy email
+  copy_success: Email copied
+  copy_failure: Could not copy. Use the email link above or copy the address manually.
+  email_label: Email
+  xiaohongshu_label: Xiaohongshu
+  project_tags_label: Project tags
+  hero_title_first: Games meet AI.
+  hero_title_second: Ideas become worlds.
+  hero_games_cta: Explore my games
+  hero_research_cta: Explore research
+  hero_signature: [Play, Create, Explore]
+  orbit_curiosity: Curious by nature
+  orbit_creativity: Creative by code
+  orbit_game: Game
+  orbit_ai: AI
+  orbit_game_caption: Build playable worlds
+  orbit_engine: Unreal Engine
+  orbit_research_caption: Explore intelligence
+  orbit_imagination: Imagination
+  orbit_exploration: Exploration
+  focus_label: Focus
+  scroll_note: Explore below
+  about_title_first: Begin with curiosity.
+  about_title_second: Follow through by creating.
+  development_label: Development
+  development_fact: Game clients
+  education_label: Education
+  education_fact: Fudan University
+  research_fact: AI × Games
+  industry_intro_first: From engines to gameplay,
+  industry_intro_second: learning by building real games.
+  research_heading: Learning and research
+  research_intro_first: Staying curious and bringing
+  research_intro_second: new knowledge into practice.
+  courses_label: Coursework
+  research_tags_label: Research topics
+  activities_label: Beyond the classroom
+  contact_title_first: Let's talk games, AI,
+  contact_title_second: and what comes next.
+  contact_intro: Open to conversations about game development, research and collaboration.

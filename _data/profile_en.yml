@@ -1,0 +1,126 @@
+# English content translated from profile.yml. Links, dates and project IDs match the Chinese version.
+name: Ruiwen Hang
+english_name: RUIWEN HANG
+role: Game developer · Master's student at Fudan University
+intro: I am Ruiwen Hang, a developer who moved from backend engineering into game development. I am currently pursuing a master's degree at Fudan University, exploring the intersection of gameplay, intelligent agents and generative AI, and bringing engineering practice and academic inquiry together.
+email: 25263050016@m.fudan.edu.cn
+xiaohongshu: https://xhslink.cn/o/3rL4AQTJcol
+hero:
+  eyebrow: Game development × AI research
+  title: Exploring possibilities at the intersection of games and AI.
+  summary: From DOTA2 Arcade and Unreal Engine indie games to intelligent NPCs, reinforcement learning and generative AI pipelines. I care about engaging experiences and the technology that makes them possible.
+  image: /images/projects/two-otters.jpg
+  image_alt: The two otter protagonists in the underwater world of The Two Otters
+focus:
+  - Unreal Engine / Gameplay
+  - AI in games / AI for game development
+  - C++ · Python · TypeScript · Lua
+projects:
+  - number: "01"
+    eyebrow: Independent game · Unreal Engine
+    title: The Two Otters
+    subtitle: An underwater co-op adventure
+    description: A top-down co-op game built with Unreal Engine and the Lyra framework. Two otters with different personalities and fighting styles are connected by seaweed as they explore, battle and solve puzzles together beneath the sea.
+    image: /images/projects/two-otters.jpg
+    image_alt: Official cover art for The Two Otters
+    tags: [UE / Lyra, Two-player co-op, Gameplay]
+    status: In development · Steam store page available
+    links:
+      - label: Steam store
+        url: https://store.steampowered.com/app/5222780
+      - label: TapTap
+        url: https://www.taptap.cn/app/949711?os=steam
+  - number: "02"
+    eyebrow: TapTap Spotlight GameJam
+    title: Zero Hour Tower
+    subtitle: A journey through a temporal anomaly
+    description: A game created for the TapTap Spotlight GameJam. Play as a witch who can influence time, explore different eras within the same location, and uncover the source of a temporal surge.
+    image: /images/projects/zero-hour-tower.jpg
+    image_alt: Official Zero Hour Tower artwork featuring a witch and clock motifs
+    tags: [GameJam, Time mechanics, Team project]
+    status: Playable demo
+    links:
+      - label: Play on TapTap
+        url: https://www.taptap.cn/app/977535?os=pc
+  - number: "03"
+    eyebrow: DOTA2 Arcade · Lead client programmer
+    title: DOTA2 Arcade
+    subtitle: DOTA TD / Defend Jiange
+    image: /images/projects/dota-arcade.jpg
+    image_alt: Official DOTA TD Steam Workshop cover art
+    description: Lead client programmer for DOTA TD and Defend Jiange, with additional client and mini-program development on OMG 4+2. These projects span tower defense and MOBA gameplay, building experience in game systems and team collaboration.
+    tags: [Lead client programmer, Lua, Tower defense / MOBA]
+    status: Commercial project experience
+    links:
+      - label: DOTA TD
+        url: https://steamcommunity.com/sharedfiles/filedetails/?id=3526267592
+      - label: Defend Jiange
+        url: https://steamcommunity.com/sharedfiles/filedetails/?id=2526715285
+  - number: "04"
+    eyebrow: AI-native game · Cocos
+    title: Student Job Hunt Simulator
+    subtitle: Explore career choices through a text adventure
+    description: An AI-native text adventure built in Cocos with students from different schools at Fudan University. Entered the AI Hackathon Tour 2026 university league and received the Best Popularity Award in the initial round and the Westlake Special Support Award in the semifinal round.
+    tags: [Cocos, AI-native, Text adventure]
+    status: AI Hackathon Tour 2026
+    links:
+      - label: Project overview
+        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#U9VBdrEogoUj4ExOw0ic2s4dnH4
+  - number: "05"
+    eyebrow: User-generated content · Gameplay prototyping
+    title: Game for Peace · Oasis Qiyuan
+    subtitle: From game design to a playable prototype
+    description: Gameplay experimentation around a UGC concept for The Two Otters. The portfolio documents game flow, custom weapons and skill-editor work, exploring gameplay creation within an existing game ecosystem.
+    tags: [UGC, Weapons and skills, Gameplay design]
+    status: Prototype and workflow showcase
+    links:
+      - label: View portfolio
+        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
+industry:
+  - date: Jun 2024 — Sep 2026
+    company: Shanghai Sanye Network Technology
+    role: Game client developer
+    description: Worked on card, MOBA, tower defense, shooter and roguelike projects, with responsibility for DOTA2 Arcade client development. Gained experience in team management and collaboration across companies, and served as a liaison with the Shanghai online gaming industry association, participating in industry exchanges and AI application events.
+  - date: Jul 2020 — May 2023
+    company: JD Technology
+    role: Java backend developer
+    description: Built customized services for financial-grade B2B platforms, including a Spring Boot contact-list service for an outbound calling platform. Gained experience in distributed systems, high concurrency and cloud-native architecture.
+education:
+  school: Fudan University
+  school_en: FUDAN UNIVERSITY
+  degree: Master's in Software Engineering · Part-time, in progress
+  period: Sep 2025 — Jun 2028 (expected)
+  description: Studying at the College of Computing and Intelligent Innovation and carrying out research practice in the OpenMOSS laboratory under Professor Xipeng Qiu. Focused on intelligent game NPCs, generative AI pipelines and AI game engines. Previously completed an undergraduate degree in Software Engineering at Shanghai Dianji University.
+  courses: [Machine Learning, Diffusion Models and Scientific Generative AI, Reinforcement Learning, AI Systems]
+research:
+  - number: "01"
+    title: UE synthetic data and automated pipelines
+    description: Practiced offline, headless UE5 rendering on Linux GPU clusters in MOVA-related projects, using agents to build reusable batch workflows that produce synthetic data for post-training.
+    tags: [UE5, Linux GPU, Agents, Synthetic data]
+    links:
+      - label: UE camera plugin documentation
+        url: https://fudan-nlp.feishu.cn/wiki/WBMuwcQVGilIUjkSNL7ccmO5nZe
+  - number: "02"
+    title: Multi-agent games and reinforcement learning
+    description: Competed in the Tencent Kaiwu AI competition using Honor of Kings as the experimental environment. Responsible for reinforcement learning algorithms, training optimization, reward functions and feature engineering; the team received a provincial third prize.
+    tags: [Multi-agent, Reinforcement learning, Reward design]
+    links: []
+  - number: "03"
+    title: LLM agents and game applications
+    description: Exploring intelligent NPCs and AI game engines through MCP tool integration and modular Skills development, alongside hands-on work with RAG, LoRA and PyTorch.
+    tags: [LLM agents, MCP, RAG / LoRA, PyTorch]
+    links:
+      - label: OpenMOSS
+        url: https://open-moss.com/
+activities:
+  - title: Shanghai Innovation Institute · 2026
+    description: Attended preparatory courses in Decision and Machine Behavior and AI Systems, as well as Richard Sutton's Reinforcement Learning Summer School, to study the foundations of reinforcement learning and AI systems.
+  - title: China University Service Outsourcing Innovation and Entrepreneurship Competition · 2026
+    description: Received third prize in the AI track of the eastern regional competition at the 17th edition of the event.
+  - title: From esports to game development
+    description: Joined DOTA2 professional youth training during undergraduate study, reached the top 200 on the Chinese ranked ladder, and was runner-up in the Shanghai division of the Perfect World collegiate league. Captained the DOTA2 team in the 2025 industry association cup, finishing fourth.
+links:
+  - label: GitHub
+    url: https://github.com/RavenHang
+  - label: Full portfolio
+    url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb

@@ -1,5 +1,6 @@
 ---
 layout: personal
+lang: zh
 published: true
 permalink: /
 title: "杭瑞文 | 游戏开发与 AI 研究"

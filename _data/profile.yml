@@ -9,24 +9,24 @@ intro: 我是杭瑞文，一名从后端工程走向游戏开发的创作者。�
 email: 25263050016@m.fudan.edu.cn
 xiaohongshu: https://xhslink.cn/o/3rL4AQTJcol
 hero:
-  eyebrow: GAME DEVELOPMENT × AI RESEARCH
+  eyebrow: 游戏开发 × 人工智能研究
   title: 在游戏与 AI 之间，探索更多可能。
   summary: 从 DOTA2 游廊与 UE 独立游戏，到智能 NPC、强化学习与 AIGC 管线。我关心好玩的体验，也关心让它发生的技术。
   image: /images/projects/two-otters.jpg
   image_alt: 独立游戏《双獭奇兵》的海底场景与两只水獭主角
 focus:
-  - Unreal Engine / Gameplay
-  - AI in Game / AI for Game
+  - 虚幻引擎 / 玩法开发
+  - 游戏智能体 / AI 辅助游戏研发
   - C++ · Python · TypeScript · Lua
 projects:
   - number: "01"
-    eyebrow: INDEPENDENT GAME · UNREAL ENGINE
+    eyebrow: 独立游戏 · 虚幻引擎
     title: 双獭奇兵
-    subtitle: The Two Otters
+    subtitle: 海底双人共斗冒险
     description: 基于 Unreal Engine 与 Lyra 框架开发的双人俯视角共斗游戏。两只性格与战斗方式不同的水獭，以海草相连，在海底世界协作探索、战斗与解谜。
     image: /images/projects/two-otters.jpg
     image_alt: 《双獭奇兵》官方游戏封面
-    tags: [UE / Lyra, 双人协作, Gameplay]
+    tags: [UE / Lyra, 双人协作, 玩法开发]
     status: 开发中 · Steam 商店页已上线
     links:
       - label: Steam 商店
@@ -34,19 +34,19 @@ projects:
       - label: TapTap
         url: https://www.taptap.cn/app/949711?os=steam
   - number: "02"
-    eyebrow: TAPTAP SPOTLIGHT GAMEJAM
+    eyebrow: TapTap 聚光灯游戏创作挑战
     title: 零时之塔
     subtitle: 在时间异常中前行
     description: 参与 TapTap 聚光灯 GameJam 的游戏作品。玩家化身能够干涉时间的魔女，在同一地点的不同时代之间探索，追寻“时涌”的源头。
     image: /images/projects/zero-hour-tower.jpg
     image_alt: 《零时之塔》官方海报中的魔女与时钟元素
-    tags: [GameJam, 时间主题, 团队创作]
-    status: 试玩 DEMO
+    tags: [限时游戏创作, 时间主题, 团队创作]
+    status: 试玩版
     links:
       - label: TapTap 试玩
         url: https://www.taptap.cn/app/977535?os=pc
   - number: "03"
-    eyebrow: DOTA2 ARCADE · LEAD PROGRAMMER
+    eyebrow: DOTA2 游廊 · 客户端主程
     title: DOTA2 游廊
     subtitle: 刀刀塔防 / 守卫剑阁
     image: /images/projects/dota-arcade.jpg
@@ -60,17 +60,17 @@ projects:
       - label: 守卫剑阁
         url: https://steamcommunity.com/sharedfiles/filedetails/?id=2526715285
   - number: "04"
-    eyebrow: AI NATIVE · COCOS
+    eyebrow: AI 原生游戏 · Cocos 引擎
     title: 大学生求职模拟器
     subtitle: 用文字冒险探索求职选择
-    description: 与复旦不同学院的同学共同开发的 AI Native 文字冒险游戏，使用 Cocos 引擎。参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
-    tags: [Cocos, AI Native, 文字冒险]
+    description: 与复旦不同学院的同学共同开发的 AI 原生文字冒险游戏，使用 Cocos 引擎。参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
+    tags: [Cocos, AI 原生, 文字冒险]
     status: AI Hackathon Tour 2026
     links:
       - label: 项目介绍
         url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#U9VBdrEogoUj4ExOw0ic2s4dnH4
   - number: "05"
-    eyebrow: GAME UGC · GAMEPLAY PROTOTYPING
+    eyebrow: 用户创作 · 玩法原型
     title: 和平精英 · 绿洲启元
     subtitle: 从策划到玩法原型
     description: 围绕《双獭奇兵》UGC 方案进行玩法实践，作品集记录了游戏流程、自定义武器与技能编辑器相关内容，探索现有游戏生态中的玩法创作。
@@ -94,25 +94,25 @@ education:
   school_en: FUDAN UNIVERSITY
   degree: 软件工程 · 硕士在读（非全日制）
   period: 2025.09 — 2028.06（预计）
-  description: 就读于计算与智能创新学院，在 OpenMOSS 实验室学习与开展科研实践，导师为邱锡鹏教授。关注 AI in Game（智能游戏 NPC）与 AI for Game（AIGC 驱动管线与 AI 游戏引擎）。本科毕业于上海电机学院软件工程专业。
+  description: 就读于计算与智能创新学院，在 OpenMOSS 实验室学习与开展科研实践，导师为邱锡鹏教授。关注游戏中的智能 NPC，以及 AIGC 驱动管线与 AI 游戏引擎。本科毕业于上海电机学院软件工程专业。
   courses: [机器学习, 扩散模型与科学生成式人工智能, 强化学习, 人工智能系统]
 research:
   - number: "01"
     title: UE 合成数据与自动化管线
-    description: 在模思智能 MOVA 相关项目中，实践 UE5 在 Linux GPU 集群上的离线无头渲染，使用 Agent 搭建可批量、可复用的流程，输出用于后训练阶段的合成数据。
-    tags: [UE5, Linux GPU, Agent, 合成数据]
+    description: 在模思智能 MOVA 相关项目中，实践 UE5 在 Linux GPU 集群上的离线无头渲染，使用智能体搭建可批量、可复用的流程，输出用于后训练阶段的合成数据。
+    tags: [UE5, Linux GPU, 智能体, 合成数据]
     links:
       - label: UE 运镜插件文档
         url: https://fudan-nlp.feishu.cn/wiki/WBMuwcQVGilIUjkSNL7ccmO5nZe
   - number: "02"
     title: 多智能体博弈与强化学习
     description: 参加腾讯开悟人工智能全球公开赛，以《王者荣耀》为实验环境，负责强化学习算法开发、训练优化、奖励函数与特征工程设计，团队获得省三等奖。
-    tags: [Multi-agent, Reinforcement Learning, 奖励设计]
+    tags: [多智能体, 强化学习, 奖励设计]
     links: []
   - number: "03"
-    title: 大模型 Agent 与游戏应用
+    title: 大模型智能体与游戏应用
     description: 围绕智能 NPC 与 AI 游戏引擎开展学习和探索，实践 MCP 工具接入与 Skills 模块化开发，并结合 RAG、LoRA 和 PyTorch 积累大模型应用经验。
-    tags: [LLM Agent, MCP, RAG / LoRA, PyTorch]
+    tags: [大模型智能体, MCP, RAG / LoRA, PyTorch]
     links:
       - label: OpenMOSS
         url: https://open-moss.com/
