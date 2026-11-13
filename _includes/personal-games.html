@@ -2,7 +2,7 @@
   <h1 id="games-title" class="sr-only">{{ ui.game_page_label }}</h1>
   <div class="game-selector">
     <div class="game-selector-inner shell">
-      <p class="selector-label">{{ ui.games_label }}<span>{{ ui.game_switch_hint }}</span></p>
+      <p class="selector-label">{{ ui.games_label }}</p>
       <nav class="game-tabs" aria-label="{{ ui.project_tabs_label }}" data-game-tabs>
         {% for project in profile.projects %}
         <a class="game-tab" href="#game-{{ project.number }}" id="tab-{{ project.number }}" data-game-tab="game-{{ project.number }}"><span class="game-tab-number" aria-hidden="true">{{ project.number }}</span><span>{{ project.title }}</span></a>

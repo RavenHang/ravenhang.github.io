@@ -294,7 +294,6 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 .game-selector { position:relative; z-index:3; background:#081c2f; }
 .game-selector-inner { padding-block:22px; display:flex; align-items:center; gap:35px; }
 .selector-label { color:#fff; font-size:13px; white-space:nowrap; }
-.selector-label span { display:block; margin-top:4px; color:#9fb7cd; font-size:9px; }
 .game-tabs { position:relative; display:flex; flex:1; min-width:0; gap:22px; justify-content:space-between; }
 .game-tab { position:relative; display:flex; align-items:center; gap:10px; flex:1; padding:16px 0; font-size:13px; color:#b6c8d9; border-top:2px solid #ffffff24; line-height:1.6; transition:color .2s,border-color .2s; }
 .game-tab-number { font-size:9px; color:#8caec9; align-self:start; margin-top:4px; }

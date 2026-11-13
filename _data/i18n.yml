@@ -17,7 +17,6 @@ zh:
   project_links_label: 项目链接
   game_status_label: 项目状态
   concept_art_label: 概念视觉
-  game_switch_hint: 点击名称或滚动切换
   email_label: 邮箱
   project_tags_label: 项目标签
   hero_title_first: 玩家 → 开发者
@@ -64,7 +63,6 @@ en:
   project_links_label: Project links
   game_status_label: Project status
   concept_art_label: Concept visual
-  game_switch_hint: Select or scroll to explore
   email_label: Email
   project_tags_label: Project tags
   hero_title_first: Player → Developer
