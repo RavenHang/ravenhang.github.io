@@ -27,7 +27,6 @@ html.home-document { color-scheme:light; scroll-padding-top:110px; }
 .page-home .brand-name small { color:var(--muted); }
 .page-home .site-nav a { color:var(--muted); }
 .page-home .site-nav a:hover,.page-home .site-nav a[aria-current="page"] { color:var(--primary); }
-.page-home .site-nav a:last-child { border-color:#b8d4e8; border-radius:5px; color:var(--primary); }
 .page-home .language-switch { border-color:#cfdfed; background:#edf5fc; border-radius:5px; padding:3px; }
 .page-home .language-switch a { color:var(--muted); border-radius:3px; }
 .page-home .language-switch a[aria-current="page"] { color:#fff; background:var(--primary); box-shadow:none; }
@@ -129,10 +128,11 @@ html[lang="en"] .page-home .hero h1 { font-size:clamp(34px,3.2vw,47px); line-hei
 .page-home .experience-row::before { display:none; }
 .page-home .experience-row:first-child { border-top-color:var(--primary); }
 .page-home .experience-date { color:#4f86ac; font:11px/1.6 var(--mono); letter-spacing:0; }
-.page-home .experience-heading { display:flex; flex:1; flex-direction:column; align-items:start; gap:18px; }
-.page-home .experience-logo { width:136px; height:72px; padding:7px 10px; object-fit:contain; border:0; border-radius:4px; background:#fff; mix-blend-mode:normal; }
-.page-home .experience-heading h3 { color:var(--ink); align-self:stretch; font-size:17px; font-weight:550; line-height:1.6; }
-.page-home .experience-heading p { margin-top:auto; padding-top:4px; color:var(--muted); font-size:12px; line-height:1.6; }
+.page-home .experience-heading { display:grid; flex:1; grid-template-columns:96px minmax(0,1fr); align-items:center; gap:18px; }
+.page-home .experience-logo { grid-column:1; grid-row:1; width:96px; height:72px; padding:6px; object-fit:contain; border:0; border-radius:4px; background:#fff; mix-blend-mode:normal; }
+.experience-details { grid-column:2; min-width:0; }
+.page-home .experience-heading h3 { color:var(--ink); font-size:16px; font-weight:550; line-height:1.6; overflow-wrap:anywhere; }
+.page-home .experience-heading p { margin-top:8px; padding:0; color:var(--muted); font-size:12px; line-height:1.6; }
 
 .page-home .research-section { padding-top:0; background:none; border:0; border-radius:0; }
 .research-inner { min-width:0; }
@@ -187,6 +187,11 @@ html[lang="en"] .page-home .hero h1 { font-size:clamp(34px,3.2vw,47px); line-hei
   .page-home .education-meta { grid-column:1; margin-top:0; }
   .page-home .education-description { grid-column:2; grid-row:1 / 4; margin-top:0; align-self:center; }
 }
+@media(min-width:651px) and (max-width:1100px) {
+  .page-home .experience-list { grid-template-columns:1fr; gap:14px; }
+  .page-home .experience-row { display:grid; grid-template-columns:150px minmax(0,1fr); align-items:center; gap:24px; }
+  .page-home .experience-heading { grid-column:2; }
+}
 @media(max-width:900px) {
   .intro-layout { grid-template-columns:1fr; gap:24px; }
   .page-home .hero { grid-column:auto; grid-row:auto; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:26px; min-height:420px; padding-top:10px; }
@@ -204,7 +209,6 @@ html[lang="en"] .page-home .hero h1 { font-size:clamp(34px,3.2vw,47px); line-hei
   html.home-document { scroll-padding-top:124px; }
   .page-home .header-inner,.page-home .home-layout,.page-home .site-footer { width:calc(100% - 40px); }
   .page-home .header-inner { min-height:100px; }
-  .page-home .site-nav a:last-child { border:0; padding:10px 0; }
   .home-layout { padding-top:28px; }
   .page-home .hero { grid-template-columns:1fr; gap:34px; padding-block:0 28px; }
   .page-home .hero::before { inset:0 -12px; }
@@ -231,10 +235,10 @@ html[lang="en"] .page-home .hero h1 { font-size:clamp(34px,3.2vw,47px); line-hei
   .page-home .section-intro { font-size:11px; margin:0; }
   .page-home .experience-list { grid-template-columns:1fr; gap:12px; }
   .page-home .experience-row { gap:14px; padding:20px; }
-  .page-home .experience-heading { display:grid; grid-template-columns:112px minmax(0,1fr); gap:6px 18px; align-items:center; }
-  .page-home .experience-logo { grid-column:1; grid-row:1 / 3; width:112px; height:66px; padding:6px 7px; }
-  .page-home .experience-heading h3 { grid-column:2; align-self:end; font-size:15px; line-height:1.7; }
-  .page-home .experience-heading p { grid-column:2; align-self:start; margin:0; padding:0; font-size:11px; }
+  .page-home .experience-heading { grid-template-columns:88px minmax(0,1fr); gap:16px; }
+  .page-home .experience-logo { width:88px; height:66px; }
+  .page-home .experience-heading h3 { font-size:15px; line-height:1.7; }
+  .page-home .experience-heading p { margin-top:6px; font-size:11px; }
   .page-home .experience-date { font-size:10px; }
   .page-home .education { display:block; padding:24px; }
   .page-home .education-brand { gap:12px; }
@@ -257,6 +261,17 @@ html[lang="en"] .page-home .hero h1 { font-size:clamp(34px,3.2vw,47px); line-hei
 @media(prefers-reduced-motion:reduce) {
   html.home-document { scroll-behavior:auto; }
   .page-home .orbit-ring--inner { animation:none; }
+}
+
+/* Highlight the active card without changing the surrounding layout. */
+.page-home :is(.profile-sidebar,.experience-row,.education,.research-item) { position:relative; }
+.page-home :is(.profile-sidebar,.education,.research-item,.orbit-label):focus-within { border-color:var(--primary); box-shadow:0 0 0 1px #167ac628,0 14px 36px #2376aa16; }
+@media(hover:hover) and (pointer:fine) {
+  .page-home :is(.profile-sidebar,.experience-row,.education,.research-item,.orbit-label):hover { z-index:2; border-color:var(--primary); box-shadow:0 0 0 1px #167ac628,0 18px 42px #2376aa20; }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .page-home :is(.profile-sidebar,.experience-row,.education,.research-item,.orbit-label) { transition:transform .24s cubic-bezier(.2,.7,.3,1),border-color .24s,box-shadow .24s; }
+  .page-home :is(.profile-sidebar,.experience-row,.education,.research-item,.orbit-label):hover { transform:translateY(-4px) scale(1.018); }
 }
 
 /* Research images use native horizontal scrolling and an accessible image viewer. */

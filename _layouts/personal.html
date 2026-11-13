@@ -41,7 +41,6 @@
         <nav class="site-nav" aria-label="{{ ui.home_label }}">
           <a href="{{ home_url | relative_url }}"{% unless page.section == 'games' %} aria-current="page"{% endunless %}>{{ ui.home_label }}</a>
           <a href="{{ games_url | relative_url }}"{% if page.section == 'games' %} aria-current="page"{% endif %}>{{ ui.games_label }}</a>
-          <a href="{{ home_url | relative_url }}#contact">{{ ui.contact_label }} <span aria-hidden="true">↗</span></a>
         </nav>
         <nav class="language-switch" aria-label="{{ ui.lang_label }}">
           <a href="{{ zh_url | relative_url }}" hreflang="zh-CN" lang="zh-CN" data-language-link{% if lang == 'zh' %} aria-current="page"{% endif %}>中文</a>
