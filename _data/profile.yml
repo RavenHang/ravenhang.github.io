@@ -1,0 +1,130 @@
+# Edit homepage content and contact links here.
+# Sources: the owner's Feishu introduction and portfolio, including the attached CV.
+# Introduction: https://fudan-nlp.feishu.cn/wiki/QDFVwc8vbiBB3EkNdqvcLneSnZf
+# Portfolio: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb
+name: 杭瑞文
+english_name: RUIWEN HANG
+role: 游戏开发者 · 复旦大学硕士研究生
+intro: 我是杭瑞文，一名从后端工程走向游戏开发的创作者。目前在复旦大学攻读硕士，关注游戏玩法、智能体与生成式 AI 的交汇，让工程实践与学术探索彼此推动。
+email: 25263050016@m.fudan.edu.cn
+xiaohongshu: https://xhslink.cn/o/3rL4AQTJcol
+hero:
+  eyebrow: GAME DEVELOPMENT × AI RESEARCH
+  title: 在游戏与 AI 之间，探索更多可能。
+  summary: 从 DOTA2 游廊与 UE 独立游戏，到智能 NPC、强化学习与 AIGC 管线。我关心好玩的体验，也关心让它发生的技术。
+  image: /images/projects/two-otters.jpg
+  image_alt: 独立游戏《双獭奇兵》的海底场景与两只水獭主角
+focus:
+  - Unreal Engine / Gameplay
+  - AI in Game / AI for Game
+  - C++ · Python · TypeScript · Lua
+projects:
+  - number: "01"
+    eyebrow: INDEPENDENT GAME · UNREAL ENGINE
+    title: 双獭奇兵
+    subtitle: The Two Otters
+    description: 基于 Unreal Engine 与 Lyra 框架开发的双人俯视角共斗游戏。两只性格与战斗方式不同的水獭，以海草相连，在海底世界协作探索、战斗与解谜。
+    image: /images/projects/two-otters.jpg
+    image_alt: 《双獭奇兵》官方游戏封面
+    tags: [UE / Lyra, 双人协作, Gameplay]
+    status: 开发中 · Steam 商店页已上线
+    links:
+      - label: Steam 商店
+        url: https://store.steampowered.com/app/5222780
+      - label: TapTap
+        url: https://www.taptap.cn/app/949711?os=steam
+  - number: "02"
+    eyebrow: TAPTAP SPOTLIGHT GAMEJAM
+    title: 零时之塔
+    subtitle: 在时间异常中前行
+    description: 参与 TapTap 聚光灯 GameJam 的游戏作品。玩家化身能够干涉时间的魔女，在同一地点的不同时代之间探索，追寻“时涌”的源头。
+    image: /images/projects/zero-hour-tower.jpg
+    image_alt: 《零时之塔》官方海报中的魔女与时钟元素
+    tags: [GameJam, 时间主题, 团队创作]
+    status: 试玩 DEMO
+    links:
+      - label: TapTap 试玩
+        url: https://www.taptap.cn/app/977535?os=pc
+  - number: "03"
+    eyebrow: DOTA2 ARCADE · LEAD PROGRAMMER
+    title: DOTA2 游廊
+    subtitle: 刀刀塔防 / 守卫剑阁
+    image: /images/projects/dota-arcade.jpg
+    image_alt: 《刀刀塔防》DOTA TD 创意工坊官方封面
+    description: 担任《刀刀塔防》《守卫剑阁》客户端主程，并参与《OMG 4+2》客户端与小程序开发。实践覆盖塔防、MOBA 等玩法，积累游戏系统开发与团队协作经验。
+    tags: [客户端主程, Lua, 塔防 / MOBA]
+    status: 商业项目经历
+    links:
+      - label: 刀刀塔防
+        url: https://steamcommunity.com/sharedfiles/filedetails/?id=3526267592
+      - label: 守卫剑阁
+        url: https://steamcommunity.com/sharedfiles/filedetails/?id=2526715285
+  - number: "04"
+    eyebrow: AI NATIVE · COCOS
+    title: 大学生求职模拟器
+    subtitle: 用文字冒险探索求职选择
+    description: 与复旦不同学院的同学共同开发的 AI Native 文字冒险游戏，使用 Cocos 引擎。参赛 AI Hackathon Tour 2026 高校联赛，获得初赛最佳人气奖、复赛西湖特别支持奖。
+    tags: [Cocos, AI Native, 文字冒险]
+    status: AI Hackathon Tour 2026
+    links:
+      - label: 项目介绍
+        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#U9VBdrEogoUj4ExOw0ic2s4dnH4
+  - number: "05"
+    eyebrow: GAME UGC · GAMEPLAY PROTOTYPING
+    title: 和平精英 · 绿洲启元
+    subtitle: 从策划到玩法原型
+    description: 围绕《双獭奇兵》UGC 方案进行玩法实践，作品集记录了游戏流程、自定义武器与技能编辑器相关内容，探索现有游戏生态中的玩法创作。
+    tags: [UGC, 武器与技能, 玩法设计]
+    status: 原型与流程展示
+    links:
+      - label: 查看作品集
+        url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb#RBkCdpovMoYuLYx4REWcOZP9nBh
+industry:
+  - date: 2024.06 — 2026.09
+    company: 上海散夜网络科技有限公司
+    role: 游戏客户端开发
+    description: 参与卡牌、MOBA、塔防、射击与 Roguelike 等多品类项目，负责 DOTA2 游廊客户端开发，并积累团队管理和跨公司项目协作经验。曾担任上海市网络游戏行业协会对接人，参与企业交流与 AI 技术应用活动。
+  - date: 2020.07 — 2023.05
+    company: 京东科技控股股份有限公司
+    role: Java 后端开发
+    description: 参与金融级 ToB 平台定制开发，基于 Spring Boot 开发外呼平台名单服务，积累分布式系统、高并发与云原生架构经验。
+education:
+  # Program and enrollment date follow the newer 2026-10 student-status certificate.
+  school: 复旦大学
+  school_en: FUDAN UNIVERSITY
+  degree: 软件工程 · 硕士在读（非全日制）
+  period: 2025.09 — 2028.06（预计）
+  description: 就读于计算与智能创新学院，在 OpenMOSS 实验室学习与开展科研实践，导师为邱锡鹏教授。关注 AI in Game（智能游戏 NPC）与 AI for Game（AIGC 驱动管线与 AI 游戏引擎）。本科毕业于上海电机学院软件工程专业。
+  courses: [机器学习, 扩散模型与科学生成式人工智能, 强化学习, 人工智能系统]
+research:
+  - number: "01"
+    title: UE 合成数据与自动化管线
+    description: 在模思智能 MOVA 相关项目中，实践 UE5 在 Linux GPU 集群上的离线无头渲染，使用 Agent 搭建可批量、可复用的流程，输出用于后训练阶段的合成数据。
+    tags: [UE5, Linux GPU, Agent, 合成数据]
+    links:
+      - label: UE 运镜插件文档
+        url: https://fudan-nlp.feishu.cn/wiki/WBMuwcQVGilIUjkSNL7ccmO5nZe
+  - number: "02"
+    title: 多智能体博弈与强化学习
+    description: 参加腾讯开悟人工智能全球公开赛，以《王者荣耀》为实验环境，负责强化学习算法开发、训练优化、奖励函数与特征工程设计，团队获得省三等奖。
+    tags: [Multi-agent, Reinforcement Learning, 奖励设计]
+    links: []
+  - number: "03"
+    title: 大模型 Agent 与游戏应用
+    description: 围绕智能 NPC 与 AI 游戏引擎开展学习和探索，实践 MCP 工具接入与 Skills 模块化开发，并结合 RAG、LoRA 和 PyTorch 积累大模型应用经验。
+    tags: [LLM Agent, MCP, RAG / LoRA, PyTorch]
+    links:
+      - label: OpenMOSS
+        url: https://open-moss.com/
+activities:
+  - title: 上海创智学院 · 2026
+    description: 参加《决策与机器行为学》《人工智能系统》先修课程，以及 Richard Sutton 强化学习暑期学校，系统学习强化学习与人工智能系统基础。
+  - title: 中国大学生服务外包创新创业大赛 · 2026
+    description: 获第十七届大赛东部区域赛人工智能专项赛道三等奖。
+  - title: 从电竞走向开发
+    description: 本科期间参与 DOTA2 职业青训，曾达国服天梯前 200，获完美世界高校联赛上海赛区亚军；2025 年担任行业协会杯 DOTA2 项目队长，取得第四名。
+links:
+  - label: GitHub
+    url: https://github.com/RavenHang
+  - label: 完整作品集
+    url: https://fudan-nlp.feishu.cn/docx/Fg0adwhKzoUD7KxTSYWcGWShnTb
