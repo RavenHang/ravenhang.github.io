@@ -25,8 +25,7 @@ zh:
   hero_player: 玩家
   hero_developer: 开发者
   hero_researcher: 研究者
-  hero_games_cta: 探索游戏作品
-  hero_research_cta: 学术与研究
+  hero_games_cta: 游戏作品
   orbit_curiosity: 以好奇出发
   orbit_creativity: 用代码创造
   orbit_game: 游戏
@@ -73,8 +72,7 @@ en:
   hero_player: Player
   hero_developer: Developer
   hero_researcher: Researcher
-  hero_games_cta: Explore my games
-  hero_research_cta: Explore research
+  hero_games_cta: Games
   orbit_curiosity: Curious by nature
   orbit_creativity: Creative by code
   orbit_game: Game
