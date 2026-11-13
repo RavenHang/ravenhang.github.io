@@ -71,7 +71,7 @@
           {% if profile.activities %}
           <div class="activities">
             <p class="eyebrow">{{ ui.activities_label }}</p>
-            <div class="activity-list">{% for activity in profile.activities %}<article><h3>{{ activity.title }}</h3><p>{{ activity.description }}</p></article>{% endfor %}</div>
+            <div class="activity-list">{% for activity in profile.activities %}<article><h3>{{ activity.title }}</h3>{% if activity.description %}<p>{{ activity.description }}</p>{% endif %}</article>{% endfor %}</div>
           </div>
           {% endif %}
         </div>
