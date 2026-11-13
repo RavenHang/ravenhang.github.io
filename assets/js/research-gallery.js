@@ -74,9 +74,9 @@
     let scrollFrame = 0;
     let scrollTimer = 0;
     const scrollPositions = () => {
-      const firstLeft = images[0].getBoundingClientRect().left;
+      const firstLeft = images[0].offsetLeft;
       const limit = Math.max(0, track.scrollWidth - track.clientWidth);
-      return images.map(image => Math.min(limit, image.getBoundingClientRect().left - firstLeft));
+      return images.map(image => Math.min(limit, image.offsetLeft - firstLeft));
     };
     const currentIndex = positions => {
       const limit = Math.max(0, track.scrollWidth - track.clientWidth);
@@ -95,6 +95,7 @@
       next.disabled = fits || index === images.length - 1;
     };
     const move = direction => {
+      window.clearTimeout(scrollTimer);
       const positions = scrollPositions();
       const from = requestedIndex ?? currentIndex(positions);
       requestedIndex = Math.max(0, Math.min(images.length - 1, from + direction));
@@ -115,6 +116,7 @@
       }
       window.clearTimeout(scrollTimer);
       scrollTimer = window.setTimeout(() => {
+        if (requestedIndex !== null && currentIndex(scrollPositions()) !== requestedIndex) return;
         requestedIndex = null;
         syncControls();
       }, 120);

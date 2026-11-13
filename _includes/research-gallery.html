@@ -1,10 +1,8 @@
 <div class="research-gallery" data-research-gallery role="region" aria-label="{{ ui.gallery_label | escape }}">
-  <div class="research-gallery-toolbar">
-    <div class="research-gallery-controls" data-gallery-controls hidden>
-      <span class="research-gallery-position" data-gallery-position aria-live="polite" aria-atomic="true">1 / {{ item.gallery.size }}</span>
-      <button type="button" data-gallery-prev aria-label="{{ ui.gallery_previous | escape }}"><span aria-hidden="true">←</span></button>
-      <button type="button" data-gallery-next aria-label="{{ ui.gallery_next | escape }}"><span aria-hidden="true">→</span></button>
-    </div>
+  <div class="research-gallery-controls" data-gallery-controls hidden>
+    <span class="sr-only" data-gallery-position aria-live="polite" aria-atomic="true">1 / {{ item.gallery.size }}</span>
+    <button type="button" data-gallery-prev aria-label="{{ ui.gallery_previous | escape }}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 5-7 7 7 7"/></svg></button>
+    <button type="button" data-gallery-next aria-label="{{ ui.gallery_next | escape }}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 5 7 7-7 7"/></svg></button>
   </div>
   <div class="research-gallery-track" data-gallery-track>
     {% for photo in item.gallery %}
