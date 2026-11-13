@@ -21,17 +21,6 @@
         </a>
       </li>
       {% endfor %}
-      {% if profile.xiaohongshu and profile.xiaohongshu != '' %}
-      <li>
-        <a class="sidebar-link sidebar-link--xiaohongshu" href="{{ profile.xiaohongshu | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ui.xiaohongshu_label | escape }}">
-          <img class="sidebar-xiaohongshu-badge" src="{{ '/images/icons/xiaohongshu.png' | relative_url }}" alt="" width="690" height="483" aria-hidden="true">
-        </a>
-      </li>
-      {% endif %}
     </ul>
-    <div class="sidebar-copy-row">
-      <button class="copy-email" type="button" data-copy-email="{{ profile.email | escape }}" data-copy-success="{{ ui.copy_success | escape }}" data-copy-failure="{{ ui.copy_failure | escape }}" hidden>{{ ui.copy_email }} <span aria-hidden="true">⧉</span></button>
-      <span class="copy-status" role="status" aria-live="polite"></span>
-    </div>
   </div>
 </aside>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{% if page.lang == 'en' %}en{% else %}zh-CN{% endif %}">
+<html lang="{% if page.lang == 'en' %}en{% else %}zh-CN{% endif %}"{% unless page.section == 'games' %} class="home-document"{% endunless %}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,7 @@
     <link rel="alternate" hreflang="x-default" href="{{ zh_url | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="{{ '/images/personal-mark.svg' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/personal.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">
+    {% unless page.section == 'games' %}<link rel="stylesheet" href="{{ '/assets/css/personal-home.css' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">{% endunless %}
     <script src="{{ '/assets/js/personal.js' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" defer></script>
   </head>
   <body id="top" class="page-{{ page.section | default: 'home' }}" data-language="{{ lang }}">
@@ -51,8 +52,7 @@
         {% include personal-games.html %}
       {% else %}
         <div class="home-layout shell">
-          {% include personal-sidebar.html %}
-          <div class="home-content">{% include personal-home.html %}</div>
+          {% include personal-home.html %}
         </div>
       {% endif %}
     </main>

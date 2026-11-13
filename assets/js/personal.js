@@ -190,20 +190,4 @@
     });
   }
 
-  const copyButton = document.querySelector('[data-copy-email]');
-  const status = document.querySelector('.copy-status');
-  if (copyButton && status && navigator.clipboard?.writeText) {
-    copyButton.hidden = false;
-    let clearStatus;
-    copyButton.addEventListener('click', async () => {
-      clearTimeout(clearStatus);
-      try {
-        await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
-        status.textContent = copyButton.dataset.copySuccess;
-      } catch {
-        status.textContent = copyButton.dataset.copyFailure;
-      }
-      clearStatus = setTimeout(() => { status.textContent = ''; }, 6000);
-    });
-  }
 })();
