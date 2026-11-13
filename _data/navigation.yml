@@ -1,6 +1,8 @@
 main:
-  - title: "作品项目"
-    url: /#work
+  - title: "个人介绍"
+    url: /
+  - title: "游戏作品"
+    url: /games/
   - title: "行业经历"
     url: /#experience
   - title: "学术探索"
