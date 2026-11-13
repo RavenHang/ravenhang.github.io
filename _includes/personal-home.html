@@ -42,11 +42,11 @@
           <h2 id="research-title" class="sr-only">{{ ui.research_heading }}</h2>
           <div class="research-layout">
             <div class="education">
-              <p class="eyebrow education-brand">
-                <a class="education-logo" href="https://openmoss.ai/" target="_blank" rel="noopener noreferrer"><img src="{{ '/images/openmoss-logo.svg' | relative_url }}" alt="OpenMOSS" width="160" height="31" loading="lazy" decoding="async"></a>
-                <span>{{ ui.education_label }}</span>
-              </p>
-              <h3>{{ profile.education.school }}</h3>
+              <div class="education-brand">
+                <img class="education-emblem" src="{{ '/images/fudan-emblem.png' | relative_url }}" alt="" width="64" height="64" loading="lazy" decoding="async" aria-hidden="true">
+                <a class="education-logo" href="https://openmoss.ai/" target="_blank" rel="noopener noreferrer"><img src="{{ '/images/openmoss-logo.svg' | relative_url }}" alt="OpenMOSS" width="148" height="29" loading="lazy" decoding="async"></a>
+              </div>
+              <h3>{{ ui.education_label }}</h3>
               <div class="education-meta"><p>{{ profile.education.degree }}</p><p>{{ profile.education.period }}</p></div>
               <p class="education-description">{{ profile.education.description }}</p>
             </div>
