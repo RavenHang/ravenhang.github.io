@@ -23,18 +23,34 @@ html[lang="en"] .page-home .hero .hero-journey { gap:8px; font-size:clamp(17px,1
 .page-home .hero-summary { max-width:430px; margin-top:28px; color:#385e81; font-size:21px; line-height:1.95; letter-spacing:.2px; text-wrap:pretty; }
 html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; letter-spacing:0; }
 
+.animation-modes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; width:100%; max-width:400px; margin-top:26px; }
+.animation-mode { display:flex; align-items:center; gap:10px; min-width:0; min-height:46px; padding:10px 13px; border:1px solid #c9ddef; border-radius:7px; color:#526f8b; background:#ffffffb8; font-size:12px; line-height:1.5; text-align:left; cursor:pointer; appearance:none; }
+.animation-mode:hover { border-color:#87b1de; background:#f5faff; }
+.animation-mode[aria-pressed="true"] { border-color:#73a4db; color:#195fa9; background:#e8f2ff; box-shadow:inset 0 0 0 1px #73a4db22; font-weight:650; }
+.animation-mode > span:last-child { min-width:0; overflow-wrap:anywhere; }
+.animation-mode-index { flex:0 0 auto; color:#8aa7c1; font:9px/1.5 var(--mono); letter-spacing:.5px; }
+.animation-mode[aria-pressed="true"] .animation-mode-index { color:#4584c4; }
+.animation-mode:focus-visible { outline:3px solid #1769c6; outline-offset:4px; }
+.animation-description { min-height:3.6em; max-width:400px; margin-top:11px; color:#55748f; font-size:11px; line-height:1.8; text-wrap:pretty; }
 .page-home .hero-actions { margin-top:30px; }
 .page-home .hero-actions .button-primary { min-height:46px; padding-inline:21px; }
 .page-home .hero-scene { width:60%; }
 
-/* Keep contact details in the introduction's left column. */
-.page-home .hero-copy .profile-sidebar { max-width:420px; margin-top:32px; padding:16px; gap:20px; }
-.page-home .hero-copy .sidebar-photo { width:72px; height:96px; flex-basis:72px; }
-.page-home .hero-copy .sidebar-contact { display:block; min-width:0; }
-.page-home .hero-copy .sidebar-title { margin:0 0 6px; font-size:13px; }
-.page-home .hero-copy .sidebar-links { flex-direction:column; align-items:stretch; gap:0; }
-.page-home .hero-copy .sidebar-link { min-height:36px; padding:4px 0; gap:10px; }
-.page-home .hero-copy .sidebar-link-detail { font-size:11px; }
+/* The second chapter restores the portrait-and-contact sidebar on the left. */
+.experience-layout { display:grid; grid-template-columns:244px minmax(0,1fr); gap:44px; align-items:center; width:100%; }
+.experience-main { min-width:0; }
+.page-home .experience-layout .profile-sidebar { display:block; grid-column:auto; grid-row:auto; align-self:start; width:100%; max-width:none; margin:0; padding:16px; border-top:2px solid var(--primary); border-radius:8px; background:linear-gradient(145deg,#fff,#f0f7fd); }
+.page-home .experience-layout .sidebar-photo { width:100%; height:auto; aspect-ratio:3 / 4; object-fit:contain; object-position:center; border-radius:4px; }
+.page-home .experience-layout .sidebar-contact { display:block; min-width:0; margin-top:22px; }
+.page-home .experience-layout .sidebar-title { margin:0; padding-bottom:12px; border-bottom:1px solid var(--line); color:#54718c; font-size:12px; font-weight:500; letter-spacing:1px; }
+.page-home .experience-layout .sidebar-links { flex-direction:column; align-items:stretch; flex-wrap:nowrap; gap:4px; margin-top:12px; }
+.page-home .experience-layout .sidebar-link { min-height:44px; padding:7px 0; gap:10px; font-size:13px; }
+.page-home .experience-layout .sidebar-link-label { display:block; margin-bottom:4px; font-size:10px; }
+.page-home .experience-layout .sidebar-link-detail { font-size:11px; overflow-wrap:anywhere; }
+.page-home .experience-layout .sidebar-icon { width:19px; height:19px; flex-basis:19px; }
+.page-home .experience-main .experience-list { grid-template-columns:minmax(0,1fr); gap:15px; }
+.page-home .experience-main .experience-row { display:grid; grid-template-columns:156px minmax(0,1fr); align-items:center; gap:24px; padding:22px 24px; }
+.page-home .experience-main .experience-heading { grid-column:2; grid-template-columns:96px minmax(0,1fr); gap:20px; }
 
 .scene-thought { position:absolute; z-index:2; top:var(--thought-y,14%); left:var(--thought-x,50%); display:flex; align-items:flex-start; gap:10px; width:max-content; max-width:min(330px,80%); padding:16px 20px; border:1px solid #c5dbf0; border-radius:18px 18px 18px 5px; color:#315c83; background:#ffffffed; box-shadow:0 10px 35px #28578113,inset 0 1px #fff; backdrop-filter:blur(10px); transform:translateX(-50%); pointer-events:none; }
 .scene-thought[hidden] { display:none; }
@@ -67,6 +83,10 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 
 
 @media(min-width:761px) and (max-width:1100px) {
+  .experience-layout { grid-template-columns:220px minmax(0,1fr); gap:28px; }
+  .page-home .experience-main .experience-row { grid-template-columns:minmax(0,1fr); gap:12px; padding:20px; }
+  .page-home .experience-main .experience-heading { grid-column:1; grid-template-columns:88px minmax(0,1fr); gap:16px; }
+  .page-home .experience-main .experience-logo { width:88px; }
   .page-home .hero-copy { width:42%; }
   .page-home .hero .hero-journey { gap:7px; font-size:24px; }
   html[lang="en"] .page-home .hero .hero-journey { gap:5px; font-size:17px; }
@@ -79,6 +99,8 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .page-home .hero { padding-block:38px; }
   .page-home .hero-summary { margin-top:22px; font-size:19px; }
   html[lang="en"] .page-home .hero-summary { font-size:17px; }
+  .animation-modes { margin-top:20px; }
+  .animation-mode { min-height:42px; padding-block:8px; }
   .page-home .hero-actions { margin-top:24px; }
 }
 @media(max-width:760px) {
@@ -88,13 +110,23 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   html[lang="en"] .page-home .hero .hero-journey { gap:6px; font-size:clamp(14px,3.8vw,20px); letter-spacing:-.35px; }
   .page-home .hero-summary { max-width:440px; margin-top:22px; font-size:19px; line-height:1.85; letter-spacing:0; }
   html[lang="en"] .page-home .hero-summary { font-size:16px; line-height:1.75; }
+  .animation-modes { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; max-width:440px; margin-top:19px; }
+  .animation-mode { flex-direction:column; align-items:flex-start; justify-content:center; gap:3px; min-height:60px; padding:7px 8px; font-size:11px; line-height:1.4; }
+  .animation-mode-index { font-size:8px; }
+  .animation-description { min-height:3.4em; max-width:440px; margin-top:8px; font-size:11px; line-height:1.7; }
   .page-home .hero-actions { margin-top:23px; }
   .page-home .hero-actions .button-primary { min-height:44px; padding:9px 18px; font-size:12px; }
-  .page-home .hero-copy .profile-sidebar { margin-top:24px; padding:12px 14px; gap:14px; }
-  .page-home .hero-copy .sidebar-photo { width:58px; height:78px; flex-basis:58px; }
-  .page-home .hero-copy .sidebar-title { font-size:12px; margin-bottom:4px; }
-  .page-home .hero-copy .sidebar-link { min-height:32px; padding:2px 0; gap:8px; }
-  .page-home .hero-copy .sidebar-link-detail { font-size:10px; }
+  .experience-layout { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .page-home .experience-layout .profile-sidebar { display:grid; grid-template-columns:88px minmax(0,1fr); align-items:center; gap:20px; padding:18px; }
+  .page-home .experience-layout .sidebar-contact { margin:0; }
+  .page-home .experience-layout .sidebar-title { padding-bottom:8px; }
+  .page-home .experience-layout .sidebar-links { margin-top:7px; gap:0; }
+  .page-home .experience-layout .sidebar-link { padding:4px 0; gap:8px; font-size:12px; }
+  .page-home .experience-layout .sidebar-link-label { display:none; }
+  .page-home .experience-layout .sidebar-link-detail { font-size:10px; }
+  .page-home .experience-main .experience-row { grid-template-columns:minmax(0,1fr); gap:14px; padding:20px; }
+  .page-home .experience-main .experience-heading { grid-column:1; grid-template-columns:88px minmax(0,1fr); gap:16px; }
+  .page-home .experience-main .experience-logo { width:88px; }
   .page-home .hero-scene { position:relative; width:100%; height:clamp(270px,34svh,390px); min-height:270px; flex:1 0 270px; margin-top:0; }
   .scene-thought { top:var(--thought-y,3%); left:var(--thought-x,50%); max-width:min(300px,84%); gap:8px; padding:11px 15px; border-radius:14px 14px 14px 4px; }
   .scene-thought p { font-size:12px; line-height:1.7; }
@@ -109,13 +141,19 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   html[lang="en"] .page-home .hero .hero-journey { gap:5px; font-size:14px; }
   .page-home .hero-summary { margin-top:19px; font-size:17px; }
   html[lang="en"] .page-home .hero-summary { font-size:15px; }
+  .animation-mode { padding-inline:6px; font-size:10px; }
+  .animation-description { font-size:10px; }
   .page-home .hero-actions { margin-top:20px; }
-  .page-home .hero-copy .profile-sidebar { margin-top:20px; gap:12px; }
-  .page-home .hero-copy .sidebar-photo { width:48px; height:64px; flex-basis:48px; }
+  .page-home .experience-layout .profile-sidebar { grid-template-columns:70px minmax(0,1fr); gap:14px; padding:14px; }
+  .page-home .experience-main .experience-row { padding:18px; }
+  .page-home .experience-main .experience-heading { grid-template-columns:72px minmax(0,1fr); gap:14px; }
+  .page-home .experience-main .experience-logo { width:72px; height:60px; }
   .page-home .hero-scene { height:270px; }
 }
 
 @media(forced-colors:active) {
   .hero-journey > span { color:CanvasText; text-shadow:none; }
+  .animation-mode { border-color:ButtonText; color:ButtonText; background:ButtonFace; }
+  .animation-mode[aria-pressed="true"] { border:2px solid Highlight; color:HighlightText; background:Highlight; box-shadow:none; }
   .scene-thought { border-color:CanvasText; background:Canvas; color:CanvasText; box-shadow:none; }
 }

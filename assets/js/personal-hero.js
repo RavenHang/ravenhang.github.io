@@ -12,10 +12,29 @@ function createScene() {
   const resetButton = hero.querySelector('[data-scene-reset]');
   const thoughtWrap = hero.querySelector('[data-scene-thought-wrap]');
   const thoughtText = hero.querySelector('[data-scene-thought]');
-  const actions = ['explore', 'defend', 'jump', 'greet'];
-  const representativeTimes = { explore: 3.10, defend: 3.35, jump: 3.00, greet: 3.45 };
+  const modeControls = hero.querySelector('[data-animation-modes]');
+  const modeButtons = [...hero.querySelectorAll('[data-animation-mode]')];
+  const modeDescription = hero.querySelector('[data-animation-description]');
+  const modeSettings = {
+    state: { transition: 0 },
+    blend: { transition: 0.60 },
+    matching: { transition: 0.32 },
+    generative: { transition: 0.38 }
+  };
+  let animationMode = 'matching';
+  const actions = ['explore', 'peck', 'greet', 'jump', 'spin', 'defend', 'balance', 'stretch'];
+  const actionMetadata = {
+    explore: { duration: 6.4, representativeTime: 3.10 },
+    peck: { duration: 3.8, representativeTime: 1.80 },
+    greet: { duration: 3.6, representativeTime: 1.35 },
+    jump: { duration: 3.3, representativeTime: 1.06 },
+    spin: { duration: 3.8, representativeTime: 1.75 },
+    defend: { duration: 3.5, representativeTime: 1.15 },
+    balance: { duration: 4.2, representativeTime: 1.95 },
+    stretch: { duration: 4.1, representativeTime: 1.80 }
+  };
+  const representativeTimes = Object.fromEntries(actions.map(action => [action, actionMetadata[action].representativeTime]));
   const thinkingDuration = 1200;
-  const actionDuration = 6.4;
   let selectedAction = null;
   let actionIndex = -1;
   let reactionState = 'idle';
@@ -65,6 +84,7 @@ function createScene() {
     hero.dataset.sceneState = 'fallback';
     if (controls) controls.hidden = true;
     if (thoughtWrap) thoughtWrap.hidden = true;
+    if (modeControls) modeControls.hidden = true;
     resizeObserver?.disconnect();
     visibilityObserver?.disconnect();
     renderer?.domElement.remove();
@@ -227,7 +247,7 @@ function createScene() {
     ellipsoid(head, eyeWhite, [0, -0.010, 0.298], [0.108, 0.071, 0.075]);
     const setNeck = endpoint => {
       const base = new THREE.Vector3(0, 1.42, 0.13);
-      const bend = new THREE.Vector3(endpoint.x * 0.22, Math.max(1.92, endpoint.y + 0.10), 0.15 + (endpoint.z - 0.15) * 0.20);
+      const bend = new THREE.Vector3(endpoint.x * 0.22, Math.max(1.48, endpoint.y + 0.10), 0.15 + (endpoint.z - 0.15) * 0.20);
       const curve = new THREE.QuadraticBezierCurve3(base, bend, endpoint);
       neckSegments.forEach((segment, index) => {
         const a = curve.getPoint(index / neckSegments.length);
@@ -278,23 +298,34 @@ function createScene() {
     // This is a procedural homage, not a motion-capture database or learned model.
     // Primary explanation: https://www.ubisoft.com/en-us/studio/laforge/news/6xXL85Q3bF2vEj76xmnmIu/introducing-learned-motion-matching
     const futurePath = (x, z) => [x * 0.30, z * 0.30, x * 0.65, z * 0.65, x, z];
-    const motionLibrary = [
-      { id: 'pigeon-orbit-left', action: 'explore', path: futurePath(-0.46, 0.85), pose: [0, 0.10, 0], velocity: [0, 0.4, 0], turn: -1, amplitude: 0.95, speed: 1 },
-      { id: 'pigeon-orbit-right', action: 'explore', path: futurePath(0.46, 0.85), pose: [0, -0.10, 0], velocity: [0, -0.4, 0], turn: 1, amplitude: 1.02, speed: 1 },
-      { id: 'pigeon-hover-left', action: 'defend', path: futurePath(0, 0), pose: [0.35, 0.40, 1.5], velocity: [0.1, 0.5, 0.3], turn: -1, amplitude: 0.83, speed: 1 },
-      { id: 'pigeon-hover-right', action: 'defend', path: futurePath(0, 0), pose: [0.35, -0.40, 1.5], velocity: [0.1, -0.5, 0.3], turn: 1, amplitude: 0.90, speed: 1 },
-      { id: 'pigeon-lift-soft', action: 'jump', path: futurePath(0, 0.12), pose: [0.10, 0.2, 0.5], velocity: [0.2, 0.3, 0.2], turn: -1, amplitude: 0.92, speed: 1 },
-      { id: 'pigeon-lift-brisk', action: 'jump', path: futurePath(0, 0.12), pose: [0.65, -0.2, 2.5], velocity: [0.8, 0.9, 0.6], turn: 1, amplitude: 1.08, speed: 1 },
-      { id: 'pigeon-hello-left', action: 'greet', path: futurePath(0, 0), pose: [0, 0.3, 0], velocity: [0, 0.2, 0.15], turn: -1, amplitude: 0.92, speed: 1 },
-      { id: 'pigeon-hello-right', action: 'greet', path: futurePath(0, 0), pose: [0, -0.3, 0], velocity: [0, -0.2, 0.6], turn: 1, amplitude: 1.02, speed: 1 }
+    const motionSpecs = [
+      { action: 'explore', target: [0.46, 0.85], pose: [0, 0.10, 0], velocity: [0, 0.4, 0] },
+      { action: 'peck', target: [0, 0.28], pose: [0, 0, 0.12], velocity: [0, 0.2, 0.2] },
+      { action: 'greet', target: [0, 0], pose: [0, 0.10, 0], velocity: [0, 0.2, 0.1] },
+      { action: 'jump', target: [0, 0.12], pose: [0.1, 0.1, 0], velocity: [0.8, 0.3, 0.1] },
+      { action: 'spin', target: [0, 0], pose: [0.04, 0.1, 0.1], velocity: [0, 0.3, 0.8] },
+      { action: 'defend', target: [0, -0.25], pose: [-0.1, 0.1, -0.1], velocity: [-0.1, 0.4, 0.3] },
+      { action: 'balance', target: [0, 0], pose: [0, 0.15, 0.1], velocity: [0, 0.2, 0.4] },
+      { action: 'stretch', target: [0, 0], pose: [0, 0.25, 0], velocity: [0, 0.6, 0.1] }
     ];
+    const motionLibrary = motionSpecs.flatMap(spec => [-1, 1].map(turn => ({
+      id: `pigeon-${spec.action}-${turn < 0 ? 'left' : 'right'}`,
+      action: spec.action,
+      path: futurePath(spec.target[0] * turn, spec.target[1]),
+      pose: spec.pose.map((value, index) => index === 1 ? value * turn : value),
+      velocity: spec.velocity.map((value, index) => index === 1 ? value * turn : value),
+      turn,
+      amplitude: turn < 0 ? 0.95 : 1.02,
+      speed: 1
+    })));
     let selectedMotion = motionLibrary[0];
     const poseNodes = [character, body, head, ...wings, ...feet, ...neckSegments, ...neckJoints, ...eyes];
     const capturePose = () => poseNodes.map(node => ({ position: node.position.clone(), quaternion: node.quaternion.clone(), scale: node.scale.clone() }));
     let transitionFrom = null;
     let transitionTime = 0;
+    let idlePose = null;
     const beginTransition = () => {
-      transitionFrom = paused ? null : capturePose();
+      transitionFrom = paused || animationMode === 'state' ? null : capturePose();
       transitionTime = 0;
     };
     const poseFeatures = () => [character.position.y, head.position.x, body.rotation.z];
@@ -303,7 +334,8 @@ function createScene() {
     const squaredDistance = (a, b) => a.reduce((sum, value, index) => sum + (value - b[index]) ** 2, 0);
     const matchMotion = action => {
       const turn = Math.floor((reactionVersion - 1) / actions.length) % 2 ? 0.46 : -0.46;
-      const desiredPath = action === 'explore' ? futurePath(turn, 0.85) : futurePath(0, action === 'jump' ? 0.12 : 0);
+      const spec = motionSpecs.find(item => item.action === action);
+      const desiredPath = futurePath(spec.target[0] * Math.sign(turn), spec.target[1]);
       const currentPose = poseFeatures();
       const currentVelocity = poseVelocity.map(value => THREE.MathUtils.clamp(value, -1.5, 1.5));
       let winner;
@@ -318,6 +350,49 @@ function createScene() {
       hero.dataset.motionClip = winner.id;
       selectedMotion = winner;
       updateTrajectory(winner.path);
+    };
+    // The generative stage samples a seeded procedural grammar. It does not use
+    // a trained model, a text-to-motion service, or any external inference API.
+    const seededRandom = initialSeed => {
+      let seed = initialSeed >>> 0;
+      return () => {
+        seed += 0x6d2b79f5;
+        let value = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        value ^= value + Math.imul(value ^ value >>> 7, 61 | value);
+        return ((value ^ value >>> 14) >>> 0) / 4294967296;
+      };
+    };
+    const selectMotion = action => {
+      if (animationMode === 'matching') {
+        matchMotion(action);
+        selectedMotion = { ...selectedMotion };
+      } else {
+        // The state and blend examples deliberately use a fixed authored clip.
+        selectedMotion = { ...motionLibrary.find(motion => motion.action === action) };
+        if (animationMode === 'generative') {
+          const seed = (Math.imul(reactionVersion, 2654435761) + Math.imul(actionIndex + 1, 1013904223)) >>> 0;
+          const random = seededRandom(seed);
+          const durationScale = 0.85 + random() * 0.30;
+          Object.assign(selectedMotion, {
+            id: `procedural-${action}-${seed}`,
+            speed: 1 / durationScale,
+            amplitude: 0.84 + random() * 0.29,
+            pathScale: 0.82 + random() * 0.30,
+            phaseOffset: random() * Math.PI * 2,
+            gaitAccent: 0.78 + random() * 0.45,
+            headAccent: 0.84 + random() * 0.30,
+            wingAccent: 0.82 + random() * 0.32,
+            turn: random() < 0.5 ? -1 : 1
+          });
+          selectedMotion.path = selectedMotion.path.map((value, index) => index % 2
+            ? value * selectedMotion.pathScale
+            : Math.abs(value) * selectedMotion.turn * selectedMotion.pathScale);
+          hero.dataset.motionSeed = String(seed);
+        } else delete hero.dataset.motionSeed;
+      }
+      selectedMotion.duration = actionMetadata[action].duration / selectedMotion.speed;
+      hero.dataset.motionClip = selectedMotion.id;
+      updateTrajectory(selectedMotion.path);
     };
     const trajectory = new THREE.Group();
     const trajectoryMaterial = new THREE.LineBasicMaterial({ color: 0x54a5db, transparent: true, opacity: 0.65 });
@@ -384,11 +459,12 @@ function createScene() {
       const version = ++reactionVersion;
       actionIndex = (actionIndex + 1) % actions.length;
       selectedAction = actions[actionIndex];
-      matchMotion(selectedAction);
+      selectMotion(selectedAction);
       beginTransition();
       reactionState = 'thinking';
       actionElapsed = 0;
       hero.dataset.thoughtAction = selectedAction;
+      hero.dataset.actionDuration = selectedMotion.duration.toFixed(3);
       hero.dataset.thoughtPhase = 'thinking';
       const text = host.dataset.thinkingText || 'I am thinking…';
       announceThought(text);
@@ -399,7 +475,7 @@ function createScene() {
         if (failed || version !== reactionVersion) return;
         beginTransition();
         reactionState = 'acting';
-        actionElapsed = paused ? representativeTimes[selectedAction] : 0;
+        actionElapsed = paused ? representativeTimes[selectedAction] / selectedMotion.speed : 0;
         hero.dataset.thoughtPhase = 'acting';
         const key = `thought${selectedAction[0].toUpperCase()}${selectedAction.slice(1)}`;
         announceThought(host.dataset[key] || selectedAction);
@@ -409,19 +485,24 @@ function createScene() {
     }
     const smooth = (value, start, end) => THREE.MathUtils.smoothstep(value, start, end);
     const setPose = () => {
-      const time = Math.min(6.2, actionElapsed * selectedMotion.speed);
+      const time = Math.min(actionMetadata[selectedAction]?.duration || 0, actionElapsed * selectedMotion.speed);
       hero.dataset.thoughtPhase = reactionState;
       hero.dataset.memePhase = reactionState;
       character.position.set(0, 0, 0.08);
       character.scale.setScalar(1);
       character.rotation.set(0, -0.55, 0);
       body.rotation.set(0, 0, 0);
+      body.scale.set(1, 1, 1);
       head.rotation.set(0, 0, 0);
       wings.forEach((wing, index) => wing.rotation.set(0, 0, (index ? 1 : -1) * 0.10));
-      feet.forEach(foot => foot.rotation.set(0, 0, 0));
+      feet.forEach((foot, index) => {
+        foot.rotation.set(0, 0, 0);
+        foot.position.set((index ? 1 : -1) * 0.24, -0.54, 0.055);
+      });
       eyes.forEach(eye => eye.scale.set(1, 1, 1));
       rotor.visible = false;
       landingMaterial.opacity = 0;
+      landingRing.scale.setScalar(1);
       const endpoint = new THREE.Vector3(0, 2.05, 0.26);
       if (reactionState === 'idle') {
         body.scale.set(1, 1 + Math.sin(phase * 1.6) * 0.012, 1);
@@ -434,8 +515,7 @@ function createScene() {
         head.rotation.z = -0.24;
         head.rotation.y = -0.12;
         eyes.forEach(eye => { eye.scale.y = 1.08; });
-      } else {
-        body.scale.set(1, 1, 1);
+      } else if (selectedAction === 'explore') {
         const windup = smooth(time, 0.20, 1.55);
         const spin = smooth(time, 1.55, 2.20) * (1 - smooth(time, 4.95, 5.85));
         const lift = smooth(time, 2.15, 2.85) * (1 - smooth(time, 4.65, 5.45));
@@ -453,20 +533,8 @@ function createScene() {
         character.position.y = lift * 1.05 * selectedMotion.amplitude;
         character.scale.setScalar(1 - lift * 0.30);
         character.position.z -= lift * 0.32;
-        if (selectedAction === 'explore') {
-          character.position.x = Math.sin(orbitAngle) * 0.58 * selectedMotion.turn;
-          character.position.z += (1 - Math.cos(orbitAngle)) * 0.20;
-        } else if (selectedAction === 'defend') {
-          character.position.x = Math.sin(orbitAngle * 1.5) * 0.18 * lift;
-          character.rotation.y += lift * Math.sin(orbitAngle) * 0.20;
-        } else if (selectedAction === 'jump') {
-          character.position.x = Math.sin(orbitAngle) * 0.11;
-          character.position.y += lift * 0.15;
-        } else if (selectedAction === 'greet') {
-          character.position.x = Math.sin(orbitAngle) * 0.72 * selectedMotion.turn;
-          character.position.z += (1 - Math.cos(orbitAngle)) * 0.26;
-          wings[1].rotation.z += lift * (0.18 + Math.sin(time * 7) * 0.06);
-        }
+        character.position.x = Math.sin(orbitAngle) * 0.58 * selectedMotion.turn;
+        character.position.z += (1 - Math.cos(orbitAngle)) * 0.20;
         wings.forEach((wing, index) => { wing.rotation.x = Math.sin(time * 8 + index) * 0.06 * lift; });
         feet.forEach((foot, index) => { foot.rotation.x = -lift * 0.25 + Math.sin(time * 6 + index) * 0.05 * lift; });
         rotor.visible = spin > 0.12;
@@ -479,6 +547,107 @@ function createScene() {
           body.scale.y = 1 - Math.sin(impact * Math.PI) * 0.07;
         }
         hero.dataset.memePhase = time < 1.55 ? 'windup' : time < 2.40 ? 'rotor' : time < 4.80 ? 'flight' : 'landing';
+      } else if (selectedAction === 'peck') {
+        const approach = smooth(time, 0, 0.65) * (1 - smooth(time, 3.10, 3.80));
+        character.position.z += approach * 0.24;
+        if (time < 0.65) {
+          const step = Math.sin(time * Math.PI * 4 / 0.65);
+          feet[0].rotation.x = step * 0.32;
+          feet[1].rotation.x = -step * 0.32;
+          character.position.y += Math.abs(step) * 0.025;
+        }
+        const peckClock = (time - 0.65) / 0.75;
+        const dip = peckClock >= 0 && peckClock < 3 ? Math.sin((peckClock % 1) * Math.PI) ** 2 : 0;
+        body.rotation.x = dip * 0.22;
+        endpoint.set(0, 2.05 - dip * 1.48, 0.26 + dip * 0.48);
+        head.rotation.x = dip * 1.05;
+        hero.dataset.memePhase = time < 0.65 ? 'step' : time < 2.90 ? 'peck' : 'recover';
+      } else if (selectedAction === 'greet') {
+        const wave = smooth(time, 0, 0.35) * (1 - smooth(time, 2.75, 3.60));
+        wings[1].rotation.z = 0.10 + wave * (2.12 + Math.sin(time * 7) * 0.21 * selectedMotion.amplitude);
+        wings[0].rotation.z = -0.10 - wave * 0.18;
+        head.rotation.x = Math.sin(time * 4.2) * 0.16 * wave;
+        head.rotation.z = -0.10 * wave;
+        endpoint.x = Math.sin(time * 2.4) * 0.075 * wave;
+        hero.dataset.memePhase = time < 2.75 ? 'wave' : 'recover';
+      } else if (selectedAction === 'jump') {
+        const crouch = time < 0.50 ? Math.sin(time / 0.50 * Math.PI / 2) : time > 1.65 && time < 2.15 ? Math.sin((time - 1.65) / 0.50 * Math.PI) : 0;
+        body.scale.y = 1 - crouch * 0.14;
+        character.position.y -= crouch * 0.065;
+        endpoint.y -= crouch * 0.12;
+        if (time >= 0.50 && time <= 1.65) {
+          const airborne = Math.sin((time - 0.50) / 1.15 * Math.PI);
+          character.position.y += airborne * 0.78 * selectedMotion.amplitude;
+          wings.forEach((wing, index) => { wing.rotation.z = (index ? 1 : -1) * airborne * (1.40 + Math.sin(time * 22) * 0.20); });
+          feet.forEach(foot => { foot.rotation.x = airborne * -0.30; });
+        }
+        if (time > 1.65 && time < 2.30) {
+          const impact = (time - 1.65) / 0.65;
+          landingMaterial.opacity = (1 - impact) * 0.36;
+          landingRing.scale.setScalar(1 + impact * 1.2);
+        }
+        hero.dataset.memePhase = time < 0.50 ? 'crouch' : time < 1.65 ? 'hop' : 'landing';
+      } else if (selectedAction === 'spin') {
+        const turn = smooth(time, 0.45, 2.70);
+        const open = smooth(time, 0, 0.45) * (1 - smooth(time, 2.80, 3.80));
+        character.rotation.y += Math.PI * 2 * turn * selectedMotion.turn;
+        character.position.y += Math.sin(turn * Math.PI) * 0.055;
+        body.rotation.z = Math.sin(time * 7) * 0.055 * open;
+        wings.forEach((wing, index) => { wing.rotation.z = (index ? 1 : -1) * (0.10 + open * 0.75); });
+        head.rotation.z = Math.sin(time * 3) * 0.10 * open;
+        hero.dataset.memePhase = time < 0.45 ? 'windup' : time < 2.70 ? 'twirl' : 'recover';
+      } else if (selectedAction === 'defend') {
+        const startled = smooth(time, 0, 0.20) * (1 - smooth(time, 0.55, 1.10));
+        const cautious = smooth(time, 0, 0.35) * (1 - smooth(time, 2.65, 3.50));
+        character.position.z -= cautious * 0.27;
+        character.position.y -= cautious * 0.07;
+        body.scale.y = 1 - cautious * 0.11;
+        body.rotation.x = -startled * 0.10;
+        endpoint.y = 2.05 - cautious * 0.10 + startled * 0.12;
+        endpoint.z = 0.26 - cautious * 0.11;
+        endpoint.x = Math.sin(Math.max(0, time - 0.65) * 2.7) * 0.15 * cautious;
+        head.rotation.y = Math.sin(Math.max(0, time - 0.65) * 2.7) * 0.48 * cautious;
+        wings.forEach((wing, index) => { wing.rotation.z = (index ? 1 : -1) * (0.10 + startled * 0.70); });
+        eyes.forEach(eye => { eye.scale.y = 1 + startled * 0.20; });
+        hero.dataset.memePhase = time < 0.65 ? 'startle' : time < 2.65 ? 'look' : 'recover';
+      } else if (selectedAction === 'balance') {
+        const balance = smooth(time, 0, 0.65) * (1 - smooth(time, 3.25, 4.20));
+        const wobble = Math.sin(time * 4.6) * 0.12 * selectedMotion.amplitude * balance;
+        character.position.x -= balance * 0.13;
+        body.rotation.z = wobble;
+        feet[1].position.y += balance * 0.34;
+        feet[1].rotation.x = -balance * 0.70;
+        wings.forEach((wing, index) => { wing.rotation.z = (index ? 1 : -1) * (0.10 + balance * 1.18) - wobble; });
+        head.rotation.z = -wobble * 0.9;
+        endpoint.x = -wobble * 0.45;
+        hero.dataset.memePhase = time < 0.65 ? 'lift' : time < 3.25 ? 'balance' : 'recover';
+      } else if (selectedAction === 'stretch') {
+        const stretch = smooth(time, 0, 0.85) * (1 - smooth(time, 3.15, 4.10));
+        const look = Math.sin(Math.max(0, time - 0.60) * 2.0) * stretch;
+        endpoint.y += stretch * 0.57;
+        endpoint.x = look * 0.53 * selectedMotion.amplitude;
+        head.rotation.y = look * 0.48;
+        head.rotation.z = -look * 0.13;
+        wings.forEach((wing, index) => { wing.rotation.z = (index ? 1 : -1) * (0.10 + stretch * 0.18); });
+        hero.dataset.memePhase = time < 0.85 ? 'extend' : time < 3.15 ? 'look' : 'recover';
+      }
+      if (animationMode === 'generative' && reactionState === 'acting') {
+        const duration = actionMetadata[selectedAction].duration;
+        const envelope = smooth(time, 0, 0.30) * (1 - smooth(time, duration - 0.45, duration));
+        const generatedPhase = time * selectedMotion.gaitAccent;
+        character.position.x *= selectedMotion.pathScale;
+        character.position.z = 0.08 + (character.position.z - 0.08) * selectedMotion.pathScale;
+        character.position.y += Math.sin(generatedPhase * 3 + selectedMotion.phaseOffset) ** 2 * 0.025 * envelope;
+        endpoint.x *= selectedMotion.headAccent;
+        endpoint.x += Math.sin(generatedPhase * 1.7 + selectedMotion.phaseOffset) * 0.055 * envelope;
+        if (selectedAction !== 'peck') endpoint.y = 2.05 + (endpoint.y - 2.05) * selectedMotion.headAccent;
+        head.rotation.y += Math.sin(generatedPhase * 2.0 + selectedMotion.phaseOffset) * 0.09 * envelope;
+        body.rotation.z += Math.sin(generatedPhase * 2.8 + selectedMotion.phaseOffset) * 0.04 * envelope;
+        wings.forEach((wing, index) => {
+          const side = index ? 1 : -1;
+          wing.rotation.z = side * 0.10 + (wing.rotation.z - side * 0.10) * selectedMotion.wingAccent;
+          wing.rotation.x += Math.sin(generatedPhase * 4.5 + selectedMotion.phaseOffset + index) * 0.08 * envelope;
+        });
       }
       setNeck(endpoint);
     };
@@ -507,7 +676,7 @@ function createScene() {
         transitionTime += delta;
         if (reactionState === 'acting') {
           actionElapsed += delta;
-          if (actionElapsed >= actionDuration) {
+          if (actionElapsed >= selectedMotion.duration) {
             beginTransition();
             reactionState = 'idle';
             announceThought(host.dataset.completeText || 'Unusual technique. Mission accomplished.');
@@ -518,8 +687,30 @@ function createScene() {
       root.rotation.x = pitch;
       root.position.y = Math.sin(phase * 0.85) * 0.035;
       setPose();
+      if (animationMode === 'blend' && reactionState === 'acting' && idlePose) {
+        // A continuous action/idle blend plus an independent breathing/look layer.
+        const envelope = smooth(actionElapsed, 0, 0.55)
+          * (1 - smooth(actionElapsed, selectedMotion.duration - 0.65, selectedMotion.duration));
+        const actionWeight = 0.86 * envelope;
+        poseNodes.forEach((node, index) => {
+          const base = idlePose[index];
+          node.position.lerpVectors(base.position, node.position, actionWeight);
+          // Keep multi-turn spin channels unwrapped; shortest-arc interpolation
+          // against idle would flip direction as they cross 180 degrees.
+          const continuousSpin = (selectedAction === 'spin' && node === character)
+            || (selectedAction === 'explore' && node === head);
+          if (!continuousSpin) {
+            const targetRotation = node.quaternion.clone();
+            node.quaternion.slerpQuaternions(base.quaternion, targetRotation, actionWeight);
+          }
+          node.scale.lerpVectors(base.scale, node.scale, actionWeight);
+        });
+        body.scale.y += Math.sin(phase * 2.0) * 0.018 * envelope;
+        head.rotation.z += Math.sin(phase * 1.3) * 0.06 * envelope;
+        wings.forEach((wing, index) => { wing.rotation.x += Math.sin(phase * 2.0 + index) * 0.07 * envelope; });
+      }
       if (transitionFrom) {
-        const progress = Math.min(1, transitionTime / 0.32);
+        const progress = Math.min(1, transitionTime / modeSettings[animationMode].transition);
         const weight = progress * progress * (3 - 2 * progress);
         poseNodes.forEach((node, index) => {
           const from = transitionFrom[index];
@@ -533,8 +724,8 @@ function createScene() {
       const currentFeatures = poseFeatures();
       if (delta > 0 && !paused) poseVelocity = currentFeatures.map((value, index) => (value - previousFeatures[index]) / delta);
       previousFeatures = currentFeatures;
-      trajectory.visible = reactionState === 'thinking' && selectedAction === 'explore';
-      if (thoughtWrap && reactionState === 'acting') thoughtWrap.hidden = !paused && actionElapsed > 2.35 && actionElapsed < 5.65;
+      trajectory.visible = animationMode === 'matching' && reactionState === 'thinking' && selectedAction === 'explore';
+      if (thoughtWrap && reactionState === 'acting') thoughtWrap.hidden = selectedAction === 'explore' && !paused && actionElapsed * selectedMotion.speed > 2.35 && actionElapsed * selectedMotion.speed < 5.65;
       const parallax = reducedMotion.matches ? 0 : 1;
       camera.position.x = THREE.MathUtils.lerp(camera.position.x, cameraOrigin.x + pointer.x * 0.4 * parallax, 0.09);
       camera.position.y = THREE.MathUtils.lerp(camera.position.y, cameraOrigin.y - pointer.y * 0.24 * parallax, 0.09);
@@ -544,6 +735,40 @@ function createScene() {
       if (settling > 0) settling--;
       if (!paused || settling > 0) frame = requestAnimationFrame(render);
     }
+    const syncAnimationMode = () => {
+      hero.dataset.animationMode = animationMode;
+      modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.animationMode === animationMode)));
+      if (modeDescription) {
+        const key = `mode${animationMode[0].toUpperCase()}${animationMode.slice(1)}Text`;
+        modeDescription.textContent = host.dataset[key] || animationMode;
+      }
+    };
+    const setAnimationMode = mode => {
+      if (failed || !Object.hasOwn(modeSettings, mode)) return;
+      if (animationMode === mode) { syncAnimationMode(); return; }
+      clearTimeout(thinkingTimer);
+      thinkingTimer = 0;
+      reactionVersion++;
+      stopSpeech();
+      animationMode = mode;
+      reactionState = 'idle';
+      if (selectedAction !== null) actionIndex = (actionIndex - 1 + actions.length) % actions.length;
+      selectedAction = null;
+      actionElapsed = 0;
+      transitionFrom = null;
+      poseVelocity = [0, 0, 0];
+      trajectory.visible = false;
+      if (thoughtWrap) thoughtWrap.hidden = true;
+      delete hero.dataset.thoughtAction;
+      delete hero.dataset.actionDuration;
+      delete hero.dataset.motionClip;
+      delete hero.dataset.motionSeed;
+      syncAnimationMode();
+      setPose();
+      previousFeatures = poseFeatures();
+      wake();
+    };
+    modeButtons.forEach(button => button.addEventListener('click', () => setAnimationMode(button.dataset.animationMode)));
     const resize = () => {
       if (failed) return;
       const { width, height } = host.getBoundingClientRect();
@@ -651,7 +876,7 @@ function createScene() {
         stopSpeech();
         transitionFrom = null;
         if (reactionState === 'acting') {
-          actionElapsed = representativeTimes[selectedAction];
+          actionElapsed = representativeTimes[selectedAction] / selectedMotion.speed;
           finishStaticLater(reactionVersion);
         }
       }
@@ -688,11 +913,14 @@ function createScene() {
 
     // Only replace the CSS fallback after a complete initial draw.
     hero.dataset.thoughtPhase = 'idle';
+    syncAnimationMode();
     setPose();
+    idlePose = capturePose();
     resize();
     renderer.render(scene, camera);
     hero.dataset.sceneState = 'ready';
     if (controls) controls.hidden = false;
+    if (modeControls) modeControls.hidden = false;
     if (thoughtWrap) thoughtWrap.hidden = true;
     updatePauseButton();
     wake();

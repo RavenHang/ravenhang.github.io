@@ -27,14 +27,27 @@ zh:
   hero_games_cta: 游戏作品
   hero_research_cta: 学术探索
   hero_contact_cta: 联系我
-  scene_label: 思考后以螺旋起飞的方式完成任务的三维鸽子角色
+  scene_label: 会思考、螺旋起飞、啄食、招手、跳跃和平衡的三维鸽子角色
   bot_thinking: 我正在思考…
-  bot_interact: 点击鸽子，让它思考并螺旋起飞
+  bot_interact: 点击鸽子，听它思考并尝试不同动作
   bot_complete: 虽然姿势不对，但任务完成了。
-  thought_explore_text: 换个方式起飞，应该也行。
-  thought_defend_text: 先倒过来，再观察一下。
-  thought_jump_text: 翅膀休息一下，脑袋负责起飞。
-  thought_greet_text: 绕你一圈，咕！
+  thought_explore_text: 翅膀休息一下，脑袋负责起飞。
+  thought_peck_text: 地上有东西，先啄两口。
+  thought_greet_text: 新朋友来了，挥个翅膀！
+  thought_jump_text: 小小障碍，跳一下就过去。
+  thought_spin_text: 转一圈，灵感就会来。
+  thought_defend_text: 等等……刚才什么动了一下？
+  thought_balance_text: 一只脚，也要站得稳。
+  thought_stretch_text: 伸长脖子，看看远处。
+  animation_modes_label: 角色动画的演进方式
+  animation_state_label: 动画状态机
+  animation_blend_label: 动画混合
+  animation_matching_label: Motion Matching
+  animation_generative_label: 生成式探索
+  animation_state_text: 在待机、思考与行动状态间切换，按规则播放动作。
+  animation_blend_text: 连续混合动作与姿态，让起步、运动和停下更自然。
+  animation_matching_text: 简化演示：根据当前姿态与期望轨迹，检索并衔接动作。
+  animation_generative_text: 程序化原型：从意图生成动作参数，组合不同表现。
   scene_hint: 拖动探索
   scene_pause: 暂停动画
   scene_resume: 播放动画
@@ -90,14 +103,27 @@ en:
   hero_games_cta: Games
   hero_research_cta: Research
   hero_contact_cta: Contact
-  scene_label: A 3D pigeon that thinks, spins like a helicopter and completes its mission
+  scene_label: A thinking 3D pigeon that flies like a helicopter, pecks, waves, hops and balances
   bot_thinking: I am thinking…
-  bot_interact: Click the pigeon to make it think and take off like a helicopter
+  bot_interact: Click the pigeon to hear its thought and discover different actions
   bot_complete: Unusual technique. Mission accomplished.
-  thought_explore_text: Another way to fly. This should work.
-  thought_defend_text: Let's look around upside down.
-  thought_jump_text: Wings can rest. My head will do the flying.
-  thought_greet_text: One lap around you. Coo!
+  thought_explore_text: Wings can rest. My head will do the flying.
+  thought_peck_text: Something on the ground. Let's have a peck.
+  thought_greet_text: A new friend! Time for a wing wave.
+  thought_jump_text: A little obstacle. I can hop over it.
+  thought_spin_text: One spin should get the ideas flowing.
+  thought_defend_text: Wait... did something just move?
+  thought_balance_text: One foot. Perfectly balanced. Probably.
+  thought_stretch_text: Stretch my neck and see what's out there.
+  animation_modes_label: The evolution of character animation
+  animation_state_label: State Machine
+  animation_blend_label: Animation Blending
+  animation_matching_label: Motion Matching
+  animation_generative_label: Generative Exploration
+  animation_state_text: Switch between idle, thinking and action states using authored rules.
+  animation_blend_text: Continuously mix poses and motion for smoother starts, movement and stops.
+  animation_matching_text: Simplified demo — match the current pose and desired trajectory to a suitable motion.
+  animation_generative_text: Procedural prototype — turn intent into motion parameters and varied combinations.
   scene_hint: Drag to explore
   scene_pause: Pause animation
   scene_resume: Play animation
