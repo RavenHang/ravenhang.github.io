@@ -27,6 +27,33 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 .page-home .hero-actions .button-primary { min-height:46px; padding-inline:21px; }
 .page-home .hero-scene { width:60%; }
 
+/* Static sketchbook studies leave the introduction itself free of decoration. */
+.page-home .hero::before { background:none; opacity:0; }
+.hero-research-art { position:absolute; z-index:0; inset:0; overflow:hidden; pointer-events:none; user-select:none; }
+.hero-research-art::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 79% 12%,#b7d6dc26,transparent 35%),radial-gradient(ellipse at 18% 94%,#dce4d92b,transparent 31%); }
+.research-art { position:absolute; display:block; overflow:visible; pointer-events:none; stroke-linecap:round; stroke-linejoin:round; }
+.research-art--poses { top:6px; right:24%; width:min(34vw,440px); height:auto; opacity:.77; }
+.art-study-guides { stroke:#a7c0d0; stroke-width:1; }
+.art-study-guides circle { fill:#e9f2f5; }
+.art-pose { stroke:#7899ad; stroke-width:1.15; }
+.art-pose-wash { fill:#b7d7da; fill-opacity:.14; stroke:none; }
+.art-bone { stroke:#729aab; stroke-width:1.2; }
+.art-joints { fill:#edf7f8; stroke:#7b9fab; stroke-width:1.25; }
+.art-motion { stroke:#9ab8c5; stroke-width:1; }
+.research-art--intent { left:max(40px,calc((100vw - 1280px) / 2)); bottom:16px; width:min(31vw,370px); height:auto; opacity:.78; }
+.art-intent-paths { stroke:#9bb7c2; stroke-width:1.2; }
+.art-intent-selected { stroke:#adac89; stroke-width:1.5; }
+.art-intent-nodes { fill:#eef5f6; fill-opacity:.8; stroke:#8eacb9; stroke-width:1.1; }
+.art-intent-root { fill:#c8deda; }
+.art-intent-active { fill:#efdfc0; stroke:#bea882; }
+.art-intent-centers { fill:#7c9eac; }
+.art-intent-warm { fill:#b99561; }
+.art-intent-active,.art-intent-selected { opacity:.65; transition:opacity .35s ease; }
+.hero[data-thought-phase="thinking"] .art-intent-active,.hero[data-thought-phase="acting"] .art-intent-selected { opacity:1; }
+.research-art--trajectory { left:39%; bottom:-7%; width:64%; height:83%; opacity:.51; }
+.art-trajectories { stroke:#88afb8; stroke-width:1.1; }
+.art-isometric-contours { stroke:#a7beca; stroke-width:1; }
+
 /* The second chapter restores the portrait-and-contact sidebar on the left. */
 .experience-layout { display:grid; grid-template-columns:244px minmax(0,1fr); gap:44px; align-items:center; width:100%; }
 .experience-main { min-width:0; }
@@ -74,6 +101,8 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 
 
 @media(min-width:761px) and (max-width:1100px) {
+  .research-art--poses { right:29%; width:38vw; }
+  .research-art--intent { left:32px; bottom:10px; width:32vw; }
   .experience-layout { grid-template-columns:220px minmax(0,1fr); gap:28px; }
   .page-home .experience-main .experience-row { grid-template-columns:minmax(0,1fr); gap:12px; padding:20px; }
   .page-home .experience-main .experience-heading { grid-column:1; grid-template-columns:88px minmax(0,1fr); gap:16px; }
@@ -93,6 +122,10 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .page-home .hero-actions { margin-top:24px; }
 }
 @media(max-width:760px) {
+  .research-art--poses,.research-art--intent { display:none; }
+  .hero-research-art::before { background:radial-gradient(ellipse at 70% 80%,#c0dbdf24,transparent 48%); }
+  .research-art--trajectory { top:auto; left:-5%; bottom:-2%; width:110%; height:47%; opacity:.42; }
+  .art-isometric-contours { display:none; }
   .page-home .hero { min-height:max(650px,calc(100svh - var(--home-header-height))); padding:28px 0 24px; }
   .page-home .hero-copy { width:100%; max-width:none; padding-inline:28px; }
   .page-home .hero .hero-journey { gap:8px; font-size:clamp(20px,5.5vw,26px); letter-spacing:-.6px; }
@@ -134,7 +167,11 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .page-home .hero-scene { height:270px; }
 }
 
+@media(prefers-reduced-motion:reduce) {
+  .art-intent-active,.art-intent-selected { transition:none; }
+}
 @media(forced-colors:active) {
+  .hero-research-art { display:none; }
   .hero-journey > span { color:CanvasText; text-shadow:none; }
   .scene-thought { border-color:CanvasText; background:Canvas; color:CanvasText; box-shadow:none; }
 }

@@ -1,5 +1,6 @@
 <div class="intro-layout">
 <section class="hero" id="introduction" aria-labelledby="hero-title" data-personal-hero data-home-panel>
+  {% include hero-research-art.html %}
   <div class="hero-copy">
     <h1 id="hero-title" class="hero-journey" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}"><span>{{ ui.hero_player }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_developer }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_researcher }}</span></h1>
     <p class="hero-summary">{{ profile.hero.summary }}</p>
