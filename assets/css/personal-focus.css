@@ -27,6 +27,15 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 .page-home .hero-actions .button-primary { min-height:46px; padding-inline:21px; }
 .page-home .hero-scene { width:60%; }
 
+/* Keep contact details in the introduction's left column. */
+.page-home .hero-copy .profile-sidebar { max-width:420px; margin-top:32px; padding:16px; gap:20px; }
+.page-home .hero-copy .sidebar-photo { width:72px; height:96px; flex-basis:72px; }
+.page-home .hero-copy .sidebar-contact { display:block; min-width:0; }
+.page-home .hero-copy .sidebar-title { margin:0 0 6px; font-size:13px; }
+.page-home .hero-copy .sidebar-links { flex-direction:column; align-items:stretch; gap:0; }
+.page-home .hero-copy .sidebar-link { min-height:36px; padding:4px 0; gap:10px; }
+.page-home .hero-copy .sidebar-link-detail { font-size:11px; }
+
 .scene-thought { position:absolute; z-index:2; top:var(--thought-y,14%); left:var(--thought-x,50%); display:flex; align-items:flex-start; gap:10px; width:max-content; max-width:min(330px,80%); padding:16px 20px; border:1px solid #c5dbf0; border-radius:18px 18px 18px 5px; color:#315c83; background:#ffffffed; box-shadow:0 10px 35px #28578113,inset 0 1px #fff; backdrop-filter:blur(10px); transform:translateX(-50%); pointer-events:none; }
 .scene-thought[hidden] { display:none; }
 .page-home .hero-scene canvas { cursor:pointer; }
@@ -82,6 +91,11 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   html[lang="en"] .page-home .hero-summary { font-size:16px; line-height:1.75; }
   .page-home .hero-actions { margin-top:23px; }
   .page-home .hero-actions .button-primary { min-height:44px; padding:9px 18px; font-size:12px; }
+  .page-home .hero-copy .profile-sidebar { margin-top:24px; padding:12px 14px; gap:14px; }
+  .page-home .hero-copy .sidebar-photo { width:58px; height:78px; flex-basis:58px; }
+  .page-home .hero-copy .sidebar-title { font-size:12px; margin-bottom:4px; }
+  .page-home .hero-copy .sidebar-link { min-height:32px; padding:2px 0; gap:8px; }
+  .page-home .hero-copy .sidebar-link-detail { font-size:10px; }
   .page-home .hero-scene { position:relative; width:100%; height:clamp(270px,34svh,390px); min-height:270px; flex:1 0 270px; margin-top:0; }
   .scene-thought { top:var(--thought-y,3%); left:var(--thought-x,50%); max-width:min(300px,84%); gap:8px; padding:11px 15px; border-radius:14px 14px 14px 4px; }
   .scene-thought p { font-size:12px; line-height:1.7; }
@@ -98,6 +112,8 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .page-home .hero-summary { margin-top:19px; font-size:17px; }
   html[lang="en"] .page-home .hero-summary { font-size:15px; }
   .page-home .hero-actions { margin-top:20px; }
+  .page-home .hero-copy .profile-sidebar { margin-top:20px; gap:12px; }
+  .page-home .hero-copy .sidebar-photo { width:48px; height:64px; flex-basis:48px; }
   .page-home .hero-scene { height:270px; }
 }
 
