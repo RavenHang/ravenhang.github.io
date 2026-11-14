@@ -3,13 +3,6 @@
   <div class="hero-copy">
     <h1 id="hero-title" class="hero-journey" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}"><span>{{ ui.hero_player }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_developer }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_researcher }}</span></h1>
     <p class="hero-summary">{{ profile.hero.summary }}</p>
-    <div class="animation-modes" data-animation-modes role="group" aria-label="{{ ui.animation_modes_label | escape }}">
-      <button type="button" class="animation-mode" data-animation-mode="state" aria-pressed="false"><span class="animation-mode-index" aria-hidden="true">01</span><span>{{ ui.animation_state_label }}</span></button>
-      <button type="button" class="animation-mode" data-animation-mode="blend" aria-pressed="false"><span class="animation-mode-index" aria-hidden="true">02</span><span>{{ ui.animation_blend_label }}</span></button>
-      <button type="button" class="animation-mode" data-animation-mode="matching" aria-pressed="true"><span class="animation-mode-index" aria-hidden="true">03</span><span>{{ ui.animation_matching_label }}</span></button>
-      <button type="button" class="animation-mode" data-animation-mode="generative" aria-pressed="false"><span class="animation-mode-index" aria-hidden="true">04</span><span>{{ ui.animation_generative_label }}</span></button>
-    </div>
-    <p class="animation-description" data-animation-description aria-live="polite" aria-atomic="true">{{ ui.animation_matching_text }}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }} <span aria-hidden="true">↗</span></a>
     </div>
@@ -18,10 +11,6 @@
     data-thinking-text="{{ ui.bot_thinking | escape }}"
     data-complete-text="{{ ui.bot_complete | escape }}"
     data-bot-label="{{ ui.bot_interact | escape }}"
-    data-mode-state-text="{{ ui.animation_state_text | escape }}"
-    data-mode-blend-text="{{ ui.animation_blend_text | escape }}"
-    data-mode-matching-text="{{ ui.animation_matching_text | escape }}"
-    data-mode-generative-text="{{ ui.animation_generative_text | escape }}"
     data-thought-explore="{{ ui.thought_explore_text | escape }}"
     data-thought-defend="{{ ui.thought_defend_text | escape }}"
     data-thought-jump="{{ ui.thought_jump_text | escape }}"

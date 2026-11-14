@@ -39,15 +39,6 @@ zh:
   thought_defend_text: 等等……刚才什么动了一下？
   thought_balance_text: 一只脚，也要站得稳。
   thought_stretch_text: 伸长脖子，看看远处。
-  animation_modes_label: 角色动画的演进方式
-  animation_state_label: 动画状态机
-  animation_blend_label: 动画混合
-  animation_matching_label: Motion Matching
-  animation_generative_label: 生成式探索
-  animation_state_text: 在待机、思考与行动状态间切换，按规则播放动作。
-  animation_blend_text: 连续混合动作与姿态，让起步、运动和停下更自然。
-  animation_matching_text: 简化演示：根据当前姿态与期望轨迹，检索并衔接动作。
-  animation_generative_text: 程序化原型：从意图生成动作参数，组合不同表现。
   scene_hint: 拖动探索
   scene_pause: 暂停动画
   scene_resume: 播放动画
@@ -115,15 +106,6 @@ en:
   thought_defend_text: Wait... did something just move?
   thought_balance_text: One foot. Perfectly balanced. Probably.
   thought_stretch_text: Stretch my neck and see what's out there.
-  animation_modes_label: The evolution of character animation
-  animation_state_label: State Machine
-  animation_blend_label: Animation Blending
-  animation_matching_label: Motion Matching
-  animation_generative_label: Generative Exploration
-  animation_state_text: Switch between idle, thinking and action states using authored rules.
-  animation_blend_text: Continuously mix poses and motion for smoother starts, movement and stops.
-  animation_matching_text: Simplified demo — match the current pose and desired trajectory to a suitable motion.
-  animation_generative_text: Procedural prototype — turn intent into motion parameters and varied combinations.
   scene_hint: Drag to explore
   scene_pause: Pause animation
   scene_resume: Play animation
