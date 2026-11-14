@@ -27,32 +27,30 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 .page-home .hero-actions .button-primary { min-height:46px; padding-inline:21px; }
 .page-home .hero-scene { width:60%; }
 
-/* Static sketchbook studies leave the introduction itself free of decoration. */
+/* Quiet marginalia from the papers behind games, intelligence, and motion. */
 .page-home .hero::before { background:none; opacity:0; }
 .hero-research-art { position:absolute; z-index:0; inset:0; overflow:hidden; pointer-events:none; user-select:none; }
 .hero-research-art::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 79% 12%,#b7d6dc26,transparent 35%),radial-gradient(ellipse at 18% 94%,#dce4d92b,transparent 31%); }
-.research-art { position:absolute; display:block; overflow:visible; pointer-events:none; stroke-linecap:round; stroke-linejoin:round; }
-.research-art--poses { top:6px; right:24%; width:min(34vw,440px); height:auto; opacity:.77; }
-.art-study-guides { stroke:#a7c0d0; stroke-width:1; }
-.art-study-guides circle { fill:#e9f2f5; }
-.art-pose { stroke:#7899ad; stroke-width:1.15; }
-.art-pose-wash { fill:#b7d7da; fill-opacity:.14; stroke:none; }
-.art-bone { stroke:#729aab; stroke-width:1.2; }
-.art-joints { fill:#edf7f8; stroke:#7b9fab; stroke-width:1.25; }
-.art-motion { stroke:#9ab8c5; stroke-width:1; }
-.research-art--intent { left:max(40px,calc((100vw - 1280px) / 2)); bottom:16px; width:min(31vw,370px); height:auto; opacity:.78; }
-.art-intent-paths { stroke:#9bb7c2; stroke-width:1.2; }
-.art-intent-selected { stroke:#adac89; stroke-width:1.5; }
-.art-intent-nodes { fill:#eef5f6; fill-opacity:.8; stroke:#8eacb9; stroke-width:1.1; }
-.art-intent-root { fill:#c8deda; }
-.art-intent-active { fill:#efdfc0; stroke:#bea882; }
-.art-intent-centers { fill:#7c9eac; }
-.art-intent-warm { fill:#b99561; }
-.art-intent-active,.art-intent-selected { opacity:.65; transition:opacity .35s ease; }
-.hero[data-thought-phase="thinking"] .art-intent-active,.hero[data-thought-phase="acting"] .art-intent-selected { opacity:1; }
-.research-art--trajectory { left:39%; bottom:-7%; width:64%; height:83%; opacity:.51; }
-.art-trajectories { stroke:#88afb8; stroke-width:1.1; }
-.art-isometric-contours { stroke:#a7beca; stroke-width:1; }
+.research-paper { position:absolute; color:#7894a9; opacity:.58; transform-origin:center; }
+.paper-meta { display:block; margin-bottom:8px; font:9px/1.4 var(--mono); letter-spacing:1.6px; text-transform:uppercase; }
+.hero .paper-title { margin:0; font:400 19px/1.18 Georgia,"Times New Roman",serif; letter-spacing:-.35px; text-wrap:balance; }
+.paper-title small { display:block; margin-top:4px; font-size:.65em; line-height:1.25; letter-spacing:0; }
+.paper-diagram { display:block; width:205px; max-width:100%; height:auto; margin-top:12px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; }
+.paper-diagram text { fill:currentColor; stroke:none; font:9px Georgia,"Times New Roman",serif; }
+.paper-diagram .diagram-accent { color:#5b898e; }
+.paper-diagram .diagram-wash { fill:currentColor; fill-opacity:.2; }
+.research-paper--alphago { left:max(40px,calc((100vw - 1280px) / 2)); top:5%; width:290px; transform:rotate(-4deg); }
+.research-paper--alphago .paper-diagram { width:195px; }
+.research-paper--attention { left:39%; top:5%; width:285px; transform:rotate(3deg); }
+.hero .research-paper--attention .paper-title { font-size:27px; }
+.research-paper--attention .paper-diagram { width:225px; }
+.research-paper--mdm { right:3%; top:8%; width:210px; transform:rotate(-3deg); opacity:.48; }
+.research-paper--mdm .paper-diagram { width:180px; }
+.research-paper--diffusion { left:max(40px,calc((100vw - 1280px) / 2)); bottom:4%; width:290px; transform:rotate(2deg); }
+.research-paper--pfnn { left:32%; bottom:2%; width:250px; transform:rotate(-4deg); opacity:.5; }
+.research-paper--deepmimic { right:2%; top:47%; width:155px; transform:rotate(5deg); opacity:.47; }
+.hero .research-paper--deepmimic .paper-title { font-size:22px; }
+.research-paper--deepmimic .paper-diagram { width:155px; }
 
 /* The second chapter restores the portrait-and-contact sidebar on the left. */
 .experience-layout { display:grid; grid-template-columns:244px minmax(0,1fr); gap:44px; align-items:center; width:100%; }
@@ -101,8 +99,13 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
 
 
 @media(min-width:761px) and (max-width:1100px) {
-  .research-art--poses { right:29%; width:38vw; }
-  .research-art--intent { left:32px; bottom:10px; width:32vw; }
+  .research-paper--alphago { left:32px; width:245px; }
+  .research-paper--attention { left:40%; width:245px; }
+  .research-paper--mdm { display:none; }
+  .research-paper--diffusion { left:32px; width:250px; }
+  .research-paper--pfnn { left:35%; width:215px; }
+  .research-paper--deepmimic { right:2%; top:8%; width:140px; }
+  .hero .paper-title { font-size:17px; }
   .experience-layout { grid-template-columns:220px minmax(0,1fr); gap:28px; }
   .page-home .experience-main .experience-row { grid-template-columns:minmax(0,1fr); gap:12px; padding:20px; }
   .page-home .experience-main .experience-heading { grid-column:1; grid-template-columns:88px minmax(0,1fr); gap:16px; }
@@ -121,11 +124,34 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   html[lang="en"] .page-home .hero-summary { font-size:17px; }
   .page-home .hero-actions { margin-top:24px; }
 }
+@media(min-width:761px) and (max-height:650px) {
+  .research-paper--alphago,.research-paper--attention { top:3%; }
+  .research-paper--mdm { top:4%; }
+  .research-paper--diffusion,.research-paper--pfnn { bottom:2%; }
+  .research-paper .paper-diagram { width:145px; margin-top:7px; }
+  .hero .paper-title { font-size:16px; }
+  .hero .research-paper--attention .paper-title { font-size:23px; }
+  .paper-meta { margin-bottom:5px; }
+}
 @media(max-width:760px) {
-  .research-art--poses,.research-art--intent { display:none; }
   .hero-research-art::before { background:radial-gradient(ellipse at 70% 80%,#c0dbdf24,transparent 48%); }
-  .research-art--trajectory { top:auto; left:-5%; bottom:-2%; width:110%; height:47%; opacity:.42; }
-  .art-isometric-contours { display:none; }
+  .research-paper { opacity:.43; }
+  .paper-meta { margin-bottom:5px; font-size:7px; letter-spacing:.8px; }
+  .hero .paper-title { font-size:14px; }
+  .paper-diagram { margin-top:7px; }
+  .research-paper--alphago { left:20px; top:38%; width:145px; }
+  .research-paper--alphago .paper-diagram { width:125px; }
+  .research-paper--attention { left:auto; right:18px; top:36%; width:150px; }
+  .hero .research-paper--attention .paper-title { font-size:20px; }
+  .research-paper--attention .paper-diagram { width:140px; }
+  .research-paper--diffusion { left:20px; top:58%; bottom:auto; width:105px; }
+  .hero .research-paper--diffusion .paper-title { font-size:13px; }
+  .research-paper--diffusion .paper-diagram { width:100px; }
+  .research-paper--deepmimic { display:block; right:14px; top:55%; width:100px; opacity:.5; }
+  .hero .research-paper--deepmimic .paper-title { font-size:16px; }
+  .research-paper--deepmimic .paper-title small { display:none; }
+  .research-paper--deepmimic .paper-diagram { width:100px; }
+  .research-paper--pfnn,.research-paper--mdm { display:none; }
   .page-home .hero { min-height:max(650px,calc(100svh - var(--home-header-height))); padding:28px 0 24px; }
   .page-home .hero-copy { width:100%; max-width:none; padding-inline:28px; }
   .page-home .hero .hero-journey { gap:8px; font-size:clamp(20px,5.5vw,26px); letter-spacing:-.6px; }
@@ -153,6 +179,16 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .fallback-island { width:190px; height:105px; }
 }
 @media(max-width:380px) {
+  .research-paper--alphago { left:16px; width:118px; }
+  .research-paper--alphago .paper-diagram { width:110px; }
+  .research-paper--attention { right:14px; width:134px; }
+  .hero .research-paper--attention .paper-title { font-size:18px; }
+  .research-paper--attention .paper-diagram { width:125px; }
+  .research-paper--diffusion { left:16px; width:85px; }
+  .hero .research-paper--diffusion .paper-title { font-size:12px; }
+  .research-paper--diffusion .paper-diagram { width:85px; }
+  .research-paper--deepmimic { right:12px; width:90px; }
+  .research-paper--deepmimic .paper-diagram { width:90px; }
   .page-home .hero { padding-top:25px; }
   .page-home .hero-copy { padding-inline:22px; }
   .page-home .hero .hero-journey { gap:7px; font-size:20px; }
@@ -167,9 +203,6 @@ html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; lett
   .page-home .hero-scene { height:270px; }
 }
 
-@media(prefers-reduced-motion:reduce) {
-  .art-intent-active,.art-intent-selected { transition:none; }
-}
 @media(forced-colors:active) {
   .hero-research-art { display:none; }
   .hero-journey > span { color:CanvasText; text-shadow:none; }
