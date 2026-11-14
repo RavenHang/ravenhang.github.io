@@ -8,13 +8,9 @@
     </div>
     {% include personal-sidebar.html %}
   </div>
-  <div class="hero-scene" data-hero-scene data-thinking-text="{{ ui.bot_thinking | escape }}" data-bot-label="{{ ui.bot_interact | escape }}" data-thought-explore="{{ ui.thought_explore_text | escape }}" data-thought-defend="{{ ui.thought_defend_text | escape }}" data-thought-jump="{{ ui.thought_jump_text | escape }}" data-thought-greet="{{ ui.thought_greet_text | escape }}" role="group" aria-label="{{ ui.scene_label | escape }}">
+  <div class="hero-scene" data-hero-scene data-thinking-text="{{ ui.bot_thinking | escape }}" data-complete-text="{{ ui.bot_complete | escape }}" data-bot-label="{{ ui.bot_interact | escape }}" data-thought-explore="{{ ui.thought_explore_text | escape }}" data-thought-defend="{{ ui.thought_defend_text | escape }}" data-thought-jump="{{ ui.thought_jump_text | escape }}" data-thought-greet="{{ ui.thought_greet_text | escape }}" role="group" aria-label="{{ ui.scene_label | escape }}">
     <div class="scene-thought" data-scene-thought-wrap hidden><span class="thought-spark" aria-hidden="true">✦</span><p data-scene-thought aria-live="polite" aria-atomic="true"></p></div>
-    <div class="scene-fallback" aria-hidden="true"><div class="fallback-avatar"><div class="fallback-hood"><span></span><span></span></div><div class="fallback-scarf"></div><div class="fallback-body"></div><div class="fallback-boots"></div></div><div class="fallback-island"></div></div>
-  </div>
-  <div class="scene-controls" data-scene-controls hidden>
-    <button type="button" class="scene-control" data-scene-pause aria-pressed="false" aria-label="{{ ui.scene_pause | escape }}" data-pause-label="{{ ui.scene_pause | escape }}" data-resume-label="{{ ui.scene_resume | escape }}"><svg class="scene-pause-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg><svg class="scene-play-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
-    <button type="button" class="scene-control" data-scene-reset aria-label="{{ ui.scene_reset | escape }}" title="{{ ui.scene_reset | escape }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6a7 7 0 1 1-1 6M4 2v5h5"/></svg></button>
+    <div class="scene-fallback" aria-hidden="true"><div class="fallback-pigeon"><div class="pigeon-tail"></div><div class="pigeon-body"></div><div class="pigeon-wing"></div><div class="pigeon-neck"></div><div class="pigeon-head"><span class="pigeon-eye"></span><span class="pigeon-beak"></span></div><div class="pigeon-feet"></div></div><div class="fallback-island"></div></div>
   </div>
 </section>
 </div>

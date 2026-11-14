@@ -27,13 +27,14 @@ zh:
   hero_games_cta: 游戏作品
   hero_research_cta: 学术探索
   hero_contact_cta: 联系我
-  scene_label: 根据不同想法做出探索、防御、跳跃和招手动作的三维游戏角色
+  scene_label: 思考后以螺旋起飞的方式完成任务的三维鸽子角色
   bot_thinking: 我正在思考…
-  bot_interact: 点击 Bot，让它思考并做出动作
-  thought_explore_text: 前面会有什么？去看看！
-  thought_defend_text: 好像有危险，先保护自己。
-  thought_jump_text: 这点距离，我能跳过去！
-  thought_greet_text: 遇到新朋友，打个招呼吧。
+  bot_interact: 点击鸽子，让它思考并螺旋起飞
+  bot_complete: 虽然姿势不对，但任务完成了。
+  thought_explore_text: 换个方式起飞，应该也行。
+  thought_defend_text: 先倒过来，再观察一下。
+  thought_jump_text: 翅膀休息一下，脑袋负责起飞。
+  thought_greet_text: 绕你一圈，咕！
   scene_hint: 拖动探索
   scene_pause: 暂停动画
   scene_resume: 播放动画
@@ -89,13 +90,14 @@ en:
   hero_games_cta: Games
   hero_research_cta: Research
   hero_contact_cta: Contact
-  scene_label: A 3D game character that explores, defends, jumps and waves in response to different thoughts
+  scene_label: A 3D pigeon that thinks, spins like a helicopter and completes its mission
   bot_thinking: I am thinking…
-  bot_interact: Click Bot to hear its thought and see its action
-  thought_explore_text: What's ahead? Let's find out!
-  thought_defend_text: Something's wrong. Better guard up.
-  thought_jump_text: I can make that jump!
-  thought_greet_text: A new friend! Let's say hello.
+  bot_interact: Click the pigeon to make it think and take off like a helicopter
+  bot_complete: Unusual technique. Mission accomplished.
+  thought_explore_text: Another way to fly. This should work.
+  thought_defend_text: Let's look around upside down.
+  thought_jump_text: Wings can rest. My head will do the flying.
+  thought_greet_text: One lap around you. Coo!
   scene_hint: Drag to explore
   scene_pause: Pause animation
   scene_resume: Play animation
