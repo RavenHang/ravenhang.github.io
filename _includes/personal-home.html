@@ -1,31 +1,20 @@
 <div class="intro-layout">
 <section class="hero" id="introduction" aria-labelledby="hero-title" data-personal-hero data-home-panel>
   <div class="hero-copy">
-    <p class="hero-kicker"><span class="small-dot" aria-hidden="true"></span>GAME <span class="hero-kicker-cross">×</span> AI</p>
-    <p class="eyebrow hero-role">{{ profile.role }}</p>
-    <h1 id="hero-title" class="hero-progression" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}">
-      <span class="hero-path" aria-hidden="true">
-        <span class="hero-stage hero-stage--player"><span class="hero-stage-number">01</span><span class="hero-stage-name" data-text="{{ ui.hero_player | escape }}">{{ ui.hero_player }}</span><span class="hero-stage-arrow">↘</span></span>
-        <span class="hero-stage hero-stage--developer"><span class="hero-stage-number">02</span><span class="hero-stage-name" data-text="{{ ui.hero_developer | escape }}">{{ ui.hero_developer }}</span><span class="hero-stage-arrow">↘</span></span>
-        <span class="hero-stage hero-stage--researcher"><span class="hero-stage-number">03</span><span class="hero-stage-name" data-text="{{ ui.hero_researcher | escape }}">{{ ui.hero_researcher }}</span><span class="hero-stage-end"></span></span>
-      </span>
-    </h1>
+    <h1 id="hero-title" class="hero-journey" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}"><span>{{ ui.hero_player }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_developer }}</span><i aria-hidden="true">→</i><span>{{ ui.hero_researcher }}</span></h1>
     <p class="hero-summary">{{ profile.hero.summary }}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }} <span aria-hidden="true">↗</span></a>
-      <a class="hero-secondary-link" href="#research">{{ ui.hero_research_cta }} <span aria-hidden="true">↓</span></a>
     </div>
   </div>
-  <div class="hero-scene" data-hero-scene role="img" aria-label="{{ ui.scene_label | escape }}">
-    <div class="scene-fallback" aria-hidden="true"><div class="scene-fallback-ring"></div><div class="scene-fallback-core">MOTION<span>×</span>NPC</div><i></i><i></i><i></i></div>
+  <div class="hero-scene" data-hero-scene data-thinking-text="{{ ui.bot_thinking | escape }}" data-bot-label="{{ ui.bot_interact | escape }}" data-thought-explore="{{ ui.thought_explore_text | escape }}" data-thought-defend="{{ ui.thought_defend_text | escape }}" data-thought-jump="{{ ui.thought_jump_text | escape }}" data-thought-greet="{{ ui.thought_greet_text | escape }}" role="group" aria-label="{{ ui.scene_label | escape }}">
+    <div class="scene-thought" data-scene-thought-wrap hidden><span class="thought-spark" aria-hidden="true">✦</span><p data-scene-thought aria-live="polite" aria-atomic="true"></p></div>
+    <div class="scene-fallback" aria-hidden="true"><div class="fallback-avatar"><div class="fallback-hood"><span></span><span></span></div><div class="fallback-scarf"></div><div class="fallback-body"></div><div class="fallback-boots"></div></div><div class="fallback-island"></div></div>
   </div>
-  <div class="scene-annotations" aria-hidden="true"><span>{{ ui.scene_game }}</span><span class="scene-annotation-line"></span><span>{{ ui.scene_ai }}</span></div>
   <div class="scene-controls" data-scene-controls hidden>
-    <span class="scene-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 12V5a2 2 0 0 1 4 0v7-3a2 2 0 0 1 4 0v3-1a2 2 0 0 1 4 0v5c0 4-3 6-6 6h-2c-2 0-3-1-4-2l-5-6a2 2 0 0 1 3-2l2 1Z"/></svg>{{ ui.scene_hint }}</span>
     <button type="button" class="scene-control" data-scene-pause aria-pressed="false" aria-label="{{ ui.scene_pause | escape }}" data-pause-label="{{ ui.scene_pause | escape }}" data-resume-label="{{ ui.scene_resume | escape }}"><svg class="scene-pause-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg><svg class="scene-play-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
     <button type="button" class="scene-control" data-scene-reset aria-label="{{ ui.scene_reset | escape }}" title="{{ ui.scene_reset | escape }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6a7 7 0 1 1-1 6M4 2v5h5"/></svg></button>
   </div>
-  <a class="hero-scroll" href="#experience"><span class="hero-scroll-line" aria-hidden="true"></span>{{ ui.scene_scroll }} <span aria-hidden="true">↓</span></a>
 </section>
 </div>
       <section class="experience-section section-space" id="experience" aria-labelledby="experience-title" data-home-panel>
@@ -43,7 +32,6 @@
           {% endfor %}
         </div>
         {% include personal-sidebar.html %}
-        <a class="panel-next" href="#research">{{ ui.hero_research_cta }} <span aria-hidden="true">↓</span></a>
       </section>
 
       <section class="research-section section-space" id="research" aria-labelledby="research-title" data-home-panel>

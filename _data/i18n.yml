@@ -27,7 +27,13 @@ zh:
   hero_games_cta: 游戏作品
   hero_research_cta: 学术探索
   hero_contact_cta: 联系我
-  scene_label: 角色动画生成与智能 NPC 的交互式三维场景
+  scene_label: 根据不同想法做出探索、防御、跳跃和招手动作的三维游戏角色
+  bot_thinking: 我正在思考…
+  bot_interact: 点击 Bot，让它思考并做出动作
+  thought_explore_text: 前面会有什么？去看看！
+  thought_defend_text: 好像有危险，先保护自己。
+  thought_jump_text: 这点距离，我能跳过去！
+  thought_greet_text: 遇到新朋友，打个招呼吧。
   scene_hint: 拖动探索
   scene_pause: 暂停动画
   scene_resume: 播放动画
@@ -83,7 +89,13 @@ en:
   hero_games_cta: Games
   hero_research_cta: Research
   hero_contact_cta: Contact
-  scene_label: Interactive 3D character animation and intelligent NPC scene
+  scene_label: A 3D game character that explores, defends, jumps and waves in response to different thoughts
+  bot_thinking: I am thinking…
+  bot_interact: Click Bot to hear its thought and see its action
+  thought_explore_text: What's ahead? Let's find out!
+  thought_defend_text: Something's wrong. Better guard up.
+  thought_jump_text: I can make that jump!
+  thought_greet_text: A new friend! Let's say hello.
   scene_hint: Drag to explore
   scene_pause: Pause animation
   scene_resume: Play animation

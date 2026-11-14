@@ -10,6 +10,26 @@ function createScene() {
   const controls = hero.querySelector('[data-scene-controls]');
   const pauseButton = hero.querySelector('[data-scene-pause]');
   const resetButton = hero.querySelector('[data-scene-reset]');
+  const thoughtWrap = hero.querySelector('[data-scene-thought-wrap]');
+  const thoughtText = hero.querySelector('[data-scene-thought]');
+  const actions = ['explore', 'defend', 'jump', 'greet'];
+  const representativeTimes = { explore: 0.32, defend: 1.1, jump: 0.82, greet: 0.65 };
+  const thinkingDuration = 1200;
+  const actionDuration = 4;
+  let selectedAction = null;
+  let actionIndex = -1;
+  let reactionState = 'idle';
+  let actionElapsed = 0;
+  let thinkingTimer = 0;
+  let reactionVersion = 0;
+  let spokenThought = null;
+  let voiceVersion = 0;
+  let thinkingAudio;
+  try {
+    const language = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+    thinkingAudio = new Audio(new URL(`../audio/bot-thinking-${language}.mp3`, import.meta.url));
+    thinkingAudio.preload = 'auto';
+  } catch { /* Browser speech remains available when audio cannot be created. */ }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let renderer;
   let scene;
@@ -27,12 +47,24 @@ function createScene() {
   let resizeObserver;
   let visibilityObserver;
 
+  const stopSpeech = () => {
+    voiceVersion++;
+    if (thinkingAudio) {
+      try { thinkingAudio.pause(); thinkingAudio.currentTime = 0; } catch { /* Optional audio. */ }
+    }
+    try { window.speechSynthesis?.cancel(); } catch { /* Speech is optional. */ }
+    spokenThought = null;
+  };
   const fallback = () => {
     if (failed) return;
     failed = true;
     cancelAnimationFrame(frame);
+    clearTimeout(thinkingTimer);
+    reactionVersion++;
+    stopSpeech();
     hero.dataset.sceneState = 'fallback';
     if (controls) controls.hidden = true;
+    if (thoughtWrap) thoughtWrap.hidden = true;
     resizeObserver?.disconnect();
     visibilityObserver?.disconnect();
     renderer?.domElement.remove();
@@ -61,15 +93,18 @@ function createScene() {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     const canvas = renderer.domElement;
-    canvas.setAttribute('aria-hidden', 'true');
+    canvas.setAttribute('role', 'button');
+    canvas.tabIndex = 0;
+    canvas.setAttribute('aria-label', host.dataset.botLabel || 'Click the Bot to make it think and act');
+    canvas.style.cursor = 'pointer';
     canvas.style.touchAction = 'pan-y';
     host.appendChild(canvas);
 
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xeef6ff, 16, 32);
     const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 60);
-    const cameraOrigin = new THREE.Vector3(6.3, 4.7, 10.1);
-    const lookAt = new THREE.Vector3(0, 1.35, 0);
+    const cameraOrigin = new THREE.Vector3(5, 3.7, 8.4);
+    const lookAt = new THREE.Vector3(0, 1.60, 0);
     camera.position.copy(cameraOrigin);
     camera.lookAt(lookAt);
 
@@ -95,8 +130,9 @@ function createScene() {
     const white = new THREE.MeshStandardMaterial({ color: 0xf9fcff, roughness: 0.28, metalness: 0.08 });
     const ice = new THREE.MeshStandardMaterial({ color: 0xddeeff, roughness: 0.28, metalness: 0.16 });
     const cyan = new THREE.MeshStandardMaterial({ color: 0x54cce9, emissive: 0x1c7eab, emissiveIntensity: 0.28, roughness: 0.28 });
-    const glow = new THREE.MeshBasicMaterial({ color: 0x58bdf6 });
-    const ringMaterial = new THREE.MeshStandardMaterial({ color: 0x6bbaf0, emissive: 0x0c4163, emissiveIntensity: 0.18, roughness: 0.4, metalness: 0.32 });
+    const amber = new THREE.MeshStandardMaterial({ color: 0xf3ae43, roughness: 0.48, metalness: 0.06 });
+    const skin = new THREE.MeshStandardMaterial({ color: 0xffedce, roughness: 0.60 });
+    const stone = new THREE.MeshStandardMaterial({ color: 0xafd1ec, roughness: 0.82, flatShading: true });
     const root = new THREE.Group();
     scene.add(root);
 
@@ -128,190 +164,357 @@ function createScene() {
       return mesh(geometry, material, parent, position);
     }
 
-    // An articulated performer and its pose traces introduce animation generation.
-    const performer = new THREE.Group();
-    performer.position.set(-1.22, 0.12, 0.48);
-    performer.rotation.y = 0.28;
-    root.add(performer);
-    const jointGeometry = new THREE.SphereGeometry(0.095, 16, 12);
-    const makeJoint = (parent, position, size = 1) => {
-      const joint = mesh(jointGeometry, cyan, parent, position);
-      joint.scale.setScalar(size);
-      return joint;
-    };
-    const limb = (parent, position, upperLength, lowerLength, radius, material) => {
+    // A single game adventurer: a hood, warm scarf, armor, boots and wrist shield.
+    const character = new THREE.Group();
+    character.position.set(0, 0, 0.08);
+    character.rotation.y = 0.28;
+    root.add(character);
+    const upperBody = new THREE.Group();
+    upperBody.position.y = 1.10;
+    character.add(upperBody);
+    roundedPlate(0.78, 0.82, 0.20, 0.43, blue, upperBody, [0, 0.48, -0.22]);
+    roundedPlate(0.57, 0.53, 0.13, 0.035, white, upperBody, [0, 0.49, 0.265]);
+    const crest = mesh(new THREE.OctahedronGeometry(0.105, 0), amber, upperBody, [0, 0.55, 0.345]);
+    crest.scale.z = 0.38;
+    roundedPlate(0.83, 0.12, 0.035, 0.47, deepBlue, character, [0, 1.09, -0.24]);
+    roundedPlate(0.15, 0.13, 0.025, 0.035, amber, character, [0, 1.09, 0.29]);
+    mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.18, 20), amber, upperBody, [0, 1.01, 0]);
+    const scarf = new THREE.Group();
+    scarf.position.set(-0.15, 1.00, -0.08);
+    scarf.rotation.set(0.20, -0.35, -0.15);
+    upperBody.add(scarf);
+    roundedPlate(0.24, 0.64, 0.035, 0.055, amber, scarf, [-0.26, -0.29, -0.15]);
+    roundedPlate(0.20, 0.47, 0.035, 0.055, amber, scarf, [-0.42, -0.19, -0.20]).rotation.z = -0.35;
+    const head = new THREE.Group();
+    head.position.set(0, 1.40, 0);
+    upperBody.add(head);
+    const hood = mesh(new THREE.SphereGeometry(0.625, 24, 16), blue, head);
+    hood.scale.set(1.02, 1.03, 0.95);
+    roundedPlate(0.93, 0.81, 0.27, 0.07, ice, head, [0, -0.025, 0.47]);
+    roundedPlate(0.81, 0.69, 0.23, 0.06, skin, head, [0, -0.035, 0.575]);
+    const eyes = [-0.18, 0.18].map(x => {
+      const eye = roundedPlate(0.075, 0.145, 0.035, 0.018, deepBlue, head, [x, 0.015, 0.67]);
+      mesh(new THREE.SphereGeometry(0.021, 10, 8), white, head, [x - 0.012, 0.055, 0.703]);
+      return eye;
+    });
+    [-0.28, 0.28].forEach(x => {
+      const cheek = mesh(new THREE.SphereGeometry(0.055, 12, 8), amber, head, [x, -0.11, 0.66]);
+      cheek.scale.set(1, 0.43, 0.18);
+    });
+    const mouthPoints = Array.from({ length: 13 }, (_, index) => {
+      const x = index / 12 * 0.17 - 0.085;
+      return new THREE.Vector3(x, -0.17 + (x / 0.085) ** 2 * 0.035, 0.675);
+    });
+    head.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(mouthPoints), new THREE.LineBasicMaterial({ color: 0x74565a })));
+    const hoodSeam = mesh(new THREE.TorusGeometry(0.36, 0.012, 6, 32, Math.PI), ice, head, [0, 0.26, -0.37]);
+    hoodSeam.rotation.x = -0.25;
+    const backpack = roundedPlate(0.56, 0.66, 0.10, 0.28, deepBlue, upperBody, [0, 0.42, -0.56]);
+    backpack.rotation.x = -0.05;
+    roundedPlate(0.38, 0.20, 0.045, 0.04, amber, upperBody, [0, 0.44, -0.605]);
+
+    const limb = (parent, position, upperLength, lowerLength, radius, armor) => {
       const pivot = new THREE.Group();
       pivot.position.set(...position);
       parent.add(pivot);
-      makeJoint(pivot, [0, 0, 0], radius / 0.075);
-      mesh(new THREE.CapsuleGeometry(radius, upperLength - radius * 2, 5, 12), material, pivot, [0, -upperLength / 2, 0]);
+      mesh(new THREE.SphereGeometry(radius * 1.10, 16, 12), deepBlue, pivot);
+      mesh(new THREE.CapsuleGeometry(radius, upperLength - radius * 2, 5, 14), armor, pivot, [0, -upperLength / 2, 0]);
       const bend = new THREE.Group();
       bend.position.y = -upperLength;
       pivot.add(bend);
-      makeJoint(bend, [0, 0, 0], radius / 0.08);
-      mesh(new THREE.CapsuleGeometry(radius * 0.85, lowerLength - radius * 1.7, 5, 12), white, bend, [0, -lowerLength / 2, 0]);
-      return { pivot, bend, end: [0, -lowerLength, 0] };
+      mesh(new THREE.SphereGeometry(radius * 0.9, 14, 10), deepBlue, bend);
+      mesh(new THREE.CapsuleGeometry(radius * 0.90, lowerLength - radius * 1.8, 5, 14), white, bend, [0, -lowerLength / 2, 0]);
+      return { pivot, bend, length: lowerLength };
     };
-    const torso = roundedPlate(0.61, 0.76, 0.16, 0.29, white, performer, [0, 1.66, -0.15]);
-    torso.rotation.x = -0.05;
-    roundedPlate(0.33, 0.36, 0.08, 0.03, blue, performer, [0, 1.74, 0.19]);
-    mesh(new THREE.SphereGeometry(0.07, 16, 12), cyan, performer, [0, 1.78, 0.25]);
-    mesh(new THREE.CylinderGeometry(0.13, 0.14, 0.14, 20), deepBlue, performer, [0, 2.12, 0]);
-    const performerHead = mesh(new THREE.SphereGeometry(0.285, 28, 20), white, performer, [0, 2.44, 0.015]);
-    performerHead.scale.set(0.92, 1.08, 0.94);
-    const visor = roundedPlate(0.31, 0.11, 0.045, 0.025, blue, performer, [0, 2.47, 0.255]);
-    visor.rotation.x = -0.08;
-    mesh(new THREE.CapsuleGeometry(0.16, 0.19, 5, 16), blue, performer, [0, 1.23, 0]).rotation.z = Math.PI / 2;
-    const leftArm = limb(performer, [-0.43, 1.96, 0], 0.43, 0.43, 0.085, blue);
-    const rightArm = limb(performer, [0.43, 1.96, 0], 0.43, 0.43, 0.085, blue);
-    makeJoint(leftArm.bend, leftArm.end, 1.0);
-    makeJoint(rightArm.bend, rightArm.end, 1.0);
-    leftArm.pivot.rotation.z = -0.16;
-    rightArm.pivot.rotation.z = 0.16;
-    const leftLeg = limb(performer, [-0.20, 1.23, 0], 0.54, 0.52, 0.11, blue);
-    const rightLeg = limb(performer, [0.20, 1.23, 0], 0.54, 0.52, 0.11, blue);
+    const leftArm = limb(upperBody, [-0.52, 0.79, 0], 0.32, 0.33, 0.13, blue);
+    const rightArm = limb(upperBody, [0.52, 0.79, 0], 0.32, 0.33, 0.13, blue);
+    [leftArm, rightArm].forEach(arm => mesh(new THREE.SphereGeometry(0.135, 18, 12), skin, arm.bend, [0, -arm.length - 0.035, 0]));
+    const leftLeg = limb(character, [-0.24, 1.06, 0], 0.43, 0.41, 0.16, deepBlue);
+    const rightLeg = limb(character, [0.24, 1.06, 0], 0.43, 0.41, 0.16, deepBlue);
     [leftLeg, rightLeg].forEach(leg => {
-      const foot = mesh(new THREE.CapsuleGeometry(0.105, 0.22, 5, 12), deepBlue, leg.bend, [0, -0.55, 0.095]);
-      foot.rotation.x = Math.PI / 2;
-      foot.scale.x = 1.16;
+      const boot = roundedPlate(0.33, 0.26, 0.075, 0.44, deepBlue, leg.bend, [0, -0.40, -0.16]);
+      boot.rotation.x = 0.04;
+      roundedPlate(0.34, 0.065, 0.018, 0.46, amber, leg.bend, [0, -0.51, -0.17]);
     });
+    const shield = new THREE.Group();
+    shield.position.set(-0.02, -0.22, 0.18);
+    leftArm.bend.add(shield);
+    const shieldShape = new THREE.Shape();
+    shieldShape.moveTo(0, 0.37);
+    shieldShape.lineTo(0.31, 0.22);
+    shieldShape.lineTo(0.27, -0.19);
+    shieldShape.lineTo(0, -0.43);
+    shieldShape.lineTo(-0.27, -0.19);
+    shieldShape.lineTo(-0.31, 0.22);
+    shieldShape.closePath();
+    const shieldGeometry = new THREE.ExtrudeGeometry(shieldShape, { depth: 0.08, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.025, bevelThickness: 0.02 });
+    mesh(shieldGeometry, blue, shield);
+    const shieldInset = mesh(shieldGeometry, white, shield, [0, 0, 0.08]);
+    shieldInset.scale.set(0.80, 0.80, 0.45);
+    const shieldGem = mesh(new THREE.OctahedronGeometry(0.12, 0), amber, shield, [0, -0.005, 0.15]);
+    shieldGem.scale.z = 0.5;
+    const guardEffect = new THREE.Group();
+    guardEffect.position.set(-0.15, 1.45, 0.89);
+    character.add(guardEffect);
+    const guardMaterial = new THREE.MeshBasicMaterial({ color: 0x54b9f0, transparent: true, opacity: 0.14, side: THREE.DoubleSide, depthWrite: false });
+    mesh(new THREE.CircleGeometry(0.82, 6), guardMaterial, guardEffect).castShadow = false;
+    const guardEdge = mesh(new THREE.TorusGeometry(0.81, 0.018, 6, 6), cyan, guardEffect);
+    guardEdge.castShadow = false;
+    guardEffect.visible = false;
 
-    // Translucent skeleton afterimages make the motion itself part of the scene.
-    const poseMaterial = new THREE.LineBasicMaterial({ color: 0x398dcc, transparent: true, opacity: 0.27, depthWrite: false });
-    const ghostNodeMaterial = new THREE.MeshBasicMaterial({ color: 0x5db8eb, transparent: true, opacity: 0.35, depthWrite: false });
-    const poseJoints = [
-      [0, 1.24, 0], [0, 1.83, 0], [0, 2.13, 0], [0, 2.46, 0],
-      [-0.43, 1.96, 0], [-0.56, 1.57, 0.20], [-0.57, 1.24, 0.46],
-      [0.43, 1.96, 0], [0.56, 1.57, -0.20], [0.57, 1.24, -0.46],
-      [-0.20, 1.23, 0], [-0.20, 0.71, 0.22], [-0.20, 0.18, 0.07],
-      [0.20, 1.23, 0], [0.20, 0.74, -0.25], [0.20, 0.23, -0.43]
-    ];
-    const poseConnections = [[0, 1], [1, 2], [2, 3], [1, 4], [4, 5], [5, 6], [1, 7], [7, 8], [8, 9], [0, 10], [10, 11], [11, 12], [0, 13], [13, 14], [14, 15]];
-    const posePoints = poseConnections.flatMap(connection => connection.map(index => new THREE.Vector3(...poseJoints[index])));
-    const trace = new THREE.Group();
-    trace.position.set(-1.78, 0.12, -0.16);
-    trace.rotation.y = 0.28;
-    trace.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(posePoints), poseMaterial));
-    poseJoints.forEach(position => {
-      const node = mesh(new THREE.SphereGeometry(0.039, 8, 6), ghostNodeMaterial, trace, position);
-      node.castShadow = false;
-      node.receiveShadow = false;
+    // A small floating hex-tile island, with path stones, crystal grass and loot.
+    mesh(new THREE.CylinderGeometry(1.88, 1.30, 0.55, 6), stone, root, [0, -0.38, 0]);
+    mesh(new THREE.CylinderGeometry(1.94, 1.89, 0.16, 6), white, root, [0, -0.025, 0]);
+    const islandEdge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.CylinderGeometry(1.94, 1.89, 0.16, 6)), new THREE.LineBasicMaterial({ color: 0x86bce4 }));
+    islandEdge.position.y = -0.025;
+    root.add(islandEdge);
+    [[-0.55, 1.12, 0.18], [-0.04, 1.38, -0.1], [0.53, 1.19, 0.16]].forEach(([x, z, turn]) => {
+      const slab = mesh(new THREE.BoxGeometry(0.39, 0.035, 0.28), ice, root, [x, 0.071, z]);
+      slab.rotation.y = turn;
     });
-    root.add(trace);
-    const motionTrailMaterial = new THREE.LineBasicMaterial({ color: 0x4ea9df, transparent: true, opacity: 0.35 });
-    [-1, 1].forEach((side, index) => {
-      const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-2.05, 1.1 + index * 0.4, -0.3),
-        new THREE.Vector3(-2.48, 1.48 + index * 0.4, 0.08),
-        new THREE.Vector3(-2.18, 1.91 + index * 0.4, 0.52),
-        new THREE.Vector3(-1.68, 1.74 + side * 0.12, 0.78)
-      ]);
-      root.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(36)), motionTrailMaterial));
+    [[-1.22, -0.45], [1.17, -0.55], [1.25, 0.66]].forEach(([x, z], index) => {
+      const rock = mesh(new THREE.DodecahedronGeometry(index === 1 ? 0.26 : 0.19, 0), ice, root, [x, 0.17, z]);
+      rock.scale.set(1.2, 0.65, 0.9);
+      rock.rotation.y = index;
+      for (let stem = 0; stem < 3; stem++) {
+        const blade = mesh(new THREE.ConeGeometry(0.055, 0.32 + stem * 0.045, 3), blue, root, [x + (stem - 1) * 0.10, 0.20 + stem * 0.02, z - 0.20]);
+        blade.rotation.z = (stem - 1) * -0.20;
+      }
     });
-
-    // A friendly, attentive robot carries the intelligent-NPC narrative.
-    const npc = new THREE.Group();
-    npc.position.set(1.46, 0.09, -0.30);
-    npc.rotation.y = 0.24;
-    root.add(npc);
-    roundedPlate(0.68, 0.79, 0.19, 0.39, blue, npc, [0, 1.32, -0.20]);
-    roundedPlate(0.47, 0.48, 0.10, 0.035, white, npc, [0, 1.34, 0.23]);
-    const chestLight = mesh(new THREE.SphereGeometry(0.085, 18, 12), cyan, npc, [0, 1.39, 0.30]);
-    mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.17, 20), deepBlue, npc, [0, 1.85, 0]);
-    const npcHead = new THREE.Group();
-    npcHead.position.set(0, 2.16, 0);
-    npc.add(npcHead);
-    roundedPlate(0.94, 0.67, 0.19, 0.43, white, npcHead, [0, 0, -0.22]);
-    roundedPlate(0.73, 0.40, 0.13, 0.035, deepBlue, npcHead, [0, 0, 0.245]);
-    [-0.17, 0.17].forEach(x => {
-      roundedPlate(0.065, 0.135, 0.030, 0.018, cyan, npcHead, [x, 0.035, 0.29]);
+    [[-1.26, -0.73, 0.46], [1.35, -0.76, -0.40], [0.23, -0.92, -0.86]].forEach(([x, y, z], index) => {
+      const fragment = mesh(new THREE.DodecahedronGeometry(0.17 - index * 0.025, 0), stone, root, [x, y, z]);
+      fragment.rotation.set(0.3, index, 0.5);
     });
-    const smilePoints = Array.from({ length: 13 }, (_, index) => {
-      const x = index / 12 * 0.18 - 0.09;
-      return new THREE.Vector3(x, -0.105 + Math.pow(x / 0.09, 2) * 0.035, 0.30);
-    });
-    npcHead.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(smilePoints), new THREE.LineBasicMaterial({ color: 0x7ce7f3 })));
-    [-0.52, 0.52].forEach(x => {
-      const ear = mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.13, 20), blue, npcHead, [x, 0, 0]);
-      ear.rotation.z = Math.PI / 2;
-    });
-    mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.18, 12), deepBlue, npcHead, [0.25, 0.43, 0]);
-    mesh(new THREE.SphereGeometry(0.055, 16, 12), cyan, npcHead, [0.25, 0.55, 0]);
-    const npcLeftArm = limb(npc, [-0.43, 1.62, 0], 0.31, 0.29, 0.095, white);
-    const npcRightArm = limb(npc, [0.43, 1.62, 0], 0.31, 0.29, 0.095, white);
-    npcLeftArm.pivot.rotation.z = -0.25;
-    npcRightArm.pivot.rotation.z = 0.94;
-    npcRightArm.bend.rotation.x = -1.4;
-    makeJoint(npcLeftArm.bend, npcLeftArm.end, 1.2);
-    makeJoint(npcRightArm.bend, npcRightArm.end, 1.2);
-    [-0.21, 0.21].forEach(x => {
-      mesh(new THREE.CapsuleGeometry(0.12, 0.48, 5, 14), white, npc, [x, 0.52, 0]);
-      mesh(new THREE.SphereGeometry(0.115, 16, 12), cyan, npc, [x, 0.53, 0.01]);
-      const foot = mesh(new THREE.CapsuleGeometry(0.13, 0.21, 5, 14), deepBlue, npc, [x, 0.11, 0.10]);
-      foot.rotation.x = Math.PI / 2;
-    });
-    const sensingHalo = mesh(new THREE.TorusGeometry(1.04, 0.018, 8, 96, Math.PI * 1.8), new THREE.MeshStandardMaterial({ color: 0x6cbfe9, transparent: true, opacity: 0.65, roughness: 0.4 }), npc, [0, 1.75, -0.37]);
-    sensingHalo.rotation.set(0.12, -0.20, 0.2);
-    sensingHalo.castShadow = false;
-
-    const speech = new THREE.Group();
-    speech.position.set(0.08, 3.02, 0.12);
-    speech.rotation.y = 0.16;
-    npc.add(speech);
-    roundedPlate(0.98, 0.46, 0.14, 0.10, white, speech, [0, 0, 0]);
-    const tail = new THREE.Shape();
-    tail.moveTo(-0.25, -0.19);
-    tail.lineTo(-0.22, -0.36);
-    tail.lineTo(-0.02, -0.19);
-    tail.closePath();
-    mesh(new THREE.ExtrudeGeometry(tail, { depth: 0.10, bevelEnabled: false }), white, speech);
-    const speechDots = [-0.22, 0, 0.22].map(x => mesh(new THREE.SphereGeometry(0.046, 14, 10), blue, speech, [x, 0, 0.14]));
-    const thought = new THREE.Group();
-    npc.add(thought);
-    const thoughtPositions = [[-0.67, 2.79, -0.32], [-0.46, 3.25, -0.36], [0.21, 3.58, -0.32], [0.70, 3.27, -0.24]];
-    const thoughtPoints = thoughtPositions.map(position => new THREE.Vector3(...position));
-    const thoughtLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(thoughtPoints), new THREE.LineBasicMaterial({ color: 0x71acd3, transparent: true, opacity: 0.5 }));
-    thought.add(thoughtLine);
-    thoughtPositions.forEach((position, index) => {
-      const node = mesh(new THREE.SphereGeometry(index === 2 ? 0.078 : 0.047, 16, 12), index === 2 ? cyan : blue, thought, position);
-      node.castShadow = false;
-    });
-
-    // Shallow display plinths and a fine grid anchor both characters.
-    mesh(new THREE.CylinderGeometry(3.05, 3.12, 0.22, 96), ice, root, [0, -0.25, 0]);
-    mesh(new THREE.CylinderGeometry(2.98, 3.05, 0.09, 96), white, root, [0, -0.095, 0]);
-    const platformRing = mesh(new THREE.TorusGeometry(3.035, 0.025, 8, 128), blue, root, [0, -0.14, 0]);
-    platformRing.rotation.x = Math.PI / 2;
-    const insetRing = mesh(new THREE.TorusGeometry(2.72, 0.012, 6, 128), ringMaterial, root, [0, -0.043, 0]);
-    insetRing.rotation.x = Math.PI / 2;
-    mesh(new THREE.CylinderGeometry(1.43, 1.5, 0.12, 64), white, root, [-1.22, 0.025, 0.48]);
-    mesh(new THREE.CylinderGeometry(0.78, 0.9, 0.07, 64), ice, root, [1.46, 0.015, -0.30]);
-    const shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.ShadowMaterial({ opacity: 0.12 }));
+    const loot = mesh(new THREE.OctahedronGeometry(0.16, 0), amber, root, [-1.20, 0.67, 0.46]);
+    loot.scale.y = 1.35;
+    const landingMaterial = new THREE.MeshBasicMaterial({ color: 0x5ab8e9, transparent: true, opacity: 0, depthWrite: false });
+    const landingRing = mesh(new THREE.TorusGeometry(0.62, 0.027, 6, 48), landingMaterial, root, [0, 0.079, 0.08]);
+    landingRing.rotation.x = Math.PI / 2;
+    landingRing.castShadow = false;
+    const shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.ShadowMaterial({ opacity: 0.10 }));
     shadowFloor.rotation.x = -Math.PI / 2;
-    shadowFloor.position.y = -0.57;
+    shadowFloor.position.y = -1.10;
     shadowFloor.receiveShadow = true;
     scene.add(shadowFloor);
-    const grid = new THREE.GridHelper(20, 40, 0xc5d9ee, 0xc5d9ee);
-    grid.position.y = -0.58;
-    grid.material.transparent = true;
-    grid.material.opacity = 0.3;
-    grid.material.depthWrite = false;
-    scene.add(grid);
 
-    const orbitPoints = Array.from({ length: 97 }, (_, index) => {
-      const angle = index / 96 * Math.PI * 2;
-      return new THREE.Vector3(Math.cos(angle) * 2.78, 1.6 + Math.sin(angle) * 0.78, Math.sin(angle) * 1.7);
+    // A small authored feature search, inspired by classic Motion Matching:
+    // current pose / velocity + desired future trajectory -> nearest clip -> crossfade.
+    // This is a procedural homage, not a motion-capture database or learned model.
+    // Primary explanation: https://www.ubisoft.com/en-us/studio/laforge/news/6xXL85Q3bF2vEj76xmnmIu/introducing-learned-motion-matching
+    const futurePath = (x, z) => [x * 0.30, z * 0.30, x * 0.65, z * 0.65, x, z];
+    const motionLibrary = [
+      { id: 'explore-left', action: 'explore', path: futurePath(-0.46, 0.85), pose: [0, 0.18, 0.08], velocity: [0, 0.8, 0.45], turn: -0.18, amplitude: 0.92, speed: 0.95 },
+      { id: 'explore-right', action: 'explore', path: futurePath(0.46, 0.85), pose: [0, -0.18, -0.08], velocity: [0, -0.8, -0.45], turn: 0.18, amplitude: 1.02, speed: 1.05 },
+      { id: 'defend-left', action: 'defend', path: futurePath(0, 0), pose: [-0.06, -0.35, 0.12], velocity: [0, -0.2, 0], turn: -0.12, amplitude: 0.96, speed: 1 },
+      { id: 'defend-right', action: 'defend', path: futurePath(0, 0), pose: [-0.06, -0.30, -0.12], velocity: [0, 0.2, 0], turn: 0.12, amplitude: 1.02, speed: 1 },
+      { id: 'jump-soft', action: 'jump', path: futurePath(0, 0.12), pose: [-0.04, -0.30, 0.15], velocity: [0.2, 0.3, 0.2], turn: 0, amplitude: 0.84, speed: 0.95 },
+      { id: 'jump-brisk', action: 'jump', path: futurePath(0, 0.12), pose: [0, 0.10, 0.25], velocity: [0.8, 0.9, 0.6], turn: 0, amplitude: 1, speed: 1.05 },
+      { id: 'greet-calm', action: 'greet', path: futurePath(0, 0), pose: [0, 0, 0.5], velocity: [0, 0, 0.15], turn: -0.05, amplitude: 0.82, speed: 0.9 },
+      { id: 'greet-bright', action: 'greet', path: futurePath(0, 0), pose: [0, 0, 1.8], velocity: [0, 0.2, 1.1], turn: 0.05, amplitude: 1.10, speed: 1.1 }
+    ];
+    let selectedMotion = motionLibrary[0];
+    const poseNodes = [character, upperBody, head, leftArm.pivot, rightArm.pivot, leftArm.bend, rightArm.bend, leftLeg.pivot, rightLeg.pivot, leftLeg.bend, rightLeg.bend, shield, ...eyes];
+    const capturePose = () => poseNodes.map(node => ({ position: node.position.clone(), quaternion: node.quaternion.clone(), scale: node.scale.clone() }));
+    let transitionFrom = null;
+    let transitionTime = 0;
+    const beginTransition = () => {
+      transitionFrom = paused ? null : capturePose();
+      transitionTime = 0;
+    };
+    const poseFeatures = () => [character.position.y, leftLeg.pivot.rotation.x, rightArm.pivot.rotation.z];
+    let previousFeatures = poseFeatures();
+    let poseVelocity = [0, 0, 0];
+    const squaredDistance = (a, b) => a.reduce((sum, value, index) => sum + (value - b[index]) ** 2, 0);
+    const matchMotion = action => {
+      const turn = Math.floor((reactionVersion - 1) / actions.length) % 2 ? 0.46 : -0.46;
+      const desiredPath = action === 'explore' ? futurePath(turn, 0.85) : futurePath(0, action === 'jump' ? 0.12 : 0);
+      const currentPose = poseFeatures();
+      const currentVelocity = poseVelocity.map(value => THREE.MathUtils.clamp(value, -1.5, 1.5));
+      let winner;
+      let lowestCost = Infinity;
+      motionLibrary.forEach(candidate => {
+        const cost = (candidate.action === action ? 0 : 100)
+          + squaredDistance(candidate.path, desiredPath) * 2.4
+          + squaredDistance(candidate.pose, currentPose) * 0.40
+          + squaredDistance(candidate.velocity, currentVelocity) * 0.12;
+        if (cost < lowestCost) { lowestCost = cost; winner = candidate; }
+      });
+      hero.dataset.motionClip = winner.id;
+      selectedMotion = winner;
+      updateTrajectory(winner.path);
+    };
+    const trajectory = new THREE.Group();
+    const trajectoryMaterial = new THREE.LineBasicMaterial({ color: 0x54a5db, transparent: true, opacity: 0.65 });
+    const trajectoryLine = new THREE.Line(new THREE.BufferGeometry(), trajectoryMaterial);
+    trajectory.add(trajectoryLine);
+    const trajectoryDots = Array.from({ length: 3 }, () => {
+      const dot = mesh(new THREE.CylinderGeometry(0.048, 0.048, 0.012, 16), cyan, trajectory);
+      dot.castShadow = false;
+      return dot;
     });
-    root.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(orbitPoints), new THREE.LineBasicMaterial({ color: 0x6ba8dc, transparent: true, opacity: 0.42 })));
-    const electron = mesh(new THREE.SphereGeometry(0.065, 12, 8), cyan);
-    electron.castShadow = false;
-    const satellites = new THREE.Group();
-    root.add(satellites);
-    [[-2.75, 2.8, -0.7, 0.12], [2.85, 1.35, 1.0, 0.16], [-0.25, 3.65, -0.9, 0.09], [2.25, 0.9, -1.8, 0.1], [-2.35, 0.8, -1.9, 0.11]].forEach(([x, y, z, size], index) => {
-      const satellite = mesh(new THREE.BoxGeometry(size, size, size), index % 2 ? cyan : ice, satellites, [x, y, z]);
-      satellite.rotation.set(0.4, index * 0.6, 0.5);
-      satellite.castShadow = false;
-    });
+    trajectory.visible = false;
+    root.add(trajectory);
+    function updateTrajectory(path) {
+      const points = [new THREE.Vector3(0, 0.085, 0.10)];
+      trajectoryDots.forEach((dot, index) => {
+        dot.position.set(path[index * 2], 0.086, 0.10 + path[index * 2 + 1]);
+        points.push(dot.position.clone());
+      });
+      const curve = new THREE.CatmullRomCurve3(points);
+      trajectoryLine.geometry.dispose();
+      trajectoryLine.geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(30));
+    }
+    const announceThought = text => {
+      if (thoughtText) {
+        thoughtText.setAttribute('aria-live', 'polite');
+        thoughtText.textContent = text;
+      }
+      if (thoughtWrap) thoughtWrap.hidden = false;
+    };
+    const speakThinking = text => {
+      stopSpeech();
+      const version = voiceVersion;
+      const fallbackVoice = () => {
+        if (version !== voiceVersion || reactionState !== 'thinking' || document.hidden) return;
+        try {
+          if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') return;
+          spokenThought = new SpeechSynthesisUtterance(text.replace(/[.\u2026]+$/u, ''));
+          spokenThought.lang = document.documentElement.lang.startsWith('zh') ? 'zh-CN' : 'en-US';
+          spokenThought.rate = 1.02;
+          window.speechSynthesis.speak(spokenThought);
+        } catch { spokenThought = null; }
+      };
+      try {
+        if (thinkingAudio) {
+          const playback = thinkingAudio.play();
+          playback?.catch(fallbackVoice);
+        } else fallbackVoice();
+      } catch { fallbackVoice(); }
+    };
+    function triggerReaction() {
+      if (failed || document.hidden) return;
+      clearTimeout(thinkingTimer);
+      const version = ++reactionVersion;
+      actionIndex = (actionIndex + 1) % actions.length;
+      selectedAction = actions[actionIndex];
+      matchMotion(selectedAction);
+      beginTransition();
+      reactionState = 'thinking';
+      actionElapsed = 0;
+      hero.dataset.thoughtAction = selectedAction;
+      hero.dataset.thoughtPhase = 'thinking';
+      const text = host.dataset.thinkingText || 'I am thinking…';
+      announceThought(text);
+      speakThinking(text);
+      wake();
+      thinkingTimer = window.setTimeout(() => {
+        thinkingTimer = 0;
+        if (failed || version !== reactionVersion) return;
+        beginTransition();
+        reactionState = 'acting';
+        actionElapsed = paused ? representativeTimes[selectedAction] : 0;
+        hero.dataset.thoughtPhase = 'acting';
+        const key = `thought${selectedAction[0].toUpperCase()}${selectedAction.slice(1)}`;
+        announceThought(host.dataset[key] || selectedAction);
+        wake();
+      }, thinkingDuration);
+    }
+    const setPose = () => {
+      const actionTime = actionElapsed * selectedMotion.speed;
+      hero.dataset.thoughtPhase = reactionState;
+      character.position.set(0, 0, 0.08);
+      character.rotation.set(0, 0.28, 0);
+      upperBody.rotation.set(0, 0, 0);
+      head.rotation.set(0, 0, 0);
+      leftArm.pivot.rotation.set(0, 0, -0.12);
+      rightArm.pivot.rotation.set(0, 0, 0.12);
+      leftArm.bend.rotation.set(-0.12, 0, 0);
+      rightArm.bend.rotation.set(-0.12, 0, 0);
+      leftLeg.pivot.rotation.set(0, 0, 0);
+      rightLeg.pivot.rotation.set(0, 0, 0);
+      leftLeg.bend.rotation.set(0.06, 0, 0);
+      rightLeg.bend.rotation.set(0.06, 0, 0);
+      shield.rotation.set(0, 0, 0);
+      eyes.forEach(eye => { eye.scale.y = 1; });
+      guardEffect.visible = false;
+      landingMaterial.opacity = 0;
+      if (reactionState === 'idle') {
+        character.position.y += Math.sin(phase * 1.6) * 0.018;
+        head.rotation.z = Math.sin(phase * 0.65) * 0.025;
+        return;
+      }
+      if (reactionState === 'thinking') {
+        head.rotation.z = -0.09;
+        head.rotation.y = -0.12;
+        rightArm.pivot.rotation.set(-0.75, 0, 0.28);
+        rightArm.bend.rotation.x = -1.85;
+        return;
+      }
+      if (selectedAction === 'explore') {
+        const step = Math.sin(actionTime * 4.6) * selectedMotion.amplitude;
+        character.position.x = Math.sin(actionTime * 0.9) * 0.28;
+        character.position.y += Math.abs(step) * 0.035;
+        character.rotation.y += selectedMotion.turn + Math.sin(actionTime * 1.05) * 0.25;
+        leftLeg.pivot.rotation.x = step * 0.47;
+        rightLeg.pivot.rotation.x = -step * 0.47;
+        leftLeg.bend.rotation.x = 0.10 + Math.max(0, -step) * 0.46;
+        rightLeg.bend.rotation.x = 0.10 + Math.max(0, step) * 0.46;
+        leftArm.pivot.rotation.x = -step * 0.25;
+        rightArm.pivot.rotation.x = step * 0.42;
+        head.rotation.y = Math.sin(actionTime * 1.35) * 0.22;
+        upperBody.rotation.z = step * 0.025;
+      } else if (selectedAction === 'defend') {
+        character.position.y -= 0.09;
+        character.rotation.y = 0.12 + selectedMotion.turn;
+        upperBody.rotation.x = 0.10;
+        head.rotation.x = -0.08;
+        leftLeg.pivot.rotation.x = -0.48;
+        rightLeg.pivot.rotation.x = -0.40;
+        leftLeg.bend.rotation.x = 0.85;
+        rightLeg.bend.rotation.x = 0.74;
+        leftArm.pivot.rotation.x = -1.08;
+        leftArm.pivot.rotation.z = -0.13;
+        leftArm.bend.rotation.x = -0.65;
+        shield.rotation.x = 1.63;
+        rightArm.pivot.rotation.x = -0.70;
+        rightArm.bend.rotation.x = -0.65;
+        guardEffect.visible = true;
+        guardEffect.scale.setScalar(0.98 + Math.sin(actionTime * 3) * 0.035);
+        guardMaterial.opacity = 0.12 + Math.sin(actionTime * 3) * 0.025;
+        eyes.forEach(eye => { eye.scale.y = 0.76; });
+      } else if (selectedAction === 'jump') {
+        const jumpTime = actionTime % 2.6;
+        if (jumpTime < 0.35 || (jumpTime > 1.25 && jumpTime < 1.60)) {
+          const compression = jumpTime < 0.35 ? Math.sin(jumpTime / 0.35 * Math.PI / 2) : Math.sin((jumpTime - 1.25) / 0.35 * Math.PI);
+          character.position.y -= compression * 0.10;
+          leftLeg.pivot.rotation.x = rightLeg.pivot.rotation.x = -0.45 * compression;
+          leftLeg.bend.rotation.x = rightLeg.bend.rotation.x = 0.84 * compression;
+          upperBody.rotation.x = compression * 0.10;
+        } else if (jumpTime >= 0.35 && jumpTime <= 1.25) {
+          const airtime = (jumpTime - 0.35) / 0.90;
+          const height = Math.sin(airtime * Math.PI);
+          character.position.y += height * 0.86 * selectedMotion.amplitude;
+          leftArm.pivot.rotation.z = -0.90 * height;
+          rightArm.pivot.rotation.z = 1.10 * height;
+          leftLeg.pivot.rotation.x = 0.20 * height;
+          rightLeg.pivot.rotation.x = -0.24 * height;
+          leftLeg.bend.rotation.x = 0.32 * height;
+          rightLeg.bend.rotation.x = 0.45 * height;
+          head.rotation.x = -0.06 * height;
+        }
+        if (jumpTime > 1.25 && jumpTime < 1.85) {
+          const impact = (jumpTime - 1.25) / 0.60;
+          landingMaterial.opacity = (1 - impact) * 0.60;
+          landingRing.scale.setScalar(1 + impact * 1.4);
+        }
+      } else if (selectedAction === 'greet') {
+        character.position.y += Math.sin(actionTime * 3) * 0.025;
+        head.rotation.z = -0.10;
+        rightArm.pivot.rotation.z = 2.25 + Math.sin(actionTime * 6) * 0.20 * selectedMotion.amplitude;
+        rightArm.pivot.rotation.x = -0.18;
+        rightArm.bend.rotation.x = -0.25;
+        eyes.forEach(eye => { eye.scale.y = 0.62; });
+      }
+    };
 
     const updatePauseButton = () => {
       if (!pauseButton) return;
@@ -332,29 +535,40 @@ function createScene() {
       if (!canRender()) return;
       const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
       lastTime = time;
-      if (!paused) phase += delta;
-      root.rotation.y = -0.18 + yaw + Math.sin(phase * 0.24) * 0.055;
+      if (!paused) {
+        phase += delta;
+        transitionTime += delta;
+        if (reactionState === 'acting') {
+          actionElapsed += delta;
+          if (actionElapsed >= actionDuration) {
+            beginTransition();
+            reactionState = 'idle';
+          }
+        }
+      }
+      root.rotation.y = -0.12 + yaw;
       root.rotation.x = pitch;
-      const stride = phase * 2.4 + 0.7;
-      const step = Math.sin(stride);
-      performer.position.y = 0.12 + Math.sin(stride * 2) * 0.024;
-      leftLeg.pivot.rotation.x = step * 0.42;
-      rightLeg.pivot.rotation.x = -step * 0.42;
-      leftLeg.bend.rotation.x = 0.12 + Math.max(0, -step) * 0.43;
-      rightLeg.bend.rotation.x = 0.12 + Math.max(0, step) * 0.43;
-      leftArm.pivot.rotation.x = -step * 0.45;
-      rightArm.pivot.rotation.x = step * 0.45;
-      leftArm.bend.rotation.x = -0.40 - Math.max(0, step) * 0.25;
-      rightArm.bend.rotation.x = -0.40 - Math.max(0, -step) * 0.25;
-      npcHead.rotation.z = Math.sin(phase * 0.8) * 0.035;
-      npcRightArm.pivot.rotation.z = 0.94 + Math.sin(phase * 1.8) * 0.08;
-      sensingHalo.rotation.z = 0.2 + Math.sin(phase * 0.55) * 0.10;
-      speech.position.y = 3.02 + Math.sin(phase * 1.1) * 0.035;
-      speechDots.forEach((dot, index) => { dot.position.y = Math.sin(phase * 2.2 - index * 0.7) * 0.024; });
-      chestLight.material.emissiveIntensity = 0.28 + Math.sin(phase * 1.4) * 0.05;
-      satellites.rotation.y = Math.sin(phase * 0.19) * 0.07;
-      const angle = phase * 0.36 + 1;
-      electron.position.set(Math.cos(angle) * 2.78, 1.6 + Math.sin(angle) * 0.78, Math.sin(angle) * 1.7);
+      root.position.y = Math.sin(phase * 0.85) * 0.035;
+      setPose();
+      if (transitionFrom) {
+        const progress = Math.min(1, transitionTime / 0.32);
+        const weight = progress * progress * (3 - 2 * progress);
+        poseNodes.forEach((node, index) => {
+          const from = transitionFrom[index];
+          node.position.lerpVectors(from.position, node.position, weight);
+          const targetRotation = node.quaternion.clone();
+          node.quaternion.slerpQuaternions(from.quaternion, targetRotation, weight);
+          node.scale.lerpVectors(from.scale, node.scale, weight);
+        });
+        if (progress === 1) transitionFrom = null;
+      }
+      const currentFeatures = poseFeatures();
+      if (delta > 0 && !paused) poseVelocity = currentFeatures.map((value, index) => (value - previousFeatures[index]) / delta);
+      previousFeatures = currentFeatures;
+      trajectory.visible = selectedAction === 'explore' && reactionState !== 'idle';
+      scarf.rotation.z = -0.15 + Math.sin(phase * 2.2) * 0.06;
+      loot.rotation.y = phase * 0.70;
+      loot.position.y = 0.67 + Math.sin(phase * 1.5) * 0.06;
       const parallax = reducedMotion.matches ? 0 : 1;
       camera.position.x = THREE.MathUtils.lerp(camera.position.x, cameraOrigin.x + pointer.x * 0.4 * parallax, 0.09);
       camera.position.y = THREE.MathUtils.lerp(camera.position.y, cameraOrigin.y - pointer.y * 0.24 * parallax, 0.09);
@@ -371,7 +585,7 @@ function createScene() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, width < 600 ? 1.35 : 1.7));
       renderer.setSize(width, height);
       camera.aspect = width / height;
-      camera.fov = width / height < 0.9 ? 39 : 35;
+      camera.fov = width / height < 0.9 ? 36 : 32;
       camera.updateProjectionMatrix();
       wake();
     };
@@ -382,21 +596,42 @@ function createScene() {
         visible = entries[0].isIntersecting;
         lastTime = 0;
         if (visible) wake();
-        else { cancelAnimationFrame(frame); frame = 0; }
+        else { cancelAnimationFrame(frame); frame = 0; stopSpeech(); }
       }, { rootMargin: '40px' });
       visibilityObserver.observe(host);
     }
+    const raycaster = new THREE.Raycaster();
+    const hitPoint = new THREE.Vector2();
+    const hitCharacter = event => {
+      const bounds = canvas.getBoundingClientRect();
+      hitPoint.set((event.clientX - bounds.left) / bounds.width * 2 - 1, -(event.clientY - bounds.top) / bounds.height * 2 + 1);
+      scene.updateMatrixWorld(true);
+      raycaster.setFromCamera(hitPoint, camera);
+      return raycaster.intersectObject(character, true).some(hit => {
+        for (let object = hit.object; object; object = object.parent) {
+          if (!object.visible) return false;
+          if (object === character) return true;
+        }
+        return false;
+      });
+    };
     canvas.addEventListener('pointerdown', event => {
       if (failed || !event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
-      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw, pitch };
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, yaw, pitch, travel: 0, hit: hitCharacter(event) };
       canvas.setPointerCapture(event.pointerId);
-      hero.dataset.sceneDragging = 'true';
     });
     canvas.addEventListener('pointermove', event => {
       if (failed) return;
       if (drag?.id === event.pointerId) {
-        yaw = drag.yaw + (event.clientX - drag.x) * 0.007;
-        pitch = THREE.MathUtils.clamp(drag.pitch + (event.clientY - drag.y) * 0.002, -0.18, 0.24);
+        const dx = event.clientX - drag.x;
+        const dy = event.clientY - drag.y;
+        drag.travel = Math.max(drag.travel, Math.hypot(dx, dy));
+        if (drag.travel > 6) {
+          hero.dataset.sceneDragging = 'true';
+          canvas.style.cursor = 'grabbing';
+          yaw = drag.yaw + dx * 0.007;
+          pitch = THREE.MathUtils.clamp(drag.pitch + dy * 0.002, -0.18, 0.24);
+        }
       } else if (event.pointerType === 'mouse') {
         const bounds = host.getBoundingClientRect();
         pointer.x = (event.clientX - bounds.left) / bounds.width * 2 - 1;
@@ -406,23 +641,39 @@ function createScene() {
     }, { passive: true });
     const endDrag = event => {
       if (drag?.id !== event.pointerId) return;
+      const shouldTrigger = event.type === 'pointerup' && drag.hit && drag.travel <= 6 && Math.hypot(event.clientX - drag.x, event.clientY - drag.y) <= 6 && hitCharacter(event);
       drag = null;
       delete hero.dataset.sceneDragging;
+      canvas.style.cursor = 'pointer';
       if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+      if (shouldTrigger) triggerReaction();
     };
     canvas.addEventListener('pointerup', endDrag);
     canvas.addEventListener('pointercancel', endDrag);
-    canvas.addEventListener('lostpointercapture', () => { drag = null; delete hero.dataset.sceneDragging; });
+    canvas.addEventListener('lostpointercapture', () => {
+      drag = null;
+      delete hero.dataset.sceneDragging;
+      canvas.style.cursor = 'pointer';
+    });
     canvas.addEventListener('pointerleave', () => { pointer.x = pointer.y = 0; wake(32); });
+    canvas.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        if (!event.repeat) triggerReaction();
+      }
+    });
+    // Assistive technologies can activate a button with a synthetic click.
+    canvas.addEventListener('click', event => { if (event.detail === 0) triggerReaction(); });
     pauseButton?.addEventListener('click', () => {
       if (failed) return;
       paused = !paused;
+      if (paused) stopSpeech();
       updatePauseButton();
       wake();
     });
     resetButton?.addEventListener('click', () => {
       if (failed) return;
-      yaw = pitch = phase = 0;
+      yaw = pitch = 0;
       pointer.x = pointer.y = 0;
       camera.position.copy(cameraOrigin);
       wake();
@@ -430,6 +681,11 @@ function createScene() {
     reducedMotion.addEventListener('change', () => {
       if (failed) return;
       paused = reducedMotion.matches;
+      if (paused) {
+        stopSpeech();
+        transitionFrom = null;
+        if (reactionState === 'acting') actionElapsed = representativeTimes[selectedAction];
+      }
       pointer.x = pointer.y = 0;
       updatePauseButton();
       wake();
@@ -439,15 +695,32 @@ function createScene() {
       cancelAnimationFrame(frame);
       frame = 0;
       lastTime = 0;
-      if (!document.hidden) wake();
+      if (document.hidden) stopSpeech();
+      else wake();
     });
+    window.addEventListener('pagehide', () => {
+      clearTimeout(thinkingTimer);
+      thinkingTimer = 0;
+      reactionVersion++;
+      stopSpeech();
+      if (reactionState === 'thinking') {
+        reactionState = 'idle';
+        hero.dataset.thoughtPhase = 'idle';
+        transitionFrom = null;
+        if (thoughtWrap) thoughtWrap.hidden = true;
+      }
+    });
+    window.addEventListener('pageshow', () => { lastTime = 0; wake(); });
     canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); fallback(); });
 
     // Only replace the CSS fallback after a complete initial draw.
+    hero.dataset.thoughtPhase = 'idle';
+    setPose();
     resize();
     renderer.render(scene, camera);
     hero.dataset.sceneState = 'ready';
     if (controls) controls.hidden = false;
+    if (thoughtWrap) thoughtWrap.hidden = true;
     updatePauseButton();
     wake();
   } catch { fallback(); }

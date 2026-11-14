@@ -1,0 +1,107 @@
+/* A character, a thought, and the action that follows it. */
+.page-home .hero { padding-block:64px 100px; }
+.page-home .hero-copy { width:40%; max-width:480px; }
+.page-home .hero .hero-journey,
+html[lang="en"] .page-home .hero .hero-journey {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:fit-content;
+  max-width:100%;
+  margin:0;
+  color:#315e87;
+  font-size:clamp(24px,2.4vw,32px);
+  font-weight:700;
+  line-height:1.5;
+  letter-spacing:-.7px;
+  white-space:nowrap;
+}
+html[lang="en"] .page-home .hero .hero-journey { gap:8px; font-size:clamp(17px,1.72vw,24px); letter-spacing:-.55px; }
+.hero-journey > span { text-shadow:1px 1px 0 #d6e7f6,2px 2px 0 #bdd3e8,3px 3px 0 #a7c4df,4px 6px 8px #25568716; }
+.hero-journey > span:last-child { color:#1769c6; }
+.hero-journey > i { color:#8aa8c5; font-size:.65em; font-style:normal; font-weight:400; text-shadow:none; }
+.page-home .hero-summary { max-width:430px; margin-top:28px; color:#385e81; font-size:21px; line-height:1.95; letter-spacing:.2px; text-wrap:pretty; }
+html[lang="en"] .page-home .hero-summary { font-size:19px; line-height:1.8; letter-spacing:0; }
+
+.page-home .hero-actions { margin-top:30px; }
+.page-home .hero-actions .button-primary { min-height:46px; padding-inline:21px; }
+.page-home .hero-scene { width:60%; }
+
+.scene-thought { position:absolute; z-index:2; top:var(--thought-y,14%); left:var(--thought-x,50%); display:flex; align-items:flex-start; gap:10px; width:max-content; max-width:min(330px,80%); padding:16px 20px; border:1px solid #c5dbf0; border-radius:18px 18px 18px 5px; color:#315c83; background:#ffffffed; box-shadow:0 10px 35px #28578113,inset 0 1px #fff; backdrop-filter:blur(10px); transform:translateX(-50%); pointer-events:none; }
+.scene-thought[hidden] { display:none; }
+.page-home .hero-scene canvas { cursor:pointer; }
+.page-home .hero-scene canvas:focus-visible { outline:2px solid #6098cf; outline-offset:-8px; }
+.page-home .hero-scene canvas:active { cursor:grabbing; }
+@media(min-width:761px) {
+  .page-home .scene-thought { left:76%; top:10%; max-width:230px; }
+}
+.scene-thought::after { content:""; position:absolute; left:28px; bottom:-7px; width:12px; height:12px; border-right:1px solid #c5dbf0; border-bottom:1px solid #c5dbf0; background:#fffffff5; transform:rotate(45deg); }
+.scene-thought .thought-spark { flex:0 0 auto; padding-top:1px; color:#2b82d5; font-size:15px; line-height:1.6; }
+.scene-thought p { min-width:0; margin:0; font-size:14px; font-weight:500; line-height:1.75; text-wrap:pretty; }
+.page-home .scene-controls { right:40px; bottom:24px; }
+
+/* The same solitary character remains visible without a WebGL context. */
+.page-home .scene-fallback { inset:12% 12% 6%; perspective:900px; }
+.fallback-avatar { position:absolute; z-index:1; left:50%; bottom:17%; width:100px; height:205px; transform:translateX(-50%) rotateY(-13deg) rotateX(3deg); transform-style:preserve-3d; }
+.fallback-hood { position:absolute; z-index:3; top:0; left:6px; width:88px; height:84px; border:1px solid #4589c7; border-radius:48% 48% 36% 36%; background:linear-gradient(135deg,#6aafe7,#256fb4 65%,#19528f); box-shadow:inset -9px -4px 0 #184e8b55,6px 5px 0 #164d8429; }
+.fallback-hood::before { content:""; position:absolute; top:26px; left:13px; width:61px; height:43px; border:1px solid #28577d; border-radius:20px 20px 15px 15px; background:linear-gradient(145deg,#183f60,#102b48); box-shadow:inset 0 3px 8px #061c3344; }
+.fallback-hood > span { position:absolute; z-index:1; top:44px; left:29px; width:7px; height:8px; border-radius:3px; background:#d7efff; box-shadow:0 0 7px #a7dcff44; }
+.fallback-hood > span + span { left:53px; }
+.fallback-body { position:absolute; z-index:1; top:78px; left:15px; width:70px; height:83px; border-radius:10px 10px 16px 16px; background:linear-gradient(130deg,#3d8bce,#2369a7); box-shadow:inset -10px 0 0 #19558f60,5px 4px 0 #184d811c; }
+.fallback-body::before,.fallback-body::after { content:""; position:absolute; top:8px; left:-15px; width:18px; height:69px; border-radius:9px; background:linear-gradient(90deg,#327dbd,#23619b); box-shadow:inset -5px 0 0 #194e7b44; transform:rotate(9deg); }
+.fallback-body::after { left:auto; right:-15px; transform:rotate(-9deg); }
+.fallback-scarf { position:absolute; z-index:4; top:78px; left:10px; width:80px; height:17px; border:1px solid #d6953e; border-radius:6px; background:linear-gradient(#f3bc6a,#e8a64b); box-shadow:0 3px 0 #b8772f33; }
+.fallback-scarf::after { content:""; position:absolute; top:9px; left:12px; width:19px; height:47px; border-radius:0 0 4px 4px; background:linear-gradient(90deg,#edab52,#d78c35); box-shadow:3px 3px 0 #8e5c2422; transform:rotate(-10deg); }
+.fallback-boots { position:absolute; z-index:2; top:154px; left:15px; width:70px; height:44px; }
+.fallback-boots::before,.fallback-boots::after { content:""; position:absolute; top:0; left:2px; width:26px; height:43px; border-radius:5px 5px 8px 7px; background:linear-gradient(100deg,#24527c,#163c64); box-shadow:4px 3px 0 #14385b44,inset 0 -8px 0 #10315244; }
+.fallback-boots::after { left:43px; }
+.fallback-island { position:absolute; left:50%; bottom:9%; width:235px; height:126px; border:1px solid #a5c7df; border-radius:36px; background:linear-gradient(140deg,#f4fbff,#c9e2f4); box-shadow:0 9px 0 #afcbe0,0 13px 0 #8eadc7,0 30px 27px #3e6b9130,inset 0 1px #fff; transform:translateX(-50%) rotateX(58deg) rotateZ(-15deg); }
+
+
+@media(min-width:761px) and (max-width:1100px) {
+  .page-home .hero-copy { width:42%; }
+  .page-home .hero .hero-journey { gap:7px; font-size:24px; }
+  html[lang="en"] .page-home .hero .hero-journey { gap:5px; font-size:17px; }
+  .page-home .hero-summary { font-size:19px; line-height:1.85; }
+  html[lang="en"] .page-home .hero-summary { font-size:17px; }
+  .scene-thought { top:var(--thought-y,13%); max-width:75%; padding:13px 16px; }
+  .scene-thought p { font-size:12px; }
+}
+@media(min-width:761px) and (max-height:750px) {
+  .page-home .hero { padding-block:38px 80px; }
+  .page-home .hero-summary { margin-top:22px; font-size:19px; }
+  html[lang="en"] .page-home .hero-summary { font-size:17px; }
+  .page-home .hero-actions { margin-top:24px; }
+}
+@media(max-width:760px) {
+  .page-home .hero { min-height:max(650px,calc(100svh - var(--home-header-height))); padding:28px 0 64px; }
+  .page-home .hero-copy { width:100%; max-width:none; padding-inline:28px; }
+  .page-home .hero .hero-journey { gap:8px; font-size:clamp(20px,5.5vw,26px); letter-spacing:-.6px; }
+  html[lang="en"] .page-home .hero .hero-journey { gap:6px; font-size:clamp(14px,3.8vw,20px); letter-spacing:-.35px; }
+  .page-home .hero-summary { max-width:440px; margin-top:22px; font-size:19px; line-height:1.85; letter-spacing:0; }
+  html[lang="en"] .page-home .hero-summary { font-size:16px; line-height:1.75; }
+  .page-home .hero-actions { margin-top:23px; }
+  .page-home .hero-actions .button-primary { min-height:44px; padding:9px 18px; font-size:12px; }
+  .page-home .hero-scene { position:relative; width:100%; height:clamp(270px,34svh,390px); min-height:270px; flex:1 0 270px; margin-top:0; }
+  .scene-thought { top:var(--thought-y,3%); left:var(--thought-x,50%); max-width:min(300px,84%); gap:8px; padding:11px 15px; border-radius:14px 14px 14px 4px; }
+  .scene-thought p { font-size:12px; line-height:1.7; }
+  .scene-thought .thought-spark { font-size:13px; }
+  .fallback-avatar { transform:translateX(-50%) rotateY(-13deg) scale(.75); transform-origin:center bottom; }
+  .fallback-island { width:190px; height:105px; }
+  .page-home .scene-controls { right:20px; bottom:12px; }
+}
+@media(max-width:380px) {
+  .page-home .hero { padding-top:25px; }
+  .page-home .hero-copy { padding-inline:22px; }
+  .page-home .hero .hero-journey { gap:7px; font-size:20px; }
+  html[lang="en"] .page-home .hero .hero-journey { gap:5px; font-size:14px; }
+  .page-home .hero-summary { margin-top:19px; font-size:17px; }
+  html[lang="en"] .page-home .hero-summary { font-size:15px; }
+  .page-home .hero-actions { margin-top:20px; }
+  .page-home .hero-scene { height:270px; }
+}
+
+@media(forced-colors:active) {
+  .hero-journey > span { color:CanvasText; text-shadow:none; }
+  .scene-thought { border-color:CanvasText; background:Canvas; color:CanvasText; box-shadow:none; }
+}

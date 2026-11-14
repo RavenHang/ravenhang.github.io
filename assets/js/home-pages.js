@@ -103,7 +103,9 @@
     swipe = null;
     if (event.touches.length !== 1 || event.defaultPrevented) return;
     const element = targetElement(event.target);
-    if (!element || modalOpen() || element.closest(controls)
+    // The Bot is keyboard-accessible as a button, while vertical touch swipes
+    // on its canvas still belong to full-page navigation.
+    if (!element || modalOpen() || (element.closest(controls) && !element.closest('[data-hero-scene] canvas'))
       || element.closest('.research-gallery-track,[data-gallery-track],[data-home-scroll-native]')) return;
     const touch = event.touches[0];
     swipe = {
