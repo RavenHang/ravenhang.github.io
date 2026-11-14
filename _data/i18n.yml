@@ -25,6 +25,16 @@ zh:
   hero_developer: 开发者
   hero_researcher: 研究者
   hero_games_cta: 游戏作品
+  hero_research_cta: 学术探索
+  hero_contact_cta: 联系我
+  scene_label: 角色动画生成与智能 NPC 的交互式三维场景
+  scene_hint: 拖动探索
+  scene_pause: 暂停动画
+  scene_resume: 播放动画
+  scene_reset: 重置视角
+  scene_game: 角色动画生成
+  scene_ai: 智能 NPC
+  scene_scroll: 向下探索
   orbit_curiosity: 以好奇出发
   orbit_creativity: 用代码创造
   orbit_game: 游戏
@@ -71,6 +81,16 @@ en:
   hero_developer: Developer
   hero_researcher: Researcher
   hero_games_cta: Games
+  hero_research_cta: Research
+  hero_contact_cta: Contact
+  scene_label: Interactive 3D character animation and intelligent NPC scene
+  scene_hint: Drag to explore
+  scene_pause: Pause animation
+  scene_resume: Play animation
+  scene_reset: Reset view
+  scene_game: CHARACTER ANIMATION
+  scene_ai: INTELLIGENT NPCs
+  scene_scroll: Scroll to explore
   orbit_curiosity: Curious by nature
   orbit_creativity: Creative by code
   orbit_game: Game

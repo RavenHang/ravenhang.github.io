@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "zh-CN"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "杭瑞文 | 游戏开发与 AI 研究"
+title                    : "杭瑞文｜ 游戏 X AI"
 title_separator          : "-"
 name                     : &name "杭瑞文"
 description              : &description "杭瑞文的个人主页：游戏开发、Unreal Engine、DOTA2 游廊与复旦大学 OpenMOSS 的 AI 研究实践。"

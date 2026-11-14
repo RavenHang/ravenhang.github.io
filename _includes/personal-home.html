@@ -1,33 +1,35 @@
 <div class="intro-layout">
-<section class="hero" aria-labelledby="hero-title" data-personal-hero>
+<section class="hero" id="introduction" aria-labelledby="hero-title" data-personal-hero data-home-panel>
   <div class="hero-copy">
-    <p class="hero-name">{{ profile.name }}</p>
-    <p class="eyebrow hero-role"><span class="small-dot" aria-hidden="true"></span>{{ profile.role }}</p>
+    <p class="hero-kicker"><span class="small-dot" aria-hidden="true"></span>GAME <span class="hero-kicker-cross">×</span> AI</p>
+    <p class="eyebrow hero-role">{{ profile.role }}</p>
     <h1 id="hero-title" class="hero-progression" aria-label="{{ ui.hero_title_first | escape }} {{ ui.hero_title_second | escape }}">
       <span class="hero-path" aria-hidden="true">
-        <span class="hero-stage hero-stage--player"><span class="hero-stage-number">01</span><span class="hero-stage-name">{{ ui.hero_player }}</span><span class="hero-stage-arrow">↘</span></span>
-        <span class="hero-stage hero-stage--developer"><span class="hero-stage-number">02</span><span class="hero-stage-name">{{ ui.hero_developer }}</span><span class="hero-stage-arrow">↘</span></span>
-        <span class="hero-stage hero-stage--researcher"><span class="hero-stage-number">03</span><span class="hero-stage-name">{{ ui.hero_researcher }}</span><span class="hero-stage-end"></span></span>
+        <span class="hero-stage hero-stage--player"><span class="hero-stage-number">01</span><span class="hero-stage-name" data-text="{{ ui.hero_player | escape }}">{{ ui.hero_player }}</span><span class="hero-stage-arrow">↘</span></span>
+        <span class="hero-stage hero-stage--developer"><span class="hero-stage-number">02</span><span class="hero-stage-name" data-text="{{ ui.hero_developer | escape }}">{{ ui.hero_developer }}</span><span class="hero-stage-arrow">↘</span></span>
+        <span class="hero-stage hero-stage--researcher"><span class="hero-stage-number">03</span><span class="hero-stage-name" data-text="{{ ui.hero_researcher | escape }}">{{ ui.hero_researcher }}</span><span class="hero-stage-end"></span></span>
       </span>
     </h1>
     <p class="hero-summary">{{ profile.hero.summary }}</p>
     <div class="hero-actions">
-      <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }}</a>
+      <a class="button button-primary" href="{{ games_url | relative_url }}">{{ ui.hero_games_cta }} <span aria-hidden="true">↗</span></a>
+      <a class="hero-secondary-link" href="#research">{{ ui.hero_research_cta }} <span aria-hidden="true">↓</span></a>
     </div>
   </div>
-  <div class="hero-orbit">
-    <div class="orbit-ring orbit-ring--outer"></div>
-    <div class="orbit-ring orbit-ring--inner"></div>
-    <div class="orbit-axis orbit-axis--one"></div><div class="orbit-axis orbit-axis--two"></div>
-    <div class="orbit-core"><span class="orbit-micro">{{ ui.orbit_curiosity }}</span><strong>{{ ui.orbit_game }}<span>×</span>{{ ui.orbit_ai }}</strong><span class="orbit-micro">{{ ui.orbit_creativity }}</span></div>
-    <a class="orbit-label orbit-label--game" href="{{ games_url | relative_url }}"><span class="orbit-symbol" aria-hidden="true">&lt;/&gt;</span><small>{{ ui.orbit_game }}</small><b>{{ ui.orbit_game_caption }}</b></a>
-    <a class="orbit-label orbit-label--research" href="https://openmoss.ai/" target="_blank" rel="noopener noreferrer"><span class="orbit-symbol" aria-hidden="true">✳</span><small>{{ ui.orbit_ai }}</small><b>{{ ui.orbit_research_caption }}</b></a>
-    <span class="orbit-coordinate orbit-coordinate--top">01 / {{ ui.orbit_imagination }}</span><span class="orbit-coordinate orbit-coordinate--bottom">02 / {{ ui.orbit_exploration }}</span>
+  <div class="hero-scene" data-hero-scene role="img" aria-label="{{ ui.scene_label | escape }}">
+    <div class="scene-fallback" aria-hidden="true"><div class="scene-fallback-ring"></div><div class="scene-fallback-core">MOTION<span>×</span>NPC</div><i></i><i></i><i></i></div>
   </div>
+  <div class="scene-annotations" aria-hidden="true"><span>{{ ui.scene_game }}</span><span class="scene-annotation-line"></span><span>{{ ui.scene_ai }}</span></div>
+  <div class="scene-controls" data-scene-controls hidden>
+    <span class="scene-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 12V5a2 2 0 0 1 4 0v7-3a2 2 0 0 1 4 0v3-1a2 2 0 0 1 4 0v5c0 4-3 6-6 6h-2c-2 0-3-1-4-2l-5-6a2 2 0 0 1 3-2l2 1Z"/></svg>{{ ui.scene_hint }}</span>
+    <button type="button" class="scene-control" data-scene-pause aria-pressed="false" aria-label="{{ ui.scene_pause | escape }}" data-pause-label="{{ ui.scene_pause | escape }}" data-resume-label="{{ ui.scene_resume | escape }}"><svg class="scene-pause-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg><svg class="scene-play-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg></button>
+    <button type="button" class="scene-control" data-scene-reset aria-label="{{ ui.scene_reset | escape }}" title="{{ ui.scene_reset | escape }}"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6a7 7 0 1 1-1 6M4 2v5h5"/></svg></button>
+  </div>
+  <a class="hero-scroll" href="#experience"><span class="hero-scroll-line" aria-hidden="true"></span>{{ ui.scene_scroll }} <span aria-hidden="true">↓</span></a>
 </section>
-{% include personal-sidebar.html %}
 </div>
-      <section class="experience-section section-space" id="experience" aria-labelledby="experience-title">
+      <section class="experience-section section-space" id="experience" aria-labelledby="experience-title" data-home-panel>
+        <p class="panel-index" aria-hidden="true">02 / EXPERIENCE</p>
         <h2 id="experience-title" class="home-section-title">{{ ui.industry_label }}</h2>
         <div class="experience-list">
           {% for item in profile.industry %}
@@ -40,10 +42,13 @@
           </article>
           {% endfor %}
         </div>
+        {% include personal-sidebar.html %}
+        <a class="panel-next" href="#research">{{ ui.hero_research_cta }} <span aria-hidden="true">↓</span></a>
       </section>
 
-      <section class="research-section section-space" id="research" aria-labelledby="research-title">
+      <section class="research-section section-space" id="research" aria-labelledby="research-title" data-home-panel>
         <div class="research-inner">
+          <p class="panel-index" aria-hidden="true">03 / RESEARCH</p>
           <h2 id="research-title" class="home-section-title">{{ ui.research_heading }}</h2>
           <div class="research-layout">
             <div class="education">

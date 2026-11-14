@@ -377,3 +377,9 @@ html[lang="en"] .orbit-core strong { font-size:clamp(29px,3.5vw,53px); }
 @media(prefers-reduced-motion:reduce) { .game-panel.is-active .game-info { animation:none; } }
 
 @media(min-width:801px) { .page-games { padding-bottom:105px; } }
+
+/* The owner's name is the shared wordmark on both language versions. */
+.site-header .brand .brand-name { color:var(--ink); font-size:20px; font-weight:750; line-height:1.5; letter-spacing:1px; }
+@media(max-width:800px) {
+ .site-header .brand .brand-name { font-size:17px; }
+}
