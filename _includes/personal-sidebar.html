@@ -3,12 +3,14 @@
   <div class="sidebar-contact">
     <h2 class="sidebar-title" id="sidebar-contact-title">{{ ui.sidebar_contact_title }}</h2>
     <ul class="sidebar-links">
+      {% for email in profile.emails %}
       <li>
-        <a class="sidebar-link sidebar-link--email" href="mailto:{{ profile.email | escape }}">
+        <a class="sidebar-link sidebar-link--email" href="mailto:{{ email | escape }}">
           <svg class="sidebar-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
-          <span class="sidebar-link-copy"><small class="sidebar-link-label">{{ ui.email_label }}</small><span class="sidebar-link-detail">{{ profile.email }}</span></span>
+          <span class="sidebar-link-copy"><small class="sidebar-link-label">{{ ui.email_label }}</small><span class="sidebar-link-detail">{{ email | escape }}</span></span>
         </a>
       </li>
+      {% endfor %}
       {% for link in profile.links %}
       <li>
         <a class="sidebar-link" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">
